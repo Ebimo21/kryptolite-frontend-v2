@@ -1,12 +1,14 @@
 import React from "react";
 import { FaFacebook, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import { BsInstagram, BsTelegram } from "react-icons/bs";
+import { SiDiscord } from "react-icons/si";
 
 type SocialIconTypes =
   | "twitter"
   | "telegramGroup"
   | "telegramNews"
   | "facebook"
+  | "discord"
   | "instagram";
 
 const socials: { name: SocialIconTypes; url: string }[] = [
@@ -15,6 +17,7 @@ const socials: { name: SocialIconTypes; url: string }[] = [
   { name: "telegramGroup", url: "https://t.me/KryptoliteCommunity" },
   { name: "telegramNews", url: "https://t.me/KryptoliteNews" },
   { name: "instagram", url: "https://instagram.com/kryptolite_community" },
+  { name: "discord", url: "https://discord.gg/Kryptoverse" },
 ];
 
 export default function Footer() {
@@ -60,6 +63,9 @@ const getSocialIcon = (name: SocialIconTypes) => {
       break;
     case "instagram":
       svgIcon = <BsInstagram className={iconClass} title={name} />;
+      break;
+    case "discord":
+      svgIcon = <SiDiscord className={iconClass} title={name} />;
       break;
     default:
       break;
