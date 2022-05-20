@@ -7,6 +7,7 @@ import cls from "classnames";
 import { RiMailSendLine } from "react-icons/ri";
 import { SiGmail } from "react-icons/si";
 import { BsQuestionSquare } from "react-icons/bs";
+import SocialList from "../components/Layouts/Footer/SocialList";
 
 export default function IndexPage() {
   return (
@@ -199,14 +200,14 @@ export default function IndexPage() {
         <h2 className="md:text-center">Our {highlighText("Roadmap")}</h2>
         <div className="p-20 bg-yellow-600"></div>
       </Section>
-      <Section className="text-center" padding={true}>
+      <Section className="text-center space-y-10" padding={true}>
         <h2 className="md:text-center">Join {highlighText("Our Community")}</h2>
         <p>
           We are a new project but positive news about us is travelling fast. Be
           sure to join our amazing community to keep up-to-date and find out how
           you can get involved.
         </p>
-        <div className="text-center">socials</div>
+        <SocialList />
       </Section>
       <Section className="text-center" padding={true}>
         <h2 className="md:text-center">{highlighText("Reach us")} from here</h2>
@@ -219,7 +220,7 @@ export default function IndexPage() {
           md:space-x-5 my-10"
         >
           <div
-            className="bg-white border-2 border-transparent hover:border-primary-500 p-10 underline
+            className="bg-white border-2 border-transparent hover:border-primary-500 p-10
             flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
             hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
           >
@@ -227,7 +228,7 @@ export default function IndexPage() {
             <p>admin@kryptolite.rocks</p>
           </div>
           <div
-            className="bg-white border-2 border-transparent hover:border-primary-500 p-10 underline
+            className="bg-white border-2 border-transparent hover:border-primary-500 p-10
             flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
             hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
           >
@@ -235,7 +236,7 @@ export default function IndexPage() {
             <p>info@kryptolite.rocks</p>
           </div>
           <div
-            className="bg-white border-2 border-transparent hover:border-primary-500 p-10 underline
+            className="bg-white border-2 border-transparent hover:border-primary-500 p-10
             flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
             hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
           >

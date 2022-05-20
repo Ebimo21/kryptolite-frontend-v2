@@ -20,27 +20,21 @@ const socials: { name: SocialIconTypes; url: string }[] = [
   { name: "discord", url: "https://discord.gg/Kryptoverse" },
 ];
 
-export default function Footer() {
+export default function SocialList() {
   return (
-    <footer className="bg-gray-50 shadow-lg border shadow-black py-8 flex flex-col items-center">
-      <div className="font-light">
-        &copy; Copyright {new Date().getFullYear()} KRYPTOLITE.
-      </div>
-      <div>
-        <div className="mt-3 flex items-start justify-center lg:justify-start space-x-4">
-          {socials.map((social) => (
-            <a
-              key={social.name}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {getSocialIcon(social.name)}
-            </a>
-          ))}
-        </div>
-      </div>
-    </footer>
+    <div className="mt-3 flex items-start justify-center space-x-4">
+      {socials.map((social) => (
+        <a
+          key={social.name}
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block"
+        >
+          {getSocialIcon(social.name)}
+        </a>
+      ))}
+    </div>
   );
 }
 
