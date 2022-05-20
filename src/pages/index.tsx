@@ -24,7 +24,7 @@ export default function IndexPage() {
           md:flex-row md:justify-between md:item-start gap-3 text-center md:text-left"
         >
           <div className="max-w-8xl w-full pt-10 space-y-10">
-            <h1 className="text-[2.7rem]">
+            <h1 className="text-[2.7rem] uppercase font-light">
               {highlighText("Advanced")} DeFi protocol
             </h1>
             <p className="text-2xl">
@@ -50,14 +50,14 @@ export default function IndexPage() {
           </div>
           <div className="flex-shrink-0 mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
             <StaticImage
-              src="../images/icon.png"
+              src="../images/hero-image.png"
               alt="TTEB Logo"
               layout="fullWidth"
               placeholder="blurred"
             />
           </div>
         </div>
-        <div className="bg-white w-full p-5 shadow-xl shadow-gray-200 rounded-md">
+        <div className="bg-white w-full p-5 shadow-xl shadow-gray-200 rounded-md mt-5">
           <div className="w-full pt-[56.25%] relative bg-black/80">
             <ReactPlayer
               url="https://youtu.be/Firr6Q8qccY"
@@ -92,7 +92,7 @@ export default function IndexPage() {
         <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
           <div className="mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
             <StaticImage
-              src="../images/icon.png"
+              src="../images/what-is-more.png"
               alt="TTEB Logo"
               layout="fullWidth"
               placeholder="blurred"
@@ -159,7 +159,7 @@ export default function IndexPage() {
           </div>
           <div className="flex-shrink-0 mx-auto max-w-sm w-full px-10 my-5 md:my-0">
             <StaticImage
-              src="../images/icon.png"
+              src="../images/invest-in-krl.png"
               alt="TTEB Logo"
               layout="fullWidth"
               placeholder="blurred"
