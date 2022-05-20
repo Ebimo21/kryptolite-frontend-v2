@@ -283,7 +283,9 @@ export default function IndexPage() {
 }
 
 const highlighText = (text: string, className?: string) => (
-  <span className={cls(className ? className : "text-green-600 font-semibold")}>
+  <span
+    className={cls(className ? className : "text-primary-600 font-semibold")}
+  >
     {text}
   </span>
 );
