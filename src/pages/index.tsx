@@ -4,6 +4,9 @@ import { StaticImage } from "gatsby-plugin-image";
 import Section from "../components/Layouts/Section";
 import SEO from "../components/SEO";
 import cls from "classnames";
+import { RiMailSendLine } from "react-icons/ri";
+import { SiGmail } from "react-icons/si";
+import { BsQuestionSquare } from "react-icons/bs";
 
 export default function IndexPage() {
   return (
@@ -211,11 +214,41 @@ export default function IndexPage() {
           If you have any question, feel free to drop us a message, we will get
           back to you as soon as we can
         </p>
-        <div className="text-center">Mails</div>
+        <div
+          className="flex flex-col md:flex-row justify-center items-center max-w-2xl mx-auto space-y-5 md:space-y-0
+          md:space-x-5 my-10"
+        >
+          <div
+            className="bg-white border-2 border-transparent hover:border-primary-500 p-10 underline
+            flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
+            hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
+          >
+            <RiMailSendLine className="h-10 w-10" />
+            <p>admin@kryptolite.rocks</p>
+          </div>
+          <div
+            className="bg-white border-2 border-transparent hover:border-primary-500 p-10 underline
+            flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
+            hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
+          >
+            <BsQuestionSquare className="h-10 w-10" />
+            <p>info@kryptolite.rocks</p>
+          </div>
+          <div
+            className="bg-white border-2 border-transparent hover:border-primary-500 p-10 underline
+            flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
+            hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
+          >
+            <SiGmail className="h-10 w-10" />
+            <p>kryptoliteswap@gmail.com</p>
+          </div>
+        </div>
       </Section>
-      <Section className="flex text-center" padding={true}>
+      <Section className="flex text-center font-light gap-2" padding={true}>
         <span>Our Partners</span>
-        <div>Partners, images, images, </div>
+        {[1, 2, 3, 4, 5].map((_i) => (
+          <div className="w-52 h-52 bg-gray-50" />
+        ))}
       </Section>
     </main>
   );
