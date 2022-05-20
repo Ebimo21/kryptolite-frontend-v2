@@ -20,9 +20,9 @@ export default function Navbar() {
 
   return (
     <Section
-      containerClass="bg-transparent"
+      containerClass="bg-transparent fixed top-0 w-full z-50"
       className={cls(
-        "!max-w-screen-2xl bg-white shadow-md !px-4 md:!px-4 shadow-gray-100",
+        "!max-w-screen-2xl bg-white shadow-md !px-4 md:!px-4 shadow-gray-400/20",
         {
           "shadow-lg": !open,
         }

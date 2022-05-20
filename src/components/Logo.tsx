@@ -1,13 +1,16 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
+import Link from "./Link";
 
 export default function Logo() {
   return (
-    <StaticImage
-      src="../images/icon.png"
-      alt="Tteb Logo"
-      width={50}
-      placeholder="blurred"
-    />
+    <Link to="/">
+      <StaticImage
+        src="../images/icon.png"
+        alt="Tteb Logo"
+        width={50}
+        placeholder="blurred"
+      />
+    </Link>
   );
 }
