@@ -8,6 +8,7 @@ import { SiGmail } from "react-icons/si";
 import { BsQuestionSquare, BsShieldFillCheck } from "react-icons/bs";
 import SocialList from "../components/Layouts/Footer/SocialList";
 import Link from "../components/Link";
+import ReactPlayer from "react-player/youtube";
 
 export default function IndexPage() {
   return (
@@ -55,8 +56,18 @@ export default function IndexPage() {
             />
           </div>
         </div>
-        <div className="bg-white h-[500px] w-full p-5 shadow-xl shadow-gray-200 rounded-md">
-          <div className="bg-primary-300 w-full h-full"></div>
+        <div className="bg-white w-full p-5 shadow-xl shadow-gray-200 rounded-md">
+          <div className="w-full pt-[56.25%] relative bg-black/80">
+            <ReactPlayer
+              url="https://youtu.be/Firr6Q8qccY"
+              width="100%"
+              height="100%"
+              pip={false}
+              preload="auto"
+              className="absolute top-0 left-0"
+              controls={true}
+            />
+          </div>
         </div>
       </Section>
       <Section
@@ -155,7 +166,10 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section containerClass="bg-gray-50" padding={true}>
+      <Section
+        containerClass="bg-gray-50 text-center md:text-left"
+        padding={true}
+      >
         <h2 className="md:text-center">
           {highlighText("Hold and Stake")} $KRL
         </h2>
