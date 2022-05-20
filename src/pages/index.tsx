@@ -21,7 +21,7 @@ export default function IndexPage() {
       <Section className="!pt-0 pb-0">
         <div
           className="md:h[700px] mx-auto my-16 flex flex-col
-          md:flex-row md:justify-between md:item-start gap-3 text-center md:text-left"
+          md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"
         >
           <div className="max-w-8xl w-full pt-10 space-y-10">
             <h1 className="text-[2.7rem] uppercase font-light">
@@ -48,7 +48,7 @@ export default function IndexPage() {
               </Link>
             </div>
           </div>
-          <div className="flex-shrink-0 mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
+          <div className="flex-shrink-0 mx-auto max-w-sm w-full px-10 mt-5">
             <StaticImage
               src="../images/hero-image.png"
               alt="TTEB Logo"

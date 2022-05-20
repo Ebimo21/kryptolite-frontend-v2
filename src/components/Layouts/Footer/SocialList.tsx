@@ -12,12 +12,12 @@ type SocialIconTypes =
   | "instagram";
 
 const socials: { name: SocialIconTypes; url: string }[] = [
+  { name: "discord", url: "https://discord.gg/Kryptoverse" },
   { name: "twitter", url: "https://twitter.com/KryptoliteSwap" },
   { name: "facebook", url: "https://fb.me/KryptoliteCommunity" },
+  { name: "instagram", url: "https://instagram.com/kryptolite_community" },
   { name: "telegramGroup", url: "https://t.me/KryptoliteCommunity" },
   { name: "telegramNews", url: "https://t.me/KryptoliteNews" },
-  { name: "instagram", url: "https://instagram.com/kryptolite_community" },
-  { name: "discord", url: "https://discord.gg/Kryptoverse" },
 ];
 
 export default function SocialList() {
