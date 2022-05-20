@@ -60,10 +60,10 @@ export default function Navbar() {
               <li key={nav.id} className="inline-block mt-2 lg:mt-0 text-lg">
                 <Link
                   to={nav.href}
-                  className="px-5 block py-3 font-normal bg-transparent rounded-lg text-primary-600
-                hover:text-primary-800 focus:text-primary-800 hover:bg-primary-100
-                focus:bg-primary-100 focus:outline-none focus:shadow-outline transition-colors
-                  duration-300"
+                  className="!px-5 !block !py-3 !ont-normal !bg-transparent !rounded-lg
+                  !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
+                  hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none
+                    focus:!shadow-outline"
                   onClick={closeMenu}
                 >
                   {nav.title}

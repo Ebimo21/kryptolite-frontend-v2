@@ -1,13 +1,13 @@
 import React from "react";
-import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import Section from "../components/Layouts/Section";
 import SEO from "../components/SEO";
 import cls from "classnames";
-import { RiMailSendLine } from "react-icons/ri";
+import { RiMailSendLine, RiMoneyDollarCircleFill } from "react-icons/ri";
 import { SiGmail } from "react-icons/si";
-import { BsQuestionSquare } from "react-icons/bs";
+import { BsQuestionSquare, BsShieldFillCheck } from "react-icons/bs";
 import SocialList from "../components/Layouts/Footer/SocialList";
+import Link from "../components/Link";
 
 export default function IndexPage() {
   return (
@@ -21,19 +21,28 @@ export default function IndexPage() {
           className="md:h[700px] mx-auto my-16 flex flex-col
           md:flex-row md:justify-between md:item-start gap-3 text-center md:text-left"
         >
-          <div className="max-w-8xl w-full pt-10">
+          <div className="max-w-8xl w-full pt-10 space-y-10">
             <h1 className="text-[2.7rem]">
               {highlighText("Advanced")} DeFi protocol
             </h1>
-            <p className="body-text">
+            <p className="text-2xl">
               KRYPTOLITE is the first hybrid protocol that leverages
               Proof-of-Work, Proof-of-Stake and human work to create a platform
               that is fast, inclusive and resilient to attacks.
             </p>
-
-            <div className="my-5">
-              <Link to="/contact-us" className="border">
-                <button>Book an Audit</button>
+            <div className="my-5 space-x-5">
+              <Link to="#" as="button" className="inline-flex space-x-2">
+                <RiMoneyDollarCircleFill />
+                <span>Buy $KRL</span>
+              </Link>
+              <Link
+                to="#"
+                as="button"
+                className="inline-flex space-x-2"
+                variant="outline"
+              >
+                <BsShieldFillCheck />
+                <span>Stake $KRL</span>
               </Link>
             </div>
           </div>
@@ -50,15 +59,18 @@ export default function IndexPage() {
           <div className="bg-primary-300 w-full h-full"></div>
         </div>
       </Section>
-      <Section className="text-center" padding={true}>
+      <Section
+        className="text-center flex flex-col items-center"
+        padding={true}
+      >
         <p className="text-xl md:text-3xl text-primary-900">
           The Kryptolite Universe is designed to allow our community tap into
           and utilize the full potential of Decentralized Finance without the
           demands of active portfolio management.
-          <button className="border p-3 shadow-md block mx-auto mt-10 rounded-full">
-            Buy $KRL
-          </button>
         </p>
+        <Link to="#" as="button" className="mt-10 block w-auto">
+          Buy $KRL Today
+        </Link>
       </Section>
       <Section
         containerClass="bg-gray-50"
@@ -113,7 +125,7 @@ export default function IndexPage() {
         <h2 className="md:text-center">
           {highlighText("Benefits")} of investing in KRL
         </h2>
-        <div className="flex flex-col-reverse md:flex-row md:items-center">
+        <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-center">
           <div className="space-y-5">
             <p>
               KRYPTOLITE allows for high yield trading — yield farming — that
@@ -147,7 +159,7 @@ export default function IndexPage() {
         <h2 className="md:text-center">
           {highlighText("Hold and Stake")} $KRL
         </h2>
-        <div className="text-center md:text-left md:flex md:items-center">
+        <div className="text-center md:text-left md:flex md:items-center md:justify-center">
           <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
             <div className="mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
               <StaticImage
@@ -190,10 +202,10 @@ export default function IndexPage() {
           Our own Decentralized Exchange (AMM DEX) - KRL will be the fuel of the
           automated market maker protocol.
         </p>
-        <div className="grid grid-cols-3">
-          <div className="bg-red-500"></div>
-          <div className="bg-red-500"></div>
-          <div className="bg-red-500"></div>
+        <div className="grid grid-cols-3 gap-3">
+          <div className="bg-red-500 p-10"></div>
+          <div className="bg-red-500 p-10"></div>
+          <div className="bg-red-500 p-10"></div>
         </div>
       </Section>
       <Section className="text-center md:text-left" padding={true}>

@@ -29,3 +29,21 @@
     @apply font-sans font-medium leading-tight uppercase;
   }
 }
+
+@layer components {
+  .btn {
+    @apply px-5 py-3 font-medium outline-none rounded-full transition-all duration-200 inline-flex
+      disabled:cursor-not-allowed disabled:opacity-40 shadow hover:shadow-lg justify-center items-center
+      text-center text-lg;
+  }
+  .btn-primary {
+    @apply text-white bg-primary-600 hover:bg-primary-400 hover:text-black
+      focus:bg-primary-400 focus:text-black focus-within:bg-primary-400 focus-within:text-black;
+  }
+
+  .btn-outline {
+    @apply text-primary-600 bg-white hover:bg-primary-600 hover:text-white ring-2
+    focus:bg-primary-600 focus:text-white focus-within:bg-primary-600 focus-within:text-white
+    ring-primary-600;
+  }
+}

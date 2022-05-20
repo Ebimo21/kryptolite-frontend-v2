@@ -1,29 +1,40 @@
 import React from "react";
 import { Link as GatsbyLink } from "gatsby";
-import type { LocationState } from "../types";
 import cls from "classnames";
+
+type LinkProps = {
+  as?: "button";
+  variant?: "primary" | "outline";
+};
 
 export default function Link({
   children,
   to,
   activeClassName,
   partiallyActive,
-  state,
-  pageState,
+  className,
+  as,
+  variant = "primary",
   ...other
-}: React.ComponentPropsWithoutRef<typeof GatsbyLink> & {
-  pageState?: LocationState;
-}) {
+}: React.ComponentPropsWithoutRef<typeof GatsbyLink> & LinkProps) {
   const internal = /^\/(?!\/)/.test(to);
+  let linkClassName = as === "button" ? "btn" : "";
+  if (as === "button") {
+    if (variant === "primary") {
+      linkClassName += " btn-primary";
+    } else if (variant === "outline") {
+      linkClassName += " btn-outline";
+    }
+  }
 
   // Use Gatsby Link for internal links, and <a> for others
   if (internal) {
     return (
       <GatsbyLink
         to={to}
-        activeClassName={cls(activeClassName)}
+        className={cls(linkClassName, className)}
+        activeClassName={activeClassName}
         partiallyActive={partiallyActive}
-        state={pageState}
         {...other}
       >
         {children}
@@ -31,7 +42,7 @@ export default function Link({
     );
   }
   return (
-    <a href={to} {...other}>
+    <a href={to} className={cls(linkClassName, className)} {...other}>
       {children}
     </a>
   );
