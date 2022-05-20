@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  FaFacebook,
-  FaTelegram,
-  FaTelegramPlane,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaFacebook, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import { BsInstagram, BsTelegram } from "react-icons/bs";
 
 type SocialIconTypes =
@@ -15,11 +10,11 @@ type SocialIconTypes =
   | "instagram";
 
 const socials: { name: SocialIconTypes; url: string }[] = [
-  { name: "twitter", url: "#" },
-  { name: "facebook", url: "#" },
-  { name: "telegramGroup", url: "#" },
-  { name: "telegramNews", url: "#" },
-  { name: "instagram", url: "#" },
+  { name: "twitter", url: "https://twitter.com/KryptoliteSwap" },
+  { name: "facebook", url: "https://fb.me/KryptoliteCommunity" },
+  { name: "telegramGroup", url: "https://t.me/KryptoliteCommunity" },
+  { name: "telegramNews", url: "https://t.me/KryptoliteNews" },
+  { name: "instagram", url: "https://instagram.com/kryptolite_community" },
 ];
 
 export default function Footer() {
