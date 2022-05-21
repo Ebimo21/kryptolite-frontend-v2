@@ -7,7 +7,7 @@ import highlighText from "../Tools/highlightText";
 
 export default function ReachUsSection() {
   return (
-    <Section padding={true}>
+    <Section padding={true} className="md:text-center">
       <h2 className="md:text-center">{highlighText("Reach us")} from here</h2>
       <p>
         If you have any question, feel free to drop us a message, we will get

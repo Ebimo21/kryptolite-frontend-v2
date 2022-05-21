@@ -2,13 +2,22 @@ import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import Section from "../components/Layouts/Section";
 import SEO from "../components/SEO";
-import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import {
+  Ri24HoursFill,
+  RiExchangeDollarLine,
+  RiMoneyDollarCircleFill,
+} from "react-icons/ri";
 import { BsShieldFillCheck } from "react-icons/bs";
+import { HiUserGroup } from "react-icons/hi";
 import Link from "../components/Link";
 import ReactPlayer from "react-player/youtube";
 import highlighText from "../components/Tools/highlightText";
 import JoinCommunitySection from "../components/SharedSections/JoinCommunitySection";
 import ReachUsSection from "../components/SharedSections/ReachUsSection";
+import TwoColumnLayoutWithIcon from "../components/SharedSections/TwoColumnLayoutWithIcon";
+import { SiBinance } from "react-icons/si";
+import { FaInfoCircle } from "react-icons/fa";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function IndexPage() {
   return (
@@ -60,6 +69,7 @@ export default function IndexPage() {
               alt="KRYPTOLITE Logo"
               layout="fullWidth"
               placeholder="blurred"
+              quality={100}
             />
           </div>
         </div>
@@ -212,21 +222,61 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section padding={true}>
+      <Section padding={true} className="space-y-5 max-w-screen-xl">
         <h2 className="md:text-center">
           Other Things {highlighText("We Offer")}
         </h2>
-        <p>
+        <p className="md:text-center max-w-screen-lg mx-auto">
           Our own Decentralized Exchange (AMM DEX) - KRL will be the fuel of the
           automated market maker protocol.
         </p>
-        <div className="grid grid-cols-3 gap-3">
-          <div className="bg-red-500 p-10"></div>
-          <div className="bg-red-500 p-10"></div>
-          <div className="bg-red-500 p-10"></div>
+        <div className="flex flex-col md:flex-row md:justify-between gap-3">
+          <div className="w-full max-w-sm space-y-10">
+            {servicesList.map((e, i) => {
+              const isEven = i % 2 === 0;
+              // Only even numbers
+              return (
+                isEven && (
+                  <TwoColumnLayoutWithIcon
+                    key={e.name}
+                    heading={e.name}
+                    body={e.description}
+                    image={e.image}
+                    left={isEven}
+                  />
+                )
+              );
+            })}
+          </div>
+          <div className="p-10 w-full hidden md:block">
+            <StaticImage
+              src="../images/phone-setting.svg"
+              alt=""
+              placeholder="blurred"
+              layout="fullWidth"
+              quality={100}
+            />
+          </div>
+          <div className="w-full max-w-sm space-y-10">
+            {servicesList.map((e, i) => {
+              const isEven = i % 2 === 0;
+              // Only odd numbers
+              return (
+                !isEven && (
+                  <TwoColumnLayoutWithIcon
+                    key={e.name}
+                    heading={e.name}
+                    body={e.description}
+                    image={e.image}
+                    left={isEven}
+                  />
+                )
+              );
+            })}
+          </div>
         </div>
       </Section>
-      <Section padding={true}>
+      <Section padding={true} className="md:text-center">
         <h2 className="md:text-center">Our {highlighText("Roadmap")}</h2>
         <div className="p-20 bg-yellow-600"></div>
       </Section>
@@ -241,3 +291,89 @@ export default function IndexPage() {
     </main>
   );
 }
+
+const servicesList: {
+  name: string;
+  description: React.ReactNode;
+  image: JSX.Element;
+}[] = [
+  {
+    name: "Passive Income",
+    description: "Hodlers earn passive income just by hodling and staking!",
+    image: <RiMoneyDollarCircleFill className="text-primary-800 h-12 w-12" />,
+  },
+  {
+    name: "BEP-20 Coin on BSC",
+    description: `We are tapping into the oil well of DeFi (with mighty PoS and yield farming rewards)
+for our community`,
+    image: <SiBinance className="text-primary-800 h-12 w-12" />,
+  },
+  {
+    name: "Community-first",
+    description: (
+      <ul className="space-y-3">
+        <li>Community-first</li>
+        <li>NFT'S powered</li>
+        <li>Fair launch with presale and reasonable token pricing</li>
+        <li>LP locked in PancakeSwap until 2030</li>
+        <li>
+          Team tokens locked for 36 months after launch by TrustSwap and can be
+          verified HERE
+        </li>
+      </ul>
+    ),
+    image: <HiUserGroup className="text-primary-800 h-12 w-12" />,
+  },
+  {
+    name: "Exclusive NFT webshop",
+    description:
+      "Exclusive NFT webshop with KRYPTOLITE gem NFT’s which can only be purchased with $KRL",
+    image: <AiOutlineShoppingCart className="text-primary-800 h-12 w-12" />,
+  },
+  {
+    name: "TOKENOMICS",
+    description: (
+      <ul className="space-y-3">
+        <li>
+          Burn: <span className="text-primary-700 font-bold">40%</span>
+        </li>
+        <li>
+          Liquidity/Listings:{" "}
+          <span className="text-primary-700 font-bold">25%</span>
+        </li>
+        <li>
+          Marketing & Strategic Partnerships:{" "}
+          <span className="text-primary-700 font-bold">10%</span>
+        </li>
+        <li>
+          Team: <span className="text-primary-700 font-bold">6.225%</span>
+        </li>
+        <li>
+          Presale: <span className="text-primary-700 font-bold">5.775%</span>
+        </li>
+        <li>
+          Yield Farming Incentives:{" "}
+          <span className="text-primary-700 font-bold">5%</span>
+        </li>
+        <li>
+          Bounties: <span className="text-primary-700 font-bold">5%</span>
+        </li>
+        <li>
+          Airdrop: <span className="text-primary-700 font-bold">2.5%</span>
+        </li>
+        <li>
+          Early Investors Bonus:{" "}
+          <span className="text-primary-700 font-bold">0.5%</span>
+        </li>
+      </ul>
+    ),
+    image: <FaInfoCircle className="text-primary-800 h-12 w-12" />,
+  },
+  {
+    name: "Liquidity Aggregation",
+    description: `Users can exchange assets at the lowest rate and via the most efficient trading
+      route — this is achieved by connecting their own decentralized wallets. In any environment,
+      anyone can access our DEX(KryptoliteSwap) platform without permission and KYC review.`,
+    image: <RiExchangeDollarLine className="text-primary-800 h-12 w-12" />,
+  },
+];

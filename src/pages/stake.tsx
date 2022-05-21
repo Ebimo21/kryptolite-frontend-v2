@@ -31,6 +31,7 @@ export default function StakePage() {
               alt="KRYPTOLITE Logo"
               layout="fullWidth"
               placeholder="blurred"
+              quality={100}
             />
           </div>
         </div>
