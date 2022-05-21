@@ -55,7 +55,7 @@ export default function Navbar() {
           </button>
         </div>
         <nav className={`${open ? "block" : "hidden"} lg:block`}>
-          <ul className="flex flex-col flex-grow pb-4 lg:pb-0 lg:flex-row lg:justify-end lg:items-center">
+          <ul className="flex flex-col gap-1 flex-grow pb-4 lg:pb-0 lg:flex-row lg:justify-end lg:items-center">
             {navigationItems.map((nav) => (
               <li key={nav.id} className="inline-block mt-2 lg:mt-0 text-lg">
                 <Link

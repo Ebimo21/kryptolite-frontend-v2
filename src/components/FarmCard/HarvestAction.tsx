@@ -36,8 +36,8 @@ const HarvestAction = ({ earnings, pid }: FarmCardActionsProps) => {
 
   return (
     <div
-      className="flex md:justify-between mb-5 md:mb-0 md:items-center border p-5 rounded-lg w-full
-      max-w-xs flex-col gap-3 "
+      className="flex md:justify-between mb-5 md:mb-0 border p-5 rounded-lg w-full
+      max-w-xs flex-col gap-3"
     >
       <div>
         <div className="text-xs mb-2 font-bold text-gray-600">KRL EARNED</div>
