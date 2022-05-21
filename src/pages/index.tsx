@@ -17,10 +17,10 @@ export default function IndexPage() {
         title="Kryptolite"
         description="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
       />
-      <div className="h-[70px]" />
-      <Section className="!pt-0 pb-0">
+      <div className="h-[60px]" />
+      <Section className="!px-0 md:!px-8">
         <div
-          className="md:h[700px] mx-auto my-16 flex flex-col
+          className="md:h[700px] mx-auto my-16 flex flex-col px-4 md:px-0
           md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"
         >
           <div className="max-w-8xl w-full pt-10 space-y-10">
@@ -57,7 +57,7 @@ export default function IndexPage() {
             />
           </div>
         </div>
-        <div className="bg-white w-full p-5 shadow-xl shadow-gray-200 rounded-md mt-5">
+        <div className="bg-white w-full p-0 md:p-5 shadow-xl shadow-gray-200 rounded-md mt-5">
           <div className="w-full pt-[56.25%] relative bg-black/80">
             <ReactPlayer
               url="https://youtu.be/Firr6Q8qccY"
