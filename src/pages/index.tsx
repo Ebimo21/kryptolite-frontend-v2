@@ -2,11 +2,7 @@ import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import Section from "../components/Layouts/Section";
 import SEO from "../components/SEO";
-import {
-  Ri24HoursFill,
-  RiExchangeDollarLine,
-  RiMoneyDollarCircleFill,
-} from "react-icons/ri";
+import { RiExchangeDollarLine, RiMoneyDollarCircleFill } from "react-icons/ri";
 import { BsShieldFillCheck } from "react-icons/bs";
 import { HiUserGroup } from "react-icons/hi";
 import Link from "../components/Link";
@@ -18,6 +14,7 @@ import TwoColumnLayoutWithIcon from "../components/SharedSections/TwoColumnLayou
 import { SiBinance } from "react-icons/si";
 import { FaInfoCircle } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import SimpleTimeline from "../components/widgets/SimpleTimeline";
 
 export default function IndexPage() {
   return (
@@ -105,7 +102,7 @@ export default function IndexPage() {
         </Link>
       </Section>
       <Section
-        containerClass="bg-gray-50"
+        containerClass="bg-primary-50"
         className="flex flex-col items-start md:flex-row"
         padding
       >
@@ -185,7 +182,7 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section containerClass="bg-gray-100" padding={true}>
+      <Section containerClass="bg-primary-50" padding={true}>
         <div className="md:flex md:items-center md:justify-center">
           <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
             <div className="mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
@@ -222,7 +219,7 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section padding={true} className="space-y-5 max-w-screen-xl">
+      <Section padding={true} className="space-y-5 !max-w-screen-xl">
         <h2 className="md:text-center">
           Other Things {highlighText("We Offer")}
         </h2>
@@ -230,8 +227,8 @@ export default function IndexPage() {
           Our own Decentralized Exchange (AMM DEX) - KRL will be the fuel of the
           automated market maker protocol.
         </p>
-        <div className="flex flex-col md:flex-row md:justify-between gap-3">
-          <div className="w-full max-w-sm space-y-10">
+        <div className="flex flex-col md:flex-row md:justify-between gap-3 w-full">
+          <div className="w-full md:max-w-sm space-y-10">
             {servicesList.map((e, i) => {
               const isEven = i % 2 === 0;
               // Only even numbers
@@ -257,7 +254,7 @@ export default function IndexPage() {
               quality={100}
             />
           </div>
-          <div className="w-full max-w-sm space-y-10">
+          <div className="w-full md:max-w-sm space-y-10">
             {servicesList.map((e, i) => {
               const isEven = i % 2 === 0;
               // Only odd numbers
@@ -276,9 +273,9 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section padding={true} className="md:text-center">
+      <Section padding={true} containerClass="bg-primary-50">
         <h2 className="md:text-center">Our {highlighText("Roadmap")}</h2>
-        <div className="p-20 bg-yellow-600"></div>
+        <SimpleTimeline />
       </Section>
       <JoinCommunitySection />
       <ReachUsSection />

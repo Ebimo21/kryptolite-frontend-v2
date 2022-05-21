@@ -17,14 +17,9 @@ export default function TwoColumnLayoutWithIcon({
     ? "flex-row text-left md:flex-row-reverse md:text-right"
     : "flex-row text-left";
   return (
-    <div
-      className={cls(
-        "flex justify-between items-center p-2 bg-white gap-3 w-full",
-        position
-      )}
-    >
-      <div>{image}</div>
-      <div>
+    <div className={cls("flex items-center p-2 gap-3 w-full", position)}>
+      <div className="flex-none">{image}</div>
+      <div className="w-full">
         <div className="font-bold my-2">{heading}</div>
         <p className="text-sm">{body}</p>
       </div>
