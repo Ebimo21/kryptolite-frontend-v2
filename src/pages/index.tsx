@@ -19,14 +19,14 @@ export default function IndexPage() {
       />
       <Section className="!px-0 md:!px-8 !max-w-screen-lg">
         <div
-          className="md:h[700px] mx-auto my-16 flex flex-col px-4 md:px-0
+          className="md:h[700px] mx-auto my-16 flex flex-col-reverse px-4 md:px-0
           md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"
         >
-          <div className="w-full pt-10 space-y-10">
+          <div className="w-full pt-10 space-y-6">
             <h1 className="text-4xl uppercase font-light text-primary-700">
               {highlighText("Advanced")} DeFi protocol
             </h1>
-            <p className="text-2xl">
+            <p className="text-xl">
               KRYPTOLITE is the first hybrid protocol that leverages
               Proof-of-Work, Proof-of-Stake and human work to create a platform
               that is fast, inclusive and resilient to attacks.

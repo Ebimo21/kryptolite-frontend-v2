@@ -10,15 +10,15 @@
   }
 
   h1 {
-    @apply text-4xl md:text-5xl mb-6 md:mb-7;
+    @apply text-4xl md:text-5xl mb-5 md:mb-6;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl mb-5 md:mb-6;
+    @apply text-3xl md:text-4xl mb-4 md:mb-5;
   }
 
   h3 {
-    @apply text-2xl md:text-3xl mb-3 md:mb-5;
+    @apply text-2xl md:text-3xl mb-2 md:mb-4;
   }
 
   h1,
