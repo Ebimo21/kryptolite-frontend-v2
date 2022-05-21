@@ -23,16 +23,16 @@ export default function IndexPage() {
         title="Kryptolite"
         description="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
       />
-      <Section className="!px-0 md:!px-8 !max-w-screen-lg">
+      <Section className="!px-0 md:!px-8 !max-w-screen-xl">
         <div
-          className="md:h[700px] mx-auto my-16 flex flex-col-reverse px-4 md:px-0
+          className="mx-auto my-16 flex flex-col-reverse px-4 md:px-0
           md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"
         >
           <div className="w-full pt-10 space-y-6">
             <h1 className="uppercase font-light text-primary-700">
               {highlighText("Advanced")} DeFi protocol
             </h1>
-            <p className="md:text-xl">
+            <p className="md:text-xl max-w-2xl">
               KRYPTOLITE is the first hybrid protocol that leverages
               Proof-of-Work, Proof-of-Stake and human work to create a platform
               that is fast, inclusive and resilient to attacks.
@@ -71,7 +71,7 @@ export default function IndexPage() {
           </div>
         </div>
         <div className="bg-white w-full p-0 md:p-5 shadow-xl shadow-gray-200 rounded-md mt-5">
-          <div className="w-full pt-[56.25%] relative bg-black/80">
+          <div className="w-full pt-[56.25%] relative bg-black">
             <ReactPlayer
               url="https://youtu.be/Firr6Q8qccY"
               width="100%"
@@ -109,7 +109,7 @@ export default function IndexPage() {
         <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
           <div className="mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
             <StaticImage
-              src="../images/what-is-more.png"
+              src="../images/what-is-more.svg"
               alt="what-is-more"
               layout="fullWidth"
               placeholder="blurred"

@@ -9,7 +9,7 @@ interface TokenPairImageProps {
 
 const getImageUrlFromToken = (token: Token) => {
   const address = token.symbol === "BNB" ? tokens.wbnb.address : token.address;
-  return `/static/images/tokens/${address}.svg`;
+  return `/images/tokens/${address}.svg`;
 };
 
 export default function TokenPairImage({
