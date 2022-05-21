@@ -2,13 +2,13 @@ import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import Section from "../components/Layouts/Section";
 import SEO from "../components/SEO";
-import cls from "classnames";
-import { RiMailSendLine, RiMoneyDollarCircleFill } from "react-icons/ri";
-import { SiGmail } from "react-icons/si";
-import { BsQuestionSquare, BsShieldFillCheck } from "react-icons/bs";
-import SocialList from "../components/Layouts/Footer/SocialList";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { BsShieldFillCheck } from "react-icons/bs";
 import Link from "../components/Link";
 import ReactPlayer from "react-player/youtube";
+import highlighText from "../components/Tools/highlightText";
+import JoinCommunitySection from "../components/SharedSections/JoinCommunitySection";
+import ReachUsSection from "../components/SharedSections/ReachUsSection";
 
 export default function IndexPage() {
   return (
@@ -17,14 +17,13 @@ export default function IndexPage() {
         title="Kryptolite"
         description="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
       />
-      <div className="h-[60px]" />
-      <Section className="!px-0 md:!px-8">
+      <Section className="!px-0 md:!px-8 !max-w-screen-lg">
         <div
           className="md:h[700px] mx-auto my-16 flex flex-col px-4 md:px-0
           md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"
         >
-          <div className="max-w-8xl w-full pt-10 space-y-10">
-            <h1 className="text-[2.7rem] uppercase font-light">
+          <div className="w-full pt-10 space-y-10">
+            <h1 className="text-4xl uppercase font-light text-primary-700">
               {highlighText("Advanced")} DeFi protocol
             </h1>
             <p className="text-2xl">
@@ -51,14 +50,14 @@ export default function IndexPage() {
           <div className="flex-shrink-0 mx-auto max-w-sm w-full px-10 mt-5">
             <StaticImage
               src="../images/hero-image.png"
-              alt="TTEB Logo"
+              alt="KRYPTOLITE Logo"
               layout="fullWidth"
               placeholder="blurred"
             />
           </div>
         </div>
         <div className="bg-white w-full p-0 md:p-5 shadow-xl shadow-gray-200 rounded-md mt-5">
-          <div className="w-full pt-[56.25%] relative bg-black/80">
+          <div className="w-full pt-[56.25%] relative bg-black/20">
             <ReactPlayer
               url="https://youtu.be/Firr6Q8qccY"
               width="100%"
@@ -72,10 +71,10 @@ export default function IndexPage() {
         </div>
       </Section>
       <Section
-        className="text-center flex flex-col items-center"
+        className="text-center flex flex-col items-center !max-w-screen-lg"
         padding={true}
       >
-        <p className="text-xl md:text-3xl text-primary-900">
+        <p className="text-xl md:text-3xl text-primary-900 font-medium">
           The Kryptolite Universe is designed to allow our community tap into
           and utilize the full potential of Decentralized Finance without the
           demands of active portfolio management.
@@ -87,13 +86,13 @@ export default function IndexPage() {
       <Section
         containerClass="bg-gray-50"
         className="flex flex-col items-start md:flex-row text-center md:text-left"
-        padding={true}
+        padding
       >
         <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
           <div className="mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
             <StaticImage
               src="../images/what-is-more.png"
-              alt="TTEB Logo"
+              alt="what-is-more"
               layout="fullWidth"
               placeholder="blurred"
             />
@@ -134,11 +133,9 @@ export default function IndexPage() {
         </div>
       </Section>
       <Section padding={true} className="text-center md:text-left">
-        <h2 className="md:text-center">
-          {highlighText("Benefits")} of investing in KRL
-        </h2>
         <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-center">
           <div className="space-y-5">
+            <h2>{highlighText("Benefits")} of investing in KRL</h2>
             <p>
               KRYPTOLITE allows for high yield trading — yield farming — that
               enables investors to borrow and stake their cryptocurrencies at
@@ -160,7 +157,7 @@ export default function IndexPage() {
           <div className="flex-shrink-0 mx-auto max-w-sm w-full px-10 my-5 md:my-0">
             <StaticImage
               src="../images/invest-in-krl.png"
-              alt="TTEB Logo"
+              alt="invest-in-krl"
               layout="fullWidth"
               placeholder="blurred"
             />
@@ -171,21 +168,19 @@ export default function IndexPage() {
         containerClass="bg-gray-50 text-center md:text-left"
         padding={true}
       >
-        <h2 className="md:text-center">
-          {highlighText("Hold and Stake")} $KRL
-        </h2>
         <div className="text-center md:text-left md:flex md:items-center md:justify-center">
           <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
             <div className="mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
               <StaticImage
                 src="../images/icon.png"
-                alt="TTEB Logo"
+                alt="KRYPTOLITE Logo"
                 layout="fullWidth"
                 placeholder="blurred"
               />
             </div>
           </div>
           <div className="w-full space-y-4">
+            <h2>{highlighText("Hold and Stake")} $KRL</h2>
             <p>
               KRYPTOLITE is designed to reward the community, through unique
               mechanisms. Users are encouraged to accumulate and stake $KRL in
@@ -227,51 +222,8 @@ export default function IndexPage() {
         <h2 className="md:text-center">Our {highlighText("Roadmap")}</h2>
         <div className="p-20 bg-yellow-600"></div>
       </Section>
-      <Section className="text-center space-y-10" padding={true}>
-        <h2 className="md:text-center">Join {highlighText("Our Community")}</h2>
-        <p>
-          We are a new project but positive news about us is travelling fast. Be
-          sure to join our amazing community to keep up-to-date and find out how
-          you can get involved.
-        </p>
-        <SocialList />
-      </Section>
-      <Section className="text-center" padding={true}>
-        <h2 className="md:text-center">{highlighText("Reach us")} from here</h2>
-        <p>
-          If you have any question, feel free to drop us a message, we will get
-          back to you as soon as we can
-        </p>
-        <div
-          className="flex flex-col md:flex-row justify-center items-center max-w-2xl mx-auto space-y-5 md:space-y-0
-          md:space-x-5 my-10"
-        >
-          <div
-            className="bg-white border-2 border-transparent hover:border-primary-500 p-10
-            flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
-            hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
-          >
-            <RiMailSendLine className="h-10 w-10" />
-            <p>admin@kryptolite.rocks</p>
-          </div>
-          <div
-            className="bg-white border-2 border-transparent hover:border-primary-500 p-10
-            flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
-            hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
-          >
-            <BsQuestionSquare className="h-10 w-10" />
-            <p>info@kryptolite.rocks</p>
-          </div>
-          <div
-            className="bg-white border-2 border-transparent hover:border-primary-500 p-10
-            flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
-            hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
-          >
-            <SiGmail className="h-10 w-10" />
-            <p>kryptoliteswap@gmail.com</p>
-          </div>
-        </div>
-      </Section>
+      <JoinCommunitySection />
+      <ReachUsSection />
       <Section className="flex text-center font-light gap-2" padding={true}>
         <span>Our Partners</span>
         {[1, 2, 3, 4, 5].map((_i) => (
@@ -281,11 +233,3 @@ export default function IndexPage() {
     </main>
   );
 }
-
-const highlighText = (text: string, className?: string) => (
-  <span
-    className={cls(className ? className : "text-primary-600 font-semibold")}
-  >
-    {text}
-  </span>
-);

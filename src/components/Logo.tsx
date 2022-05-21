@@ -7,7 +7,7 @@ export default function Logo() {
     <Link to="/">
       <StaticImage
         src="../images/icon.png"
-        alt="Tteb Logo"
+        alt="KRYPTOLITE Logo"
         width={50}
         placeholder="blurred"
       />

@@ -16,6 +16,9 @@ export default function Button({
     case "primary":
       variantClass = "btn-primary";
       break;
+    case "outline":
+      variantClass = "btn-outline";
+      break;
     default:
       throw new Error("invalid variant type supplied");
   }

@@ -1,23 +1,24 @@
-/* ./src/styles/index.css */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply font-sans h-screen text-lg lg:text-xl;
+    @apply font-montserrat h-screen text-lg lg:text-xl;
   }
 
   h1 {
-    @apply text-4xl md:text-5xl mb-7 md:mb-8;
+    @apply text-4xl md:text-5xl mb-6 md:mb-7;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl mb-6 md:mb-7;
+    @apply text-3xl md:text-4xl mb-5 md:mb-6;
   }
 
   h3 {
-    @apply text-2xl md:text-3xl mb-4 md:mb-6;
+    @apply text-2xl md:text-3xl mb-3 md:mb-5;
   }
 
   h1,
@@ -26,7 +27,7 @@
   h4,
   h5,
   h6 {
-    @apply font-sans font-medium leading-tight;
+    @apply font-montserrat font-medium leading-tight;
   }
 }
 
@@ -38,12 +39,14 @@
   }
   .btn-primary {
     @apply text-white bg-primary-600 hover:bg-primary-400 hover:text-black
-      focus:bg-primary-400 focus:text-black focus-within:bg-primary-400 focus-within:text-black;
+      focus:bg-primary-400 focus:text-black focus-within:bg-primary-400 focus-within:text-black
+      disabled:focus:bg-primary-600 disabled:hover:bg-primary-600 disabled:hover:text-white
+      disabled:focus-within:bg-primary-600 disabled:focus:text-white disabled:focus-within:text-white;
   }
 
   .btn-outline {
-    @apply text-primary-600 bg-white hover:bg-primary-600 hover:text-white ring-2
-    focus:bg-primary-600 focus:text-white focus-within:bg-primary-600 focus-within:text-white
-    ring-primary-600;
+    @apply text-primary-600 bg-white hover:bg-primary-400 hover:text-black ring-2
+    focus:bg-primary-400 focus:text-black focus-within:bg-primary-400 focus-within:text-black
+    ring-primary-600 hover:ring-primary-400 focus:ring-primary-400 focus-within:ring-primary-400;
   }
 }

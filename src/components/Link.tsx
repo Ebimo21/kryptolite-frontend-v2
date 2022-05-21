@@ -18,7 +18,8 @@ export default function Link({
   ...other
 }: React.ComponentPropsWithoutRef<typeof GatsbyLink> & LinkProps) {
   const internal = /^\/(?!\/)/.test(to);
-  let linkClassName = as === "button" ? "btn" : "";
+  let linkClassName =
+    as === "button" ? "btn" : "hover:underline focus-within:underline";
   if (as === "button") {
     if (variant === "primary") {
       linkClassName += " btn-primary";

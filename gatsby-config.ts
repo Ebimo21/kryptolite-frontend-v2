@@ -34,6 +34,13 @@ const config: GatsbyConfig = {
         component: path.resolve("./src/components/Layouts/index.tsx"),
       },
     },
+    {
+      resolve: "gatsby-plugin-nprogress",
+      options: {
+        color: "#80CC18",
+        showSpinner: true,
+      },
+    },
   ],
 };
 
