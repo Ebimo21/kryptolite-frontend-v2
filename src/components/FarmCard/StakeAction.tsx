@@ -100,7 +100,7 @@ const StakeAction = ({
     return stakedBalance?.eq(0) ? (
       <React.Fragment>
         <div>
-          <div className="text-xs mb-2 font-bold text-gray-400">
+          <div className="text-xs mb-2 font-bold text-gray-600">
             {ended ? "LEAVE STAKING" : "ENTER STAKING"}
           </div>
         </div>
@@ -114,7 +114,7 @@ const StakeAction = ({
       </React.Fragment>
     ) : (
       <div>
-        <div className="text-xs my-2 font-bold text-gray-400">
+        <div className="text-xs my-2 font-bold text-gray-600">
           {lpLabel} Staked
         </div>
         <div className={`font-medium text-xl ${disabledClass}`}>

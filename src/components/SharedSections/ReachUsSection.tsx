@@ -7,7 +7,7 @@ import highlighText from "../Tools/highlightText";
 
 export default function ReachUsSection() {
   return (
-    <Section className="text-center" padding={true}>
+    <Section padding={true}>
       <h2 className="md:text-center">{highlighText("Reach us")} from here</h2>
       <p>
         If you have any question, feel free to drop us a message, we will get
@@ -18,7 +18,7 @@ export default function ReachUsSection() {
         gap-5 my-10 flex-wrap"
       >
         <div
-          className="bg-white border-2 border-transparent hover:border-primary-500 p-10
+          className="bg-white border-2 border-transparent hover:border-primary-500 p-10 w-full
         flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
         hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
         >
@@ -26,7 +26,7 @@ export default function ReachUsSection() {
           <p>admin@kryptolite.rocks</p>
         </div>
         <div
-          className="bg-white border-2 border-transparent hover:border-primary-500 p-10
+          className="bg-white border-2 border-transparent hover:border-primary-500 p-10 w-full
         flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
         hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
         >
@@ -34,7 +34,7 @@ export default function ReachUsSection() {
           <p>info@kryptolite.rocks</p>
         </div>
         <div
-          className="bg-white border-2 border-transparent hover:border-primary-500 p-10
+          className="bg-white border-2 border-transparent hover:border-primary-500 p-10 w-full
         flex flex-col items-center max-w-xs shadow-md rounded-xl group cursor-pointer hover:underline
         hover:text-primary-500 transition-colors duration-150 hover:bg-primary-50 text-primary-800"
         >

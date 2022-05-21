@@ -23,21 +23,28 @@ export default function IndexPage() {
           md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"
         >
           <div className="w-full pt-10 space-y-6">
-            <h1 className="text-4xl uppercase font-light text-primary-700">
+            <h1 className="uppercase font-light text-primary-700">
               {highlighText("Advanced")} DeFi protocol
             </h1>
-            <p className="text-xl">
+            <p className="md:text-xl">
               KRYPTOLITE is the first hybrid protocol that leverages
               Proof-of-Work, Proof-of-Stake and human work to create a platform
               that is fast, inclusive and resilient to attacks.
             </p>
-            <div className="my-5 space-x-5">
-              <Link to="#" as="button" className="inline-flex space-x-2">
+            <div
+              className="my-5 sm:space-x-5 flex flex-col sm:flex-row items-center space-y-5 sm:space-y-0
+              "
+            >
+              <Link
+                to="https://pancakeswap.finance/swap?outputCurrency=0xF1288cF18B1FAaA35F40111c3E5d2f827e1E920E"
+                as="button"
+                className="inline-flex space-x-2"
+              >
                 <RiMoneyDollarCircleFill />
                 <span>Buy $KRL</span>
               </Link>
               <Link
-                to="#"
+                to="/stake"
                 as="button"
                 className="inline-flex space-x-2"
                 variant="outline"
@@ -57,7 +64,7 @@ export default function IndexPage() {
           </div>
         </div>
         <div className="bg-white w-full p-0 md:p-5 shadow-xl shadow-gray-200 rounded-md mt-5">
-          <div className="w-full pt-[56.25%] relative bg-black/20">
+          <div className="w-full pt-[56.25%] relative bg-black/80">
             <ReactPlayer
               url="https://youtu.be/Firr6Q8qccY"
               width="100%"
@@ -79,13 +86,17 @@ export default function IndexPage() {
           and utilize the full potential of Decentralized Finance without the
           demands of active portfolio management.
         </p>
-        <Link to="#" as="button" className="mt-10 block w-auto">
+        <Link
+          to="https://pancakeswap.finance/swap?outputCurrency=0xF1288cF18B1FAaA35F40111c3E5d2f827e1E920E"
+          as="button"
+          className="mt-10 block w-auto"
+        >
           Buy $KRL Today
         </Link>
       </Section>
       <Section
         containerClass="bg-gray-50"
-        className="flex flex-col items-start md:flex-row text-center md:text-left"
+        className="flex flex-col items-start md:flex-row"
         padding
       >
         <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
@@ -132,7 +143,7 @@ export default function IndexPage() {
           </p>
         </div>
       </Section>
-      <Section padding={true} className="text-center md:text-left">
+      <Section padding={true}>
         <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-center">
           <div className="space-y-5">
             <h2>{highlighText("Benefits")} of investing in KRL</h2>
@@ -164,11 +175,8 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section
-        containerClass="bg-gray-50 text-center md:text-left"
-        padding={true}
-      >
-        <div className="text-center md:text-left md:flex md:items-center md:justify-center">
+      <Section containerClass="bg-gray-100" padding={true}>
+        <div className="md:flex md:items-center md:justify-center">
           <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
             <div className="mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
               <StaticImage
@@ -204,7 +212,7 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section className="text-center md:text-left" padding={true}>
+      <Section padding={true}>
         <h2 className="md:text-center">
           Other Things {highlighText("We Offer")}
         </h2>
@@ -218,13 +226,13 @@ export default function IndexPage() {
           <div className="bg-red-500 p-10"></div>
         </div>
       </Section>
-      <Section className="text-center md:text-left" padding={true}>
+      <Section padding={true}>
         <h2 className="md:text-center">Our {highlighText("Roadmap")}</h2>
         <div className="p-20 bg-yellow-600"></div>
       </Section>
       <JoinCommunitySection />
       <ReachUsSection />
-      <Section className="flex text-center font-light gap-2" padding={true}>
+      <Section className="flex font-light gap-2" padding={true}>
         <span>Our Partners</span>
         {[1, 2, 3, 4, 5].map((_i) => (
           <div className="w-52 h-52 bg-gray-50" />
