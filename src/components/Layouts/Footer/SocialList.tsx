@@ -22,7 +22,7 @@ const socials: { name: SocialIconTypes; url: string }[] = [
 
 export default function SocialList() {
   return (
-    <div className="mt-3 flex items-start justify-center space-x-4">
+    <div className="mt-3 flex items-start justify-center space-x-4 flex-wrap">
       {socials.map((social) => (
         <a
           key={social.name}

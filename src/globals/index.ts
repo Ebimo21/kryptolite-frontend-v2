@@ -14,7 +14,7 @@ export const navigationItems: {
     title: "Contract",
     href: "https://bscscan.com/token/0xf1288cf18b1faaa35f40111c3e5d2f827e1e920e",
   },
-  { id: 4, title: "Road Map", href: "/#road-map" },
-  { id: 5, title: "Community", href: "/#community" },
-  { id: 6, title: "Contact Us", href: "/#contact-us" },
+  { id: 4, title: "Road Map", href: "#road-map" },
+  { id: 5, title: "Community", href: "#community" },
+  { id: 6, title: "Contact Us", href: "#contact-us" },
 ];

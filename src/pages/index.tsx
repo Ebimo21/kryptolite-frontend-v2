@@ -15,6 +15,7 @@ import { SiBinance } from "react-icons/si";
 import { FaInfoCircle } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import SimpleTimeline from "../components/widgets/SimpleTimeline";
+import OurPartnersSection from "../components/SharedSections/OurPartnersSection";
 
 export default function IndexPage() {
   return (
@@ -34,8 +35,8 @@ export default function IndexPage() {
             </h1>
             <p className="md:text-xl max-w-2xl">
               KRYPTOLITE is the first hybrid protocol that leverages
-              Proof-of-Work, Proof-of-Stake and human work to create a platform
-              that is fast, inclusive and resilient to attacks.
+              Proof-of-Work, Proof-of-Personhood and human work to create a
+              platform that is fast, inclusive and resilient to attacks.
             </p>
             <div
               className="my-5 sm:space-x-5 flex flex-col sm:flex-row items-center space-y-5 sm:space-y-0
@@ -273,18 +274,13 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section padding={true} containerClass="bg-primary-50">
+      <Section padding={true} containerClass="bg-primary-50" id="#road-map">
         <h2 className="md:text-center">Our {highlighText("Roadmap")}</h2>
         <SimpleTimeline />
       </Section>
       <JoinCommunitySection />
       <ReachUsSection />
-      <Section className="flex font-light gap-2" padding={true}>
-        <span>Our Partners</span>
-        {[1, 2, 3, 4, 5].map((_i) => (
-          <div className="w-52 h-52 bg-gray-50" />
-        ))}
-      </Section>
+      <OurPartnersSection />
     </main>
   );
 }

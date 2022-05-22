@@ -34,22 +34,28 @@ const roadMap = [
     content: [
       { text: "PancakeSwap listing.", checked: true },
       {
+        text: "Deployment and launch of KryptoliteSwap (Beta).",
+        checked: true,
+      },
+      { text: "Testing and security audits of KryptoliteSwap.", checked: true },
+      { text: "Expansion of use cases for Kryptolite.", checked: true },
+      {
+        text: "Trade on 2 popular Centralized Exchanges (Tokpie & MintMe).",
+        checked: true,
+      },
+      {
         text: "CMC listing.",
       },
       { text: "Coin Gecko listing." },
-      { text: "Deployment and launch of KryptoliteSwap (Beta)." },
-      { text: "Testing and security audits of KryptoliteSwap." },
       {
         text: "Futher development of partnerships & recruitment of buyers and sellers on the network via incentive campaigns.",
       },
-      { text: "Expansion of use cases for Kryptolite." },
     ],
   },
   {
     id: 3,
     label: "Phase 3",
     content: [
-      { text: "Trade on 3 Major Centralized Exchanges." },
       {
         text: "Continued communication efforts to increase increase awareness and build partnerships via social media.",
       },
@@ -184,8 +190,8 @@ const isOdd = (n: number) => n % 2 !== 0;
 
 export default function SimpleTimeline() {
   return (
-    <div className="mx-auto w-full px-2">
-      <div className="relative overflow-hidden py-10 px-3 w-full flex flex-col items-stretch">
+    <div className="mx-auto w-full">
+      <div className="relative overflow-hidden py-10 w-full flex flex-col items-stretch">
         {roadMap.map((item) => {
           return isOdd(item.id) ? (
             <RightLeaf

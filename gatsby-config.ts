@@ -41,6 +41,15 @@ const config: GatsbyConfig = {
         showSpinner: true,
       },
     },
+    {
+      resolve: "gatsby-plugin-anchor-links",
+      options: {
+        offset: -100,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-no-sourcemaps",
+    },
   ],
 };
 
