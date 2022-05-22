@@ -35,7 +35,7 @@ export default function IndexPage() {
             </h1>
             <p className="md:text-xl max-w-2xl">
               KRYPTOLITE is the first hybrid protocol that leverages
-              Proof-of-Work, Proof-of-Personhood and human work to create a
+              Proof-of-Personhood, Proof-of-Stake and human work to create a
               platform that is fast, inclusive and resilient to attacks.
             </p>
             <div
@@ -274,7 +274,7 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section padding={true} containerClass="bg-primary-50" id="#road-map">
+      <Section padding={true} containerClass="bg-primary-50" id="road-map">
         <h2 className="md:text-center">Our {highlighText("Roadmap")}</h2>
         <SimpleTimeline />
       </Section>
