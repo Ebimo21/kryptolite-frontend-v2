@@ -15,7 +15,7 @@ export default function IndexPage() {
   const [claimedNFT, setClaimedNFT] = useState(false);
   const [requesting, setRequesting] = useState(false);
 
-  const { active, account } = useActiveWeb3React();
+  const { active, account, library } = useActiveWeb3React();
 
   const checkEligiblity = useCallback(async () => {
     setRequesting(true);
@@ -40,9 +40,25 @@ export default function IndexPage() {
     }
   }, [account]);
 
-  const claimNFT = useCallback(() => {
-    setClaimedNFT(true);
-  }, [account]);
+  const claimNFT = useCallback(async () => {
+    setRequesting(true);
+    try {
+      if (account && library) {
+        const contract = getPizzaDayContract(library.getSigner());
+        const tx = await contract.mint();
+        const receipt = await tx.wait();
+        console.log(receipt.status);
+        setClaimedNFT(true);
+      } else {
+        setClaimedNFT(false);
+      }
+    } catch (error) {
+      console.error(error);
+      setClaimedNFT(false);
+    } finally {
+      setRequesting(false);
+    }
+  }, [account, library]);
 
   return (
     <main>
