@@ -152,7 +152,7 @@ export default function IndexPage() {
           >
             <StaticImage
               src="../images/Bitcoin-Pizza-Day-Hangout-2022-NFTs.jpg"
-              alt="invest-in-krl"
+              alt="Bitcoin Pizza Day Hangout 2022 NFTs"
               layout="fullWidth"
               placeholder="blurred"
             />
