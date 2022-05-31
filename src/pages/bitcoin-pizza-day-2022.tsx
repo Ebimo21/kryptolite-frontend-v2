@@ -248,11 +248,16 @@ export default function IndexPage() {
         {active && eligible && !claimedNFT && (
           <Fragment>
             <Banner type="success">
-              {triedClaim
-                ? `Hey! You've already minted your #BitcoinPizzaDayNFT Join our discord server to get
-                    daily points which can be used to purchase NFT's and upgrade your role in The Kryptolite
-                    Universe`
-                : "You are eligible"}
+              {triedClaim ? (
+                <p>
+                  Hey! You've already minted your #BitcoinPizzaDayNFT <br />{" "}
+                  <br /> Join our discord server to get daily points which can
+                  be used to purchase NFT's and upgrade your role in The
+                  Kryptolite Universe
+                </p>
+              ) : (
+                "You are eligible"
+              )}
             </Banner>
             {triedClaim ? (
               <Link
@@ -277,9 +282,11 @@ export default function IndexPage() {
         )}
         {active && eligible && claimedNFT && (
           <Banner type="success">
-            Congrats! You've minted your #BitcoinPizzaDayNFT Join our discord
-            server to get daily points which can be used to purchase NFT's and
-            upgrade your role in The Kryptolite Universe
+            <p>
+              Congrats! You've minted your #BitcoinPizzaDayNFT <br /> <br />{" "}
+              Join our discord server to get daily points which can be used to
+              purchase NFT's and upgrade your role in The Kryptolite Universe
+            </p>
           </Banner>
         )}
       </Section>
