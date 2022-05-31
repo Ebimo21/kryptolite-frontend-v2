@@ -11,11 +11,15 @@ import useActiveWeb3React from "../hooks/useActiveWeb3React";
 import { getPizzaDayContract } from "../utils/contractHelpers";
 import BigNumber from "bignumber.js";
 import useToast from "../hooks/useToast";
+import { FaDiscord } from "react-icons/fa";
 
 export default function IndexPage() {
   const [eligible, setEligible] = useState(false);
   const [claimedNFT, setClaimedNFT] = useState(false);
   const [requesting, setRequesting] = useState(false);
+  // Show discord
+  const [eligibilityChecked, setEligibilityChecked] = useState(false);
+  const [triedClaim, setTriedClaim] = useState(false);
 
   const { active, account, library } = useActiveWeb3React();
   const { toastError, toastSuccess } = useToast();
@@ -29,9 +33,11 @@ export default function IndexPage() {
         console.log(isWhiteListed);
         if (isWhiteListed === true) {
           setEligible(true);
+          setEligibilityChecked(true);
         } else {
           setEligible(false);
           toastError("Sorry! You aren't eligible to Mint.");
+          setEligibilityChecked(true);
         }
       } else {
         setEligible(false);
@@ -60,9 +66,11 @@ export default function IndexPage() {
           await tx.wait();
           setClaimedNFT(true);
           toastSuccess("Success!");
+          setTriedClaim(true);
         } else {
           // User has previously minted
           toastError("Cannot mint more");
+          setTriedClaim(true);
         }
       } else {
         setClaimedNFT(false);
@@ -210,33 +218,68 @@ export default function IndexPage() {
         <ConnectWalletButton className="w-auto mx-auto block" />
         {active && !eligible && (
           <Fragment>
-            <Banner type="info">Check eligibilty</Banner>
-            <Button
-              className="rounded-none block w-auto mx-auto"
-              onClick={checkEligiblity}
-              disabled={requesting}
-              loading={requesting}
-            >
-              CHECK ELIGIBILITY
-            </Button>
+            <Banner type="info">
+              {eligibilityChecked
+                ? `Not eligible? Don't fret! Join our discord server today to get daily points which can be
+                used to purchase NFTs and upgrade your role in The Kryptolite Universe.`
+                : "Try checking your eligibilty status"}
+            </Banner>
+            {eligibilityChecked ? (
+              <Link
+                to="https://discord.gg/Kryptoverse"
+                className="rounded-none w-auto mx-auto flex items-center gap-2"
+                as="button"
+              >
+                <FaDiscord />
+                Join Discord
+              </Link>
+            ) : (
+              <Button
+                className="rounded-none block w-auto mx-auto"
+                onClick={checkEligiblity}
+                disabled={requesting}
+                loading={requesting}
+              >
+                CHECK ELIGIBILITY
+              </Button>
+            )}
           </Fragment>
         )}
         {active && eligible && !claimedNFT && (
           <Fragment>
-            <Banner type="success">You are eligible</Banner>
-            <Button
-              className="rounded-none block w-auto mx-auto"
-              onClick={claimNFT}
-              disabled={requesting}
-              loading={requesting}
-            >
-              CLAIM YOUR NFT NOW
-            </Button>
+            <Banner type="success">
+              {triedClaim
+                ? `Hey! You've already minted your #BitcoinPizzaDayNFT Join our discord server to get
+                    daily points which can be used to purchase NFT's and upgrade your role in The Kryptolite
+                    Universe`
+                : "You are eligible"}
+            </Banner>
+            {triedClaim ? (
+              <Link
+                to="https://discord.gg/Kryptoverse"
+                className="rounded-none w-auto mx-auto flex items-center gap-2"
+                as="button"
+              >
+                <FaDiscord />
+                Join Discord
+              </Link>
+            ) : (
+              <Button
+                className="rounded-none block w-auto mx-auto"
+                onClick={claimNFT}
+                disabled={requesting}
+                loading={requesting}
+              >
+                CLAIM YOUR NFT NOW
+              </Button>
+            )}
           </Fragment>
         )}
         {active && eligible && claimedNFT && (
           <Banner type="success">
-            Congratulations you have successfully minted your NFT.
+            Congrats! You've minted your #BitcoinPizzaDayNFT Join our discord
+            server to get daily points which can be used to purchase NFT's and
+            upgrade your role in The Kryptolite Universe
           </Banner>
         )}
       </Section>

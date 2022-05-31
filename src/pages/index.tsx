@@ -24,7 +24,7 @@ export default function IndexPage() {
         title="Kryptolite"
         description="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
       />
-      <Section className="!px-0 md:!px-8 !max-w-screen-xl">
+      <Section className="!px-0 md:!px-8 !max-w-screen-lg">
         <div
           className="mx-auto my-16 flex flex-col-reverse px-4 md:px-0
           md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"

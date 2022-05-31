@@ -8,9 +8,8 @@ export default function JoinCommunitySection() {
     <Section className="space-y-10 text-center" padding={true}>
       <h2>Join {highlighText("Our Community")}</h2>
       <p>
-        We are a new project but positive news about us is travelling fast. Be
-        sure to join our amazing community to keep up-to-date and find out how
-        you can get involved.
+        Positive news about us is travelling fast. Be sure to join our amazing
+        community to keep up-to-date and find out how you can get involved.
       </p>
       <SocialList />
     </Section>

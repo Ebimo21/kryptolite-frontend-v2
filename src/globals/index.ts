@@ -19,6 +19,11 @@ export const navigationItems: {
     title: "White Paper",
     href: "https://www.kryptolite.rocks/doc/KRYPTOLITE-WHITEPAPER-1.1.pdf",
   },
+  {
+    id: 5,
+    title: "Bitcoin Pizza NFT",
+    href: "/bitcoin-pizza-day-2022",
+  },
   // { id: 4, title: "Road Map", href: "#road-map" },
   // { id: 5, title: "Community", href: "#community" },
   // { id: 6, title: "Contact Us", href: "#contact-us" },
