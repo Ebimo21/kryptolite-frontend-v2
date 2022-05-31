@@ -9,6 +9,8 @@ import ConnectWalletButton from "../components/Buttons/ConnectWalletButton";
 import Banner from "../components/Tools/Banner";
 import useActiveWeb3React from "../hooks/useActiveWeb3React";
 import { getPizzaDayContract } from "../utils/contractHelpers";
+import BigNumber from "bignumber.js";
+import useToast from "../hooks/useToast";
 
 export default function IndexPage() {
   const [eligible, setEligible] = useState(false);
@@ -16,6 +18,7 @@ export default function IndexPage() {
   const [requesting, setRequesting] = useState(false);
 
   const { active, account, library } = useActiveWeb3React();
+  const { toastError, toastSuccess } = useToast();
 
   const checkEligiblity = useCallback(async () => {
     setRequesting(true);
@@ -28,13 +31,15 @@ export default function IndexPage() {
           setEligible(true);
         } else {
           setEligible(false);
+          toastError("Sorry! You aren't eligible to Mint.");
         }
       } else {
         setEligible(false);
       }
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       setEligible(false);
+      toastError("Transaction failed, you can try again.");
     } finally {
       setRequesting(false);
     }
@@ -45,16 +50,26 @@ export default function IndexPage() {
     try {
       if (account && library) {
         const contract = getPizzaDayContract(library.getSigner());
-        const tx = await contract.mint();
-        const receipt = await tx.wait();
-        console.log(receipt.status);
-        setClaimedNFT(true);
+
+        // check if user has minted
+        const bal = await contract.balanceOf(account);
+        const hasMinted = new BigNumber(bal._hex).isGreaterThan(0);
+
+        if (!hasMinted) {
+          const tx = await contract.mint();
+          await tx.wait();
+          setClaimedNFT(true);
+          toastSuccess("Success!");
+        } else {
+          // User has previously minted
+          toastError("Cannot mint more");
+        }
       } else {
         setClaimedNFT(false);
       }
     } catch (error) {
-      console.error(error);
       setClaimedNFT(false);
+      toastError("Transaction failed, you can try again.");
     } finally {
       setRequesting(false);
     }
@@ -120,12 +135,12 @@ export default function IndexPage() {
           <p>
             Bitcoin Pizza Day NFTs now available for all those who attended the{" "}
             <span className="text-[#00FFFF]">#BitcoinPizzaDayHangout2022</span>{" "}
-            and filled this Google{" "}
+            and filled{" "}
             <Link
               className="text-[#00FFFF]"
               to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform"
             >
-              form
+              this Google form
             </Link>
           </p>
           <p>
@@ -220,7 +235,9 @@ export default function IndexPage() {
           </Fragment>
         )}
         {active && eligible && claimedNFT && (
-          <Banner type="success">Yey!!!</Banner>
+          <Banner type="success">
+            Congratulations you have successfully minted your NFT.
+          </Banner>
         )}
       </Section>
 
