@@ -78,7 +78,7 @@ export default function IndexPage() {
   return (
     <main>
       <SEO
-        title="Bitcoin Pizza Day Attendees surprises"
+        title="Bitcoin Pizza Day Hangout 2022 NFT"
         description="We celebrated the Bitcoin Pizza Day event on Sunday, May 22nd 2022. As The 
         KRYPTOLITE Universe team, we thought we would mark this occasion with a 
         surprise gift for all attendees."
