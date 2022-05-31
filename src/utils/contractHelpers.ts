@@ -3,12 +3,14 @@ import {
   getKrlAddress,
   getKrlPool2Address,
   getMulticallAddress,
+  getPizzaDayAddress,
 } from "./addressHelpers";
 // ABI
 import bep20Abi from "../config/abi/erc20.json";
 import MultiCallAbi from "../config/abi/Multicall.json";
 import krl from "../config/abi/krlReward.json";
 import krlPool2 from "../config/abi/krlPool2.json";
+import pizzaDay from "../config/abi/pizzaDay.json";
 import { simpleRpcProvider } from "./providers";
 
 export const getContract = (
@@ -44,3 +46,7 @@ export const getMulticallContract = (
 ) => {
   return getContract(MultiCallAbi, getMulticallAddress(), signer);
 };
+
+export const getPizzaDayContract = (
+  signer?: ethers.Signer | ethers.providers.Provider
+) => getContract(pizzaDay, getPizzaDayAddress(), signer);

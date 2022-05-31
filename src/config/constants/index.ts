@@ -21,6 +21,10 @@ export const addresses = {
     97: "",
     56: "0x1C03768153bd9883f4997482F8841029e905250D",
   },
+  btcPizzaDay: {
+    97: "0x28305505a077a69A577092018D38ab59b233BeA6",
+    56: "",
+  },
   multiCall: {
     56: "0xfF6FD90A470Aaa0c1B8A54681746b07AcdFedc9B",
     97: "",

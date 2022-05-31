@@ -1,12 +1,49 @@
-import React from "react";
+import React, { Fragment, useCallback, useState } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import Button from "../components/Buttons/Button";
 import Section from "../components/Layouts/Section";
 import Link from "../components/Link";
 import SEO from "../components/SEO";
 import FAQ from "../components/Tools/FAQ";
+import ConnectWalletButton from "../components/Buttons/ConnectWalletButton";
+import Banner from "../components/Tools/Banner";
+import useActiveWeb3React from "../hooks/useActiveWeb3React";
+import { getPizzaDayContract } from "../utils/contractHelpers";
 
 export default function IndexPage() {
+  const [eligible, setEligible] = useState(false);
+  const [claimedNFT, setClaimedNFT] = useState(false);
+  const [requesting, setRequesting] = useState(false);
+
+  const { active, account } = useActiveWeb3React();
+
+  const checkEligiblity = useCallback(async () => {
+    setRequesting(true);
+    try {
+      if (account) {
+        const contract = getPizzaDayContract();
+        const isWhiteListed = await contract.isWhitelistedAtendee(account);
+        console.log(isWhiteListed);
+        if (isWhiteListed === true) {
+          setEligible(true);
+        } else {
+          setEligible(false);
+        }
+      } else {
+        setEligible(false);
+      }
+    } catch (error) {
+      console.error(error);
+      setEligible(false);
+    } finally {
+      setRequesting(false);
+    }
+  }, [account]);
+
+  const claimNFT = useCallback(() => {
+    setClaimedNFT(true);
+  }, [account]);
+
   return (
     <main>
       <SEO
@@ -21,7 +58,7 @@ export default function IndexPage() {
           md:flex-row md:justify-between md:items-center gap-3 text-center md:text-left"
         >
           <div className="w-full pt-10 space-y-6">
-            <h1 className="font-bold">Bitcoin Pizza 2022 Hangout NFT</h1>
+            <h1 className="font-bold">Bitcoin Pizza Day Hangout 2022 NFT</h1>
             <p className="md:text-xl">
               22nd May 2022 marks the 12th anniversary of{" "}
               <span className="text-[#CD7400]">Bitcoin Pizza Day</span>, widely
@@ -35,11 +72,11 @@ export default function IndexPage() {
           max-h-[450px]"
           >
             <div className="grid grid-cols-1 gap-5 content-center">
-              <div className="bg-black/10 rounded-md py-24" />
-              <div className="bg-black/10 rounded-md py-20" />
+              <div className="bg-black/10 rounded-md py-12 md:py-24" />
+              <div className="bg-black/10 rounded-md py-10 md:py-20" />
             </div>
             <div className="grid grid-cols-1 gap-5">
-              <div className="bg-black/10 rounded-md py-14" />
+              <div className="bg-black/10 rounded-md py-7 md:py-14" />
               <div className="rounded-md overflow-hidden">
                 <StaticImage
                   src="../images/Bitcoin-Pizza-Day-Hangout-2022-NFTs.jpg"
@@ -49,10 +86,10 @@ export default function IndexPage() {
                   quality={100}
                 />
               </div>
-              <div className="bg-black/10 py-24 rounded-md" />
+              <div className="bg-black/10 py-12 md:py-24 rounded-md" />
             </div>
             <div className="grid grid-cols-1 content-center">
-              <div className="bg-black/10 rounded-md row-span-2 py-40" />
+              <div className="bg-black/10 rounded-md row-span-2 py-20 md:py-40" />
             </div>
           </div>
         </div>
@@ -67,7 +104,7 @@ export default function IndexPage() {
           <p>
             Bitcoin Pizza Day NFTs now available for all those who attended the{" "}
             <span className="text-[#00FFFF]">#BitcoinPizzaDayHangout2022</span>{" "}
-            and filled this{" "}
+            and filled this Google{" "}
             <Link
               className="text-[#00FFFF]"
               to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform"
@@ -102,7 +139,12 @@ export default function IndexPage() {
               the indefinite future, along these lines you ought to consider
               getting a piece.
             </p>
-            <Button className="rounded-none">CLAIM YOUR NFT NOW</Button>
+
+            <small className="block text-amber-500">
+              Special shout-out to the <b>Crypto Bootcamp Community</b> and{" "}
+              <b>Crypto Ladies League</b> for organizing this event in major
+              cities across Africa.
+            </small>
           </div>
           <div
             className="flex-shrink-0 mx-auto max-w-sm w-full p-4 my-5 md:my-0 bg-white shadow-md
@@ -117,10 +159,57 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
+      <Section
+        padding
+        className="bg-white space-y-5 flex flex-col justify-center"
+        containerClass="border"
+      >
+        {!active && (
+          <Banner type="info">
+            To be eligible to claim the Bitcoin Pizza Day NFTs, you have to
+            connect a wallet address that has been whitelisted by submitting{" "}
+            <Link
+              className="text-blue-600"
+              to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform"
+            >
+              this Google form
+            </Link>
+          </Banner>
+        )}
+        <ConnectWalletButton className="w-auto mx-auto block" />
+        {active && !eligible && (
+          <Fragment>
+            <Banner type="info">Check eligibilty</Banner>
+            <Button
+              className="rounded-none block w-auto mx-auto"
+              onClick={checkEligiblity}
+              disabled={requesting}
+              loading={requesting}
+            >
+              CHECK ELIGIBILITY
+            </Button>
+          </Fragment>
+        )}
+        {active && eligible && !claimedNFT && (
+          <Fragment>
+            <Banner type="success">You are eligible</Banner>
+            <Button
+              className="rounded-none block w-auto mx-auto"
+              onClick={claimNFT}
+              disabled={requesting}
+              loading={requesting}
+            >
+              CLAIM YOUR NFT NOW
+            </Button>
+          </Fragment>
+        )}
+        {active && eligible && claimedNFT && (
+          <Banner type="success">Yey!!!</Banner>
+        )}
+      </Section>
 
       <Section containerClass="bg-gray-100" padding>
         <h3 className="text-4xl text-center">Frequently Asked Questions</h3>
-        <p className="text-center">Wanna ask something?</p>
         <div>
           <FAQ expandedUuids={["what_is_bitcoin_pizza_day"]} />
         </div>

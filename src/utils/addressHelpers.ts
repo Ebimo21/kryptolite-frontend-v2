@@ -7,14 +7,7 @@ export const getAddress = (address: Address): string => {
   return (address[chainId] ? address[chainId] : address[ChainId.MAINNET])!;
 };
 
-export const getKrlAddress = () => {
-  return getAddress(addresses.kryptolite);
-};
-
-export const getKrlPool2Address = () => {
-  return getAddress(addresses.kryptolitePool2);
-};
-
-export const getMulticallAddress = () => {
-  return getAddress(addresses.multiCall);
-};
+export const getKrlAddress = () => getAddress(addresses.kryptolite);
+export const getKrlPool2Address = () => getAddress(addresses.kryptolitePool2);
+export const getMulticallAddress = () => getAddress(addresses.multiCall);
+export const getPizzaDayAddress = () => getAddress(addresses.btcPizzaDay);

@@ -76,10 +76,12 @@ const questionsAndAnswers: QuestionsAndAnswers[] = [
     answer: (
       <p>
         To be eligible to claim the Bitcoin Pizza Day NFTs, you have to connect
-        an account that participated in the Bitcoin Pizza Day Hangout 2022 and
-        completed this Google{" "}
-        <Link to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform">
-          form
+        a wallet address that has been whitelisted by submitting{" "}
+        <Link
+          className="text-blue-500"
+          to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform"
+        >
+          this Google form
         </Link>
       </p>
     ),
