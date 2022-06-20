@@ -99,11 +99,9 @@ export default function IndexPage() {
           <div className="w-full pt-10 space-y-6">
             <h1 className="font-bold">Bitcoin Pizza Day Hangout 2022 NFT</h1>
             <p className="md:text-xl">
-              22nd May 2022 marks the 12th anniversary of{" "}
-              <span className="text-[#CD7400]">Bitcoin Pizza Day</span>, widely
-              celebrated in the Bitcoin community. As The KRYPTOLITE Universe
-              team, we thought we would mark this occasion with a surprise gift
-              for all attendees.
+              22nd May 2022 marks the 12th anniversary of <span className="text-[#CD7400]">Bitcoin Pizza Day</span>,
+              widely celebrated in the Bitcoin community. As The KRYPTOLITE Universe team, we thought we would mark this
+              occasion with a surprise gift for all attendees.
             </p>
           </div>
           <div
@@ -142,8 +140,7 @@ export default function IndexPage() {
         <div className="z-10 relative space-y-5 text-white text-lg md:text-xl ">
           <p>
             Bitcoin Pizza Day NFTs now available for all those who attended the{" "}
-            <span className="text-[#00FFFF]">#BitcoinPizzaDayHangout2022</span>{" "}
-            and filled{" "}
+            <span className="text-[#00FFFF]">#BitcoinPizzaDayHangout2022</span> and filled{" "}
             <Link
               className="text-[#00FFFF]"
               to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform"
@@ -152,12 +149,11 @@ export default function IndexPage() {
             </Link>
           </p>
           <p>
-            These limited-edition NFTs are claimable here, rarity is determined
-            by how many attendees are eligible to mint for FREE.
+            These limited-edition NFTs are claimable here, rarity is determined by how many attendees are eligible to
+            mint for FREE.
           </p>
           <p>
-            If you are an eligible participant, you get to mint your special
-            edition NFT and show it off in your wallet.
+            If you are an eligible participant, you get to mint your special edition NFT and show it off in your wallet.
           </p>
         </div>
       </Section>
@@ -166,23 +162,19 @@ export default function IndexPage() {
           <div className="space-y-5">
             <h2 className="font-bold">Moral of the event.</h2>
             <p className="text-[#975C10] font-medium">
-              12 years have passed since the very first Pizza Day. The Bitcoin
-              community has evolved with infrastructure and technology allowing
-              you to buy and do more than just buying a pizza with Bitcoin.
+              12 years have passed since the very first Pizza Day. The Bitcoin community has evolved with infrastructure
+              and technology allowing you to buy and do more than just buying a pizza with Bitcoin.
             </p>
             <p className="text-[#975C10] font-medium">
-              This event is a powerful reminder that it’s best not to wager
-              against crypto. And HODL (i.e. holding patiently) has proven to be
-              a prudent strategy in long term. Crypto, in whatever shape it
-              takes from now on, is staying put and will affect the world into
-              the indefinite future, along these lines you ought to consider
-              getting a piece.
+              This event is a powerful reminder that it’s best not to wager against crypto. And HODL (i.e. holding
+              patiently) has proven to be a prudent strategy in long term. Crypto, in whatever shape it takes from now
+              on, is staying put and will affect the world into the indefinite future, along these lines you ought to
+              consider getting a piece.
             </p>
 
             <small className="block text-amber-500">
-              Special shout-out to the <b>Crypto Bootcamp Community</b> and{" "}
-              <b>Crypto Ladies League</b> for organizing this event in major
-              cities across Africa.
+              Special shout-out to the <b>Crypto Bootcamp Community</b> and <b>Crypto Ladies League</b> for organizing
+              this event in major cities across Africa.
             </small>
           </div>
           <div
@@ -198,15 +190,11 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section
-        padding
-        className="bg-white space-y-5 flex flex-col justify-center"
-        containerClass="border"
-      >
+      <Section padding className="bg-white space-y-5 flex flex-col justify-center" containerClass="border">
         {!active && (
           <Banner type="info">
-            To be eligible to claim the Bitcoin Pizza Day NFTs, you have to
-            connect a wallet address that has been whitelisted by submitting{" "}
+            To be eligible to claim the Bitcoin Pizza Day NFTs, you have to connect a wallet address that has been
+            whitelisted by submitting{" "}
             <Link
               className="text-blue-600"
               to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform"
@@ -226,7 +214,7 @@ export default function IndexPage() {
             </Banner>
             {eligibilityChecked ? (
               <Link
-                to="https://discord.gg/Kryptoverse"
+                to="https://discord.gg/9aY3gRPdQx"
                 className="rounded-none w-auto mx-auto flex items-center gap-2"
                 as="button"
               >
@@ -250,10 +238,8 @@ export default function IndexPage() {
             <Banner type="success">
               {triedClaim ? (
                 <p>
-                  Hey! You've already minted your #BitcoinPizzaDayNFT <br />{" "}
-                  <br /> Join our discord server to get daily points which can
-                  be used to purchase NFT's and upgrade your role in The
-                  Kryptolite Universe
+                  Hey! You've already minted your #BitcoinPizzaDayNFT <br /> <br /> Join our discord server to get daily
+                  points which can be used to purchase NFT's and upgrade your role in The Kryptolite Universe
                 </p>
               ) : (
                 "You are eligible"
@@ -261,7 +247,7 @@ export default function IndexPage() {
             </Banner>
             {triedClaim ? (
               <Link
-                to="https://discord.gg/Kryptoverse"
+                to="https://discord.gg/9aY3gRPdQx"
                 className="rounded-none w-auto mx-auto flex items-center gap-2"
                 as="button"
               >
@@ -283,9 +269,8 @@ export default function IndexPage() {
         {active && eligible && claimedNFT && (
           <Banner type="success">
             <p>
-              Congrats! You've minted your #BitcoinPizzaDayNFT <br /> <br />{" "}
-              Join our discord server to get daily points which can be used to
-              purchase NFT's and upgrade your role in The Kryptolite Universe
+              Congrats! You've minted your #BitcoinPizzaDayNFT <br /> <br /> Join our discord server to get daily points
+              which can be used to purchase NFT's and upgrade your role in The Kryptolite Universe
             </p>
           </Banner>
         )}

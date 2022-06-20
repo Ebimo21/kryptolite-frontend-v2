@@ -21,7 +21,7 @@ export default function IndexPage() {
   return (
     <main>
       <SEO
-        title="Kryptolite"
+        title="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
         description="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
       />
       <Section className="!px-0 md:!px-8 !max-w-screen-lg">
@@ -30,13 +30,10 @@ export default function IndexPage() {
           md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"
         >
           <div className="w-full pt-10 space-y-6">
-            <h1 className="uppercase font-light text-primary-700">
-              {highlighText("Advanced")} DeFi protocol
-            </h1>
+            <h1 className="uppercase font-light text-primary-700">{highlighText("Advanced")} DeFi protocol</h1>
             <p className="md:text-xl max-w-2xl">
-              KRYPTOLITE is the first hybrid protocol that leverages
-              Proof-of-Personhood, Proof-of-Stake and human work to create a
-              platform that is fast, inclusive and resilient to attacks.
+              KRYPTOLITE is the first hybrid protocol that leverages Proof-of-Personhood, Proof-of-Stake and human work
+              to create a platform that is fast, inclusive and resilient to attacks.
             </p>
             <div
               className="my-5 sm:space-x-5 flex flex-col sm:flex-row items-center space-y-5 sm:space-y-0
@@ -50,12 +47,7 @@ export default function IndexPage() {
                 <RiMoneyDollarCircleFill />
                 <span>Buy $KRL</span>
               </Link>
-              <Link
-                to="/stake"
-                as="button"
-                className="inline-flex space-x-2"
-                variant="outline"
-              >
+              <Link to="/stake" as="button" className="inline-flex space-x-2" variant="outline">
                 <BsShieldFillCheck />
                 <span>Stake $KRL</span>
               </Link>
@@ -85,14 +77,10 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section
-        className="text-center flex flex-col items-center !max-w-screen-lg"
-        padding={true}
-      >
+      <Section className="text-center flex flex-col items-center !max-w-screen-lg" padding={true}>
         <p className="text-xl md:text-3xl text-primary-900 font-medium">
-          The Kryptolite Universe is designed to allow our community tap into
-          and utilize the full potential of Decentralized Finance without the
-          demands of active portfolio management.
+          The Kryptolite Universe is designed to allow our community tap into and utilize the full potential of
+          Decentralized Finance without the demands of active portfolio management.
         </p>
         <Link
           to="https://pancakeswap.finance/swap?outputCurrency=0xF1288cF18B1FAaA35F40111c3E5d2f827e1E920E"
@@ -102,51 +90,31 @@ export default function IndexPage() {
           Buy $KRL Today
         </Link>
       </Section>
-      <Section
-        containerClass="bg-primary-50"
-        className="flex flex-col items-start md:flex-row"
-        padding
-      >
+      <Section containerClass="bg-primary-50" className="flex flex-col items-start md:flex-row" padding>
         <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
           <div className="mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
-            <StaticImage
-              src="../images/what-is-more.svg"
-              alt="what-is-more"
-              layout="fullWidth"
-              placeholder="blurred"
-            />
+            <StaticImage src="../images/what-is-more.svg" alt="what-is-more" layout="fullWidth" placeholder="blurred" />
           </div>
         </div>
         <div className="w-full space-y-5">
           <h2>What is {highlighText("More")}</h2>
           <p>
-            The KRL token is a unique utility token for the Kryptolite Universe
-            (a.k.a KRYPTOVERSE) that is used for:
+            The KRL token is a unique utility token for the Kryptolite Universe (a.k.a KRYPTOVERSE) that is used for:
           </p>
           <ul className="list-disc list-inside space-y-3 text-left">
-            <li>
-              Staking to earn passive income (% APY) and trade with up to zero
-              fees on KryptoliteSwap.
-            </li>
+            <li>Staking to earn passive income (% APY) and trade with up to zero fees on KryptoliteSwap.</li>
             <li>Purchase of Exclusive KRYPTOLITE Gem NFT's.</li>
             <li>Discounted launchpad subscriptions.</li>
-            <li>
-              Used for governance votes to determine how network resources are
-              allocated.
-            </li>
+            <li>Used for governance votes to determine how network resources are allocated.</li>
           </ul>
           <p>
-            KRYPTOLITE's intention is to be globally adopted for use as a proof
-            of stake (PoS) token which allows our community to trade with up to
-            ZERO fees and still receive reasonable APY from staked KRL at the
-            same time
+            KRYPTOLITE's intention is to be globally adopted for use as a proof of stake (PoS) token which allows our
+            community to trade with up to ZERO fees and still receive reasonable APY from staked KRL at the same time
           </p>
           <p>
-            The vast majority of crypto projects live only in the crypto space,
-            however we will achieve "Real World Impact and Takeover" by
-            organizing campaigns targeted at sensitising and educating the
-            general public on the key role of Decentralized Finance (DeFi)
-            protocols while also generating buzz over the usual channels and
+            The vast majority of crypto projects live only in the crypto space, however we will achieve "Real World
+            Impact and Takeover" by organizing campaigns targeted at sensitising and educating the general public on the
+            key role of Decentralized Finance (DeFi) protocols while also generating buzz over the usual channels and
             ways in crypto - always in collaboration with our community!
           </p>
         </div>
@@ -156,21 +124,16 @@ export default function IndexPage() {
           <div className="space-y-5">
             <h2>{highlighText("Benefits")} of investing in KRL</h2>
             <p>
-              KRYPTOLITE allows for high yield trading — yield farming — that
-              enables investors to borrow and stake their cryptocurrencies at
-              considerably higher rates compared to traditional banking and
-              investments.
+              KRYPTOLITE allows for high yield trading — yield farming — that enables investors to borrow and stake
+              their cryptocurrencies at considerably higher rates compared to traditional banking and investments.
             </p>
             <p>
-              Staking increases liquidity and helps to increase the market
-              capitalization of KRL which means that even as you earn interests,
-              the price value of your tokens continue to increase
+              Staking increases liquidity and helps to increase the market capitalization of KRL which means that even
+              as you earn interests, the price value of your tokens continue to increase
             </p>
             <p>
-              Token ownership has been renounced, meaning that our smart
-              contract cannot be manipulated and no new KRYPTOLITE tokens will
-              ever be created, you can check out the transaction hash on BSCscan
-              HERE
+              Token ownership has been renounced, meaning that our smart contract cannot be manipulated and no new
+              KRYPTOLITE tokens will ever be created, you can check out the transaction hash on BSCscan HERE
             </p>
           </div>
           <div className="flex-shrink-0 mx-auto max-w-sm w-full px-10 my-5 md:my-0">
@@ -187,46 +150,33 @@ export default function IndexPage() {
         <div className="md:flex md:items-center md:justify-center">
           <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">
             <div className="mx-auto max-w-sm w-full px-10 mt-5 md:mt-0">
-              <StaticImage
-                src="../images/icon.png"
-                alt="KRYPTOLITE Logo"
-                layout="fullWidth"
-                placeholder="blurred"
-              />
+              <StaticImage src="../images/icon.png" alt="KRYPTOLITE Logo" layout="fullWidth" placeholder="blurred" />
             </div>
           </div>
           <div className="w-full space-y-4">
             <h2>{highlighText("Hold and Stake")} $KRL</h2>
             <p>
-              KRYPTOLITE is designed to reward the community, through unique
-              mechanisms. Users are encouraged to accumulate and stake $KRL in
-              order to get the most returns from our PoS algorithm.
+              KRYPTOLITE is designed to reward the community, through unique mechanisms. Users are encouraged to
+              accumulate and stake $KRL in order to get the most returns from our PoS algorithm.
             </p>
             <p>
-              With the further development of the DeFi ecosystem across multiple
-              chains and protocols, Kryptolite will remain committed to
-              developing a solid economic model for the $KRL token. This
-              includes being open to change and adopting new developments that
-              fit our specific use cases.
+              With the further development of the DeFi ecosystem across multiple chains and protocols, Kryptolite will
+              remain committed to developing a solid economic model for the $KRL token. This includes being open to
+              change and adopting new developments that fit our specific use cases.
             </p>
             <p>
-              KRL’s tokenomics follows a “repurchase and burn” model, which
-              decreases the circulating supply of the KRL token as demand
-              increases over time, driving up its value. This model keeps the
-              value of KRL sustainable over the long run. Our tokenomics are
-              also further supported by the “stake and earn” model, which
-              further incentivizes KRL holders to keep their tokens.
+              KRL’s tokenomics follows a “repurchase and burn” model, which decreases the circulating supply of the KRL
+              token as demand increases over time, driving up its value. This model keeps the value of KRL sustainable
+              over the long run. Our tokenomics are also further supported by the “stake and earn” model, which further
+              incentivizes KRL holders to keep their tokens.
             </p>
           </div>
         </div>
       </Section>
       <Section padding={true} className="space-y-5 !max-w-screen-xl">
-        <h2 className="md:text-center">
-          Other Things {highlighText("We Offer")}
-        </h2>
+        <h2 className="md:text-center">Other Things {highlighText("We Offer")}</h2>
         <p className="md:text-center max-w-screen-lg mx-auto">
-          Our own Decentralized Exchange (AMM DEX) - KRL will be the fuel of the
-          automated market maker protocol.
+          Our own Decentralized Exchange (AMM DEX) - KRL will be the fuel of the automated market maker protocol.
         </p>
         <div className="flex flex-col md:flex-row md:justify-between gap-3 w-full">
           <div className="w-full md:max-w-sm space-y-10">
@@ -309,18 +259,14 @@ for our community`,
         <li>NFT'S powered</li>
         <li>Fair launch with presale and reasonable token pricing</li>
         <li>LP locked in PancakeSwap until 2030</li>
-        <li>
-          Team tokens locked for 36 months after launch by TrustSwap and can be
-          verified HERE
-        </li>
+        <li>Team tokens locked for 36 months after launch by TrustSwap and can be verified HERE</li>
       </ul>
     ),
     image: <HiUserGroup className="text-primary-800 h-12 w-12" />,
   },
   {
     name: "Exclusive NFT webshop",
-    description:
-      "Exclusive NFT webshop with KRYPTOLITE gem NFT’s which can only be purchased with $KRL",
+    description: "Exclusive NFT webshop with KRYPTOLITE gem NFT’s which can only be purchased with $KRL",
     image: <AiOutlineShoppingCart className="text-primary-800 h-12 w-12" />,
   },
   {
@@ -331,12 +277,10 @@ for our community`,
           Burn: <span className="text-primary-700 font-bold">40%</span>
         </li>
         <li>
-          Liquidity/Listings:{" "}
-          <span className="text-primary-700 font-bold">25%</span>
+          Liquidity/Listings: <span className="text-primary-700 font-bold">25%</span>
         </li>
         <li>
-          Marketing & Strategic Partnerships:{" "}
-          <span className="text-primary-700 font-bold">10%</span>
+          Marketing & Strategic Partnerships: <span className="text-primary-700 font-bold">10%</span>
         </li>
         <li>
           Team: <span className="text-primary-700 font-bold">6.225%</span>
@@ -345,8 +289,7 @@ for our community`,
           Presale: <span className="text-primary-700 font-bold">5.775%</span>
         </li>
         <li>
-          Yield Farming Incentives:{" "}
-          <span className="text-primary-700 font-bold">5%</span>
+          Yield Farming Incentives: <span className="text-primary-700 font-bold">5%</span>
         </li>
         <li>
           Bounties: <span className="text-primary-700 font-bold">5%</span>
@@ -355,8 +298,7 @@ for our community`,
           Airdrop: <span className="text-primary-700 font-bold">2.5%</span>
         </li>
         <li>
-          Early Investors Bonus:{" "}
-          <span className="text-primary-700 font-bold">0.5%</span>
+          Early Investors Bonus: <span className="text-primary-700 font-bold">0.5%</span>
         </li>
       </ul>
     ),

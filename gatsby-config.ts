@@ -3,7 +3,7 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `kryptolite-frontend-v2`,
+    title: `KRYPTOLITE - the next 100X DeFi gem you don't want to miss`,
     siteUrl: `https://www.yourdomain.tld`,
     description: "KRYPTOLITE - the next 100X DeFi gem you don't want to miss",
   },

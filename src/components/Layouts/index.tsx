@@ -5,7 +5,7 @@ import { RefreshContextProvider } from "../../contexts/RefreshContext";
 import { ToastsProvider, ToastListener } from "../../contexts/ToastContext";
 import store from "../../state";
 import { getLibrary } from "../../utils/web3React";
-import ModalProvider from "../widgets/Modal/ModalContext";
+import ModalProvider from "../Modal/ModalContext";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import AppWalletProvider from "../../contexts/AppContext";

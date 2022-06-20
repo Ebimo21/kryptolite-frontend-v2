@@ -1,7 +1,7 @@
 import { BigNumber } from "bignumber.js";
 import Button from "../Buttons/Button";
-import ModalActions from "../widgets/Modal/ModalActions";
-import ModalInput from "../widgets/Modal/ModalInput";
+import ModalActions from "../Modal/ModalActions";
+import ModalInput from "../Modal/ModalInput";
 import useToast from "../../hooks/useToast";
 import React, { useCallback, useMemo, useState } from "react";
 import { RiCloseLine } from "react-icons/ri";
@@ -58,7 +58,7 @@ export const DepositModal = ({
   const formattedAnnualRoi = formatNumber(
     annualRoi.toNumber(),
     annualRoi.gt(10000) ? 0 : 2,
-    annualRoi.gt(10000) ? 0 : 2
+    annualRoi.gt(10000) ? 0 : 2,
   );
 
   const handleChange = useCallback(
@@ -67,7 +67,7 @@ export const DepositModal = ({
         setVal(e.currentTarget.value.replace(/,/g, "."));
       }
     },
-    [setVal]
+    [setVal],
   );
 
   const handleSelectMax = useCallback(() => {
@@ -100,41 +100,25 @@ export const DepositModal = ({
         inputTitle=""
       />
       <div className="mt-6 flex items-center justify-between">
-        <p className="mr-2 text-gray-400">
-          Annual ROI at current rates: ${formattedAnnualRoi}
-        </p>
+        <p className="mr-2 text-gray-400">Annual ROI at current rates: ${formattedAnnualRoi}</p>
       </div>
       <ModalActions>
-        <Button
-          className="w-full bg-red-600 text-white"
-          variant="primary"
-          onClick={onDismiss}
-          disabled={pendingTx}
-        >
+        <Button className="w-full bg-red-600 text-white" variant="primary" onClick={onDismiss} disabled={pendingTx}>
           Cancel
         </Button>
         <Button
           className="w-full"
           disabled={
-            pendingTx ||
-            !lpTokensToStake.isFinite() ||
-            lpTokensToStake.eq(0) ||
-            lpTokensToStake.gt(fullBalanceNumber)
+            pendingTx || !lpTokensToStake.isFinite() || lpTokensToStake.eq(0) || lpTokensToStake.gt(fullBalanceNumber)
           }
           onClick={async () => {
             setPendingTx(true);
             try {
               await onConfirm(val);
-              toastSuccess(
-                "Staked!",
-                "Your funds have been staked in the farm"
-              );
+              toastSuccess("Staked!", "Your funds have been staked in the farm");
               onDismiss && onDismiss();
             } catch (e) {
-              toastError(
-                "Error",
-                "Please try again. Confirm the transaction and make sure you are paying enough gas!"
-              );
+              toastError("Error", "Please try again. Confirm the transaction and make sure you are paying enough gas!");
             } finally {
               setPendingTx(false);
             }

@@ -49,4 +49,40 @@
     focus:bg-primary-400 focus:text-black focus-within:bg-primary-400 focus-within:text-black
     ring-primary-600 hover:ring-primary-400 focus:ring-primary-400 focus-within:ring-primary-400;
   }
+
+  .btn-danger {
+    @apply text-red-600;
+  }
+
+  .custom_checkbox:hover:not(:disabled):not(:checked) {
+    @apply shadow;
+  }
+
+  .custom_checkbox:focus {
+    @apply outline-none shadow;
+  }
+
+  .custom_checkbox:checked {
+    @apply bg-primary-500;
+  }
+
+  .custom_checkbox:disabled {
+    @apply cursor-default opacity-60;
+  }
+}
+
+.custom_checkbox::after {
+  content: "";
+  position: absolute;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  border-color: transparent;
+  top: 30%;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 25%;
+  margin: auto;
+  transform: rotate(-50deg);
+  transition: border-color 0.2s ease-in-out;
 }

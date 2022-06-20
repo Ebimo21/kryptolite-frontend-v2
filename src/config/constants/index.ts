@@ -1,9 +1,54 @@
+import JSBI from "jsbi";
+import { Percent } from "../entities/fractions/percent";
+import { Token } from "../entities/token";
+import { mainnetTokens, testnetTokens } from "./tokens";
 import { RecognizedChainId } from "./types";
 
 export enum ChainId {
   MAINNET = 56,
   TESTNET = 97,
 }
+
+// a list of tokens by chain
+type ChainTokenList = {
+  readonly [chainId in ChainId]: Token[];
+};
+
+/**
+ * Addittional bases for specific tokens
+ * @example { [WBTC.address]: [renBTC], [renBTC.address]: [WBTC] }
+ */
+export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
+  [ChainId.MAINNET]: {},
+};
+
+/**
+ * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
+ * tokens.
+ * @example [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
+ */
+export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
+  [ChainId.MAINNET]: {},
+};
+
+// used for display in the default list when adding liquidity
+export const SUGGESTED_BASES: ChainTokenList = {
+  [ChainId.MAINNET]: [mainnetTokens.busd, mainnetTokens.cake, mainnetTokens.btcb],
+  [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.cake, testnetTokens.busd],
+};
+
+// used to construct intermediary pairs for trading
+export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
+  [ChainId.MAINNET]: [
+    mainnetTokens.wbnb,
+    mainnetTokens.busd,
+    mainnetTokens.usdt,
+    mainnetTokens.btcb,
+    mainnetTokens.eth,
+    mainnetTokens.usdc,
+  ],
+  [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.cake, testnetTokens.busd],
+};
 
 export const BASE_BSC_SCAN_URLS = {
   [ChainId.MAINNET]: "https://bscscan.com",
@@ -31,9 +76,7 @@ export const addresses = {
   },
 };
 
-export const RecognizedChainIdList: RecognizedChainId[] = [
-  1, 2, 3, 4, 42, 56, 97,
-];
+export const RecognizedChainIdList: RecognizedChainId[] = [1, 2, 3, 4, 42, 56, 97];
 
 export const networkList = {
   1: {
@@ -66,7 +109,35 @@ export const networkList = {
   },
 };
 
+export const ZERO_PERCENT = new Percent("0");
+export const ONE_HUNDRED_PERCENT = new Percent("1");
+
+export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000));
+
+// BNB
+export const DEFAULT_INPUT_CURRENCY = "BNB";
+// KRL
+export const DEFAULT_OUTPUT_CURRENCY = "0xF1288cF18B1FAaA35F40111c3E5d2f827e1E920E";
+
+// Gelato uses this address to define a native currency in all chains
+export const GELATO_NATIVE = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+
+export const ROUTER_ADDRESS = {
+  [ChainId.MAINNET]: "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+  [ChainId.TESTNET]: "0xD99D1c33F9fC3444f8101754aBC46c52416550D1",
+};
+
+// used to ensure the user doesn't send so much BNB so they end up with <.01
+export const MIN_BNB: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)); // .01 BNB
+
 // default allowed slippage, in bips
 export const INITIAL_ALLOWED_SLIPPAGE = 50;
-// 20 minutes, denominated in seconds
-export const DEFAULT_DEADLINE_FROM_NOW = 60 * 20;
+
+// one basis point
+export const ONE_BIPS = new Percent(JSBI.BigInt(1), JSBI.BigInt(10000));
+export const BIPS_BASE = JSBI.BigInt(10000);
+
+// used for warning states
+export const ALLOWED_PRICE_IMPACT_LOW: Percent = new Percent(JSBI.BigInt(100), BIPS_BASE); // 1%
+export const ALLOWED_PRICE_IMPACT_MEDIUM: Percent = new Percent(JSBI.BigInt(300), BIPS_BASE); // 3%
+export const ALLOWED_PRICE_IMPACT_HIGH: Percent = new Percent(JSBI.BigInt(500), BIPS_BASE); // 5%

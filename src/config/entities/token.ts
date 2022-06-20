@@ -17,7 +17,7 @@ export class Token extends Currency {
     decimals: number,
     symbol?: string,
     name?: string,
-    projectLink?: string
+    projectLink?: string,
   ) {
     super(decimals, symbol, name);
     this.chainId = chainId;
@@ -53,10 +53,7 @@ export class Token extends Currency {
 /**
  * Compares two currencies for equality
  */
-export function currencyEquals(
-  currencyA: Currency,
-  currencyB: Currency
-): boolean {
+export function currencyEquals(currencyA: Currency, currencyB: Currency): boolean {
   if (currencyA instanceof Token && currencyB instanceof Token) {
     return currencyA.equals(currencyB);
   } else if (currencyA instanceof Token) {
@@ -75,7 +72,7 @@ export const WETH = {
     18,
     "WBNB",
     "Wrapped BNB",
-    "https://www.binance.org"
+    "https://www.binance.org",
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
@@ -83,6 +80,6 @@ export const WETH = {
     18,
     "WBNB",
     "Wrapped BNB",
-    "https://www.binance.org"
+    "https://www.binance.org",
   ),
 };

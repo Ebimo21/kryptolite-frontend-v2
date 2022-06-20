@@ -1,7 +1,7 @@
 import React from "react";
 import { parseUnits } from "ethers/lib/utils";
-import { formatBigNumber } from "../../../utils/formatBalance";
-import Button from "../../Buttons/Button";
+import { formatBigNumber } from "../../utils/formatBalance";
+import Button from "../Buttons/Button";
 
 interface ModalInputProps {
   max: string;
@@ -38,11 +38,7 @@ const ModalInput = ({
 
   return (
     <div className="relative">
-      <div
-        className={`flex flex-col rounded-lg shadow p-2 w-full ${
-          isBalanceZero ? "text-red-600" : ""
-        }`}
-      >
+      <div className={`flex flex-col rounded-lg shadow p-2 w-full ${isBalanceZero ? "text-red-600" : ""}`}>
         <div className="flex mb-2">
           <p>{inputTitle}</p>
           <p>Balance: {displayBalance(max)}</p>
@@ -67,11 +63,7 @@ const ModalInput = ({
       {isBalanceZero && (
         <p className="text-sm text-red-600">
           No tokens to stake{" "}
-          <a
-            className="text-xs font-medium text-blue-400 underline"
-            href={addLiquidityUrl}
-            rel="noopener nofollow"
-          >
+          <a className="text-xs font-medium text-blue-400 underline" href={addLiquidityUrl} rel="noopener nofollow">
             Click to get {symbol}
           </a>
         </p>

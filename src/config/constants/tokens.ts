@@ -3,24 +3,26 @@ import { serializeToken } from "../../state/user/hooks/helpers";
 import { ChainId } from "./";
 import { SerializedToken } from "./types";
 
-const { MAINNET } = ChainId;
+const { MAINNET, TESTNET } = ChainId;
 
-type TokenList = {
-  [key in keyof typeof mainnetTokens]: Token;
-};
+interface TokenList {
+  [symbol: string]: Token;
+}
+
+const defineTokens = <T extends TokenList>(t: T) => t;
 
 interface SerializedTokenList {
   [symbol: string]: SerializedToken;
 }
 
-export const mainnetTokens = {
+export const mainnetTokens = defineTokens({
   krl: new Token(
     MAINNET,
     "0xF1288cF18B1FAaA35F40111c3E5d2f827e1E920E",
     18,
     "KRL",
     "Kryptolite",
-    "https://kryptolite.rocks"
+    "https://kryptolite.rocks",
   ),
   wbnb: new Token(
     MAINNET,
@@ -28,80 +30,45 @@ export const mainnetTokens = {
     18,
     "WBNB",
     "Wrapped BNB",
-    "https://www.binance.com/"
+    "https://www.binance.com/",
   ),
   // bnb here points to the wbnb contract. Wherever the currency BNB is required, conditional checks for the symbol 'BNB' can be used
-  bnb: new Token(
-    MAINNET,
-    "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
-    18,
-    "BNB",
-    "BNB",
-    "https://www.binance.com/"
-  ),
+  bnb: new Token(MAINNET, "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", 18, "BNB", "BNB", "https://www.binance.com/"),
   cake: new Token(
     MAINNET,
     "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
     18,
     "CAKE",
     "PancakeSwap Token",
-    "https://pancakeswap.finance/"
+    "https://pancakeswap.finance/",
   ),
-  tlos: new Token(
-    MAINNET,
-    "0xb6C53431608E626AC81a9776ac3e999c5556717c",
-    18,
-    "TLOS",
-    "Telos",
-    "https://www.telos.net/"
-  ),
+  tlos: new Token(MAINNET, "0xb6C53431608E626AC81a9776ac3e999c5556717c", 18, "TLOS", "Telos", "https://www.telos.net/"),
   beta: new Token(
     MAINNET,
     "0xBe1a001FE942f96Eea22bA08783140B9Dcc09D28",
     18,
     "BETA",
     "Beta Finance",
-    "https://betafinance.org"
+    "https://betafinance.org",
   ),
-  nft: new Token(
-    MAINNET,
-    "0x1fC9004eC7E5722891f5f38baE7678efCB11d34D",
-    6,
-    "NFT",
-    "APENFT",
-    "https://apenft.org"
-  ),
+  nft: new Token(MAINNET, "0x1fC9004eC7E5722891f5f38baE7678efCB11d34D", 6, "NFT", "APENFT", "https://apenft.org"),
   stephero: new Token(
     MAINNET,
     "0xE8176d414560cFE1Bf82Fd73B986823B89E4F545",
     18,
     "HERO",
     "StepHero",
-    "https://stephero.io/"
+    "https://stephero.io/",
   ),
-  pros: new Token(
-    MAINNET,
-    "0xEd8c8Aa8299C10f067496BB66f8cC7Fb338A3405",
-    18,
-    "PROS",
-    "Prosper",
-    "https://prosper.so/"
-  ),
-  qbt: new Token(
-    MAINNET,
-    "0x17B7163cf1Dbd286E262ddc68b553D899B93f526",
-    18,
-    "QBT",
-    "Qubit Token",
-    "https://qbt.fi/"
-  ),
+  pros: new Token(MAINNET, "0xEd8c8Aa8299C10f067496BB66f8cC7Fb338A3405", 18, "PROS", "Prosper", "https://prosper.so/"),
+  qbt: new Token(MAINNET, "0x17B7163cf1Dbd286E262ddc68b553D899B93f526", 18, "QBT", "Qubit Token", "https://qbt.fi/"),
   cvp: new Token(
     MAINNET,
     "0x5Ec3AdBDae549Dce842e24480Eb2434769e22B2E",
     18,
     "CVP",
     "Concentrated Voting Power Token",
-    "https://powerpool.finance/"
+    "https://powerpool.finance/",
   ),
   bscdefi: new Token(
     MAINNET,
@@ -109,7 +76,7 @@ export const mainnetTokens = {
     18,
     "BSCDEFI",
     "BSC Defi blue chips token",
-    "https://powerpool.finance/"
+    "https://powerpool.finance/",
   ),
   busd: new Token(
     MAINNET,
@@ -117,7 +84,15 @@ export const mainnetTokens = {
     18,
     "BUSD",
     "Binance USD",
-    "https://www.paxos.com/busd/"
+    "https://www.paxos.com/busd/",
+  ),
+  bttold: new Token(
+    MAINNET,
+    "0x8595F9dA7b868b1822194fAEd312235E43007b49",
+    18,
+    "BTTOLD",
+    "Binance-Peg BitTorrent Token (Old)",
+    "https://www.bittorrent.com/",
   ),
   dai: new Token(
     MAINNET,
@@ -125,7 +100,7 @@ export const mainnetTokens = {
     18,
     "DAI",
     "Dai Stablecoin",
-    "https://www.makerdao.com/"
+    "https://www.makerdao.com/",
   ),
   usdt: new Token(
     MAINNET,
@@ -133,7 +108,7 @@ export const mainnetTokens = {
     18,
     "USDT",
     "Tether USD",
-    "https://tether.to/"
+    "https://tether.to/",
   ),
   btcb: new Token(
     MAINNET,
@@ -141,7 +116,7 @@ export const mainnetTokens = {
     18,
     "BTCB",
     "Binance BTC",
-    "https://bitcoin.org/"
+    "https://bitcoin.org/",
   ),
   ust: new Token(
     MAINNET,
@@ -149,7 +124,7 @@ export const mainnetTokens = {
     18,
     "UST",
     "Wrapped UST Token",
-    "https://mirror.finance/"
+    "https://mirror.finance/",
   ),
   eth: new Token(
     MAINNET,
@@ -157,7 +132,7 @@ export const mainnetTokens = {
     18,
     "ETH",
     "Binance-Peg Ethereum Token",
-    "https://ethereum.org/en/"
+    "https://ethereum.org/en/",
   ),
   usdc: new Token(
     MAINNET,
@@ -165,7 +140,7 @@ export const mainnetTokens = {
     18,
     "USDC",
     "Binance-Peg USD Coin",
-    "https://www.centre.io/usdc"
+    "https://www.centre.io/usdc",
   ),
   kalm: new Token(
     MAINNET,
@@ -173,7 +148,7 @@ export const mainnetTokens = {
     18,
     "KALM",
     "Kalmar Token",
-    "https://kalmar.io/"
+    "https://kalmar.io/",
   ),
   dkt: new Token(
     MAINNET,
@@ -181,7 +156,7 @@ export const mainnetTokens = {
     18,
     "DKT",
     "Duelist King",
-    "https://duelistking.com/"
+    "https://duelistking.com/",
   ),
   hotcross: new Token(
     MAINNET,
@@ -189,7 +164,7 @@ export const mainnetTokens = {
     18,
     "HOTCROSS",
     "Hotcross Token",
-    "https://www.hotcross.com/"
+    "https://www.hotcross.com/",
   ),
   belt: new Token(
     MAINNET,
@@ -197,7 +172,7 @@ export const mainnetTokens = {
     18,
     "BELT",
     "Belt Token",
-    "https://beta.belt.fi/"
+    "https://beta.belt.fi/",
   ),
   watch: new Token(
     MAINNET,
@@ -205,7 +180,7 @@ export const mainnetTokens = {
     18,
     "WATCH",
     "Yieldwatch Token",
-    "https://yieldwatch.net/"
+    "https://yieldwatch.net/",
   ),
   bry: new Token(
     MAINNET,
@@ -213,7 +188,7 @@ export const mainnetTokens = {
     18,
     "BRY",
     "Berry Token",
-    "https://berrydata.co/"
+    "https://berrydata.co/",
   ),
   wsote: new Token(
     MAINNET,
@@ -221,7 +196,7 @@ export const mainnetTokens = {
     18,
     "wSOTE",
     "Soteria Token",
-    "https://soteria.finance/"
+    "https://soteria.finance/",
   ),
   helmet: new Token(
     MAINNET,
@@ -229,7 +204,7 @@ export const mainnetTokens = {
     18,
     "Helmet",
     "Helmet Token",
-    "https://www.helmet.insure/"
+    "https://www.helmet.insure/",
   ),
   ten: new Token(
     MAINNET,
@@ -237,7 +212,7 @@ export const mainnetTokens = {
     18,
     "TEN",
     "Tenet Token",
-    "https://www.tenet.farm/"
+    "https://www.tenet.farm/",
   ),
   ditto: new Token(
     MAINNET,
@@ -245,7 +220,7 @@ export const mainnetTokens = {
     9,
     "DITTO",
     "Ditto Token",
-    "https://ditto.money/"
+    "https://ditto.money/",
   ),
   blink: new Token(
     MAINNET,
@@ -253,7 +228,7 @@ export const mainnetTokens = {
     6,
     "BLINK",
     "Blink Token",
-    "https://blink.wink.org"
+    "https://blink.wink.org",
   ),
   syrup: new Token(
     MAINNET,
@@ -261,7 +236,7 @@ export const mainnetTokens = {
     18,
     "SYRUP",
     "SyrupBar Token",
-    "https://pancakeswap.finance/"
+    "https://pancakeswap.finance/",
   ),
   pha: new Token(
     MAINNET,
@@ -269,7 +244,7 @@ export const mainnetTokens = {
     18,
     "PHA",
     "Phala Token",
-    "https://phala.network"
+    "https://phala.network",
   ),
   babycake: new Token(
     MAINNET,
@@ -277,7 +252,7 @@ export const mainnetTokens = {
     18,
     "BABYCAKE",
     "Baby Cake Token",
-    "https://babycake.app/"
+    "https://babycake.app/",
   ),
   bmon: new Token(
     MAINNET,
@@ -285,7 +260,7 @@ export const mainnetTokens = {
     18,
     "BMON",
     "Binamon Token",
-    "https://binamon.org/"
+    "https://binamon.org/",
   ),
   hero: new Token(
     MAINNET,
@@ -293,7 +268,7 @@ export const mainnetTokens = {
     18,
     "HERO",
     "Metahero Token",
-    "https://metahero.io/"
+    "https://metahero.io/",
   ),
   wsg: new Token(
     MAINNET,
@@ -301,7 +276,7 @@ export const mainnetTokens = {
     18,
     "WSG",
     "Wall Street Games Token",
-    "https://wsg.gg/"
+    "https://wsg.gg/",
   ),
   mcrn: new Token(
     MAINNET,
@@ -309,7 +284,7 @@ export const mainnetTokens = {
     18,
     "MCRN",
     "Macaronswap Token",
-    "https://www.macaronswap.finance/"
+    "https://www.macaronswap.finance/",
   ),
   revv: new Token(
     MAINNET,
@@ -317,7 +292,7 @@ export const mainnetTokens = {
     18,
     "REVV",
     "REVV Token",
-    "https://revvmotorsport.com/"
+    "https://revvmotorsport.com/",
   ),
   skill: new Token(
     MAINNET,
@@ -325,7 +300,7 @@ export const mainnetTokens = {
     18,
     "SKILL",
     "Cryptoblades Token",
-    "https://www.cryptoblades.io/"
+    "https://www.cryptoblades.io/",
   ),
   if: new Token(
     MAINNET,
@@ -333,7 +308,7 @@ export const mainnetTokens = {
     18,
     "IF",
     "Impossible Finance Token",
-    "https://impossible.finance/"
+    "https://impossible.finance/",
   ),
   sps: new Token(
     MAINNET,
@@ -341,7 +316,7 @@ export const mainnetTokens = {
     18,
     "SPS",
     "Splinterlands Token",
-    "https://splinterlands.com"
+    "https://splinterlands.com",
   ),
   chess: new Token(
     MAINNET,
@@ -349,7 +324,7 @@ export const mainnetTokens = {
     18,
     "CHESS",
     "Chess Token",
-    "https://tranchess.com/"
+    "https://tranchess.com/",
   ),
   titan: new Token(
     MAINNET,
@@ -357,7 +332,7 @@ export const mainnetTokens = {
     18,
     "TITAN",
     "Titanswap Token",
-    "https://titanswap.org"
+    "https://titanswap.org",
   ),
   harmony: new Token(
     MAINNET,
@@ -365,23 +340,16 @@ export const mainnetTokens = {
     18,
     "ONE",
     "Harmony ONE Token",
-    "https://www.harmony.one/"
+    "https://www.harmony.one/",
   ),
-  mask: new Token(
-    MAINNET,
-    "0x2eD9a5C8C13b93955103B9a7C167B67Ef4d568a3",
-    18,
-    "MASK",
-    "Mask Token",
-    "https://mask.io/"
-  ),
+  mask: new Token(MAINNET, "0x2eD9a5C8C13b93955103B9a7C167B67Ef4d568a3", 18, "MASK", "Mask Token", "https://mask.io/"),
   dvi: new Token(
     MAINNET,
     "0x758FB037A375F17c7e195CC634D77dA4F554255B",
     18,
     "DVI",
     "Dvision Network Token",
-    "https://dvision.network/"
+    "https://dvision.network/",
   ),
   adx: new Token(
     MAINNET,
@@ -389,7 +357,7 @@ export const mainnetTokens = {
     18,
     "ADX",
     "Adex Network Token",
-    "https://www.adex.network"
+    "https://www.adex.network",
   ),
   bscpad: new Token(
     MAINNET,
@@ -397,7 +365,7 @@ export const mainnetTokens = {
     18,
     "BSCPAD",
     "Bscpad Token",
-    "https://bscpad.com/"
+    "https://bscpad.com/",
   ),
   rabbit: new Token(
     MAINNET,
@@ -405,7 +373,7 @@ export const mainnetTokens = {
     18,
     "RABBIT",
     "Rabbit Finance Token",
-    "https://rabbitfinance.io/earn"
+    "https://rabbitfinance.io/earn",
   ),
   form: new Token(
     MAINNET,
@@ -413,23 +381,16 @@ export const mainnetTokens = {
     18,
     "FORM",
     "Formation Token",
-    "https://formation.fi/"
+    "https://formation.fi/",
   ),
-  txl: new Token(
-    MAINNET,
-    "0x1FFD0b47127fdd4097E54521C9E2c7f0D66AafC5",
-    18,
-    "TXL",
-    "Tixl Token",
-    "https://tixl.org/"
-  ),
+  txl: new Token(MAINNET, "0x1FFD0b47127fdd4097E54521C9E2c7f0D66AafC5", 18, "TXL", "Tixl Token", "https://tixl.org/"),
   orbs: new Token(
     MAINNET,
     "0xeBd49b26169e1b52c04cFd19FCf289405dF55F80",
     18,
     "ORBS",
     "Orbs Token",
-    "https://www.orbs.com/"
+    "https://www.orbs.com/",
   ),
   cos: new Token(
     MAINNET,
@@ -437,7 +398,7 @@ export const mainnetTokens = {
     18,
     "COS",
     "Contentos Token",
-    "https://www.contentos.io/"
+    "https://www.contentos.io/",
   ),
   bunny: new Token(
     MAINNET,
@@ -445,7 +406,7 @@ export const mainnetTokens = {
     18,
     "BUNNY",
     "Pancakebunny Token",
-    "https://pancakebunny.finance/"
+    "https://pancakebunny.finance/",
   ),
   alice: new Token(
     MAINNET,
@@ -453,7 +414,7 @@ export const mainnetTokens = {
     6,
     "ALICE",
     "My Neighbor Alice Token",
-    "https://www.myneighboralice.com/"
+    "https://www.myneighboralice.com/",
   ),
   for: new Token(
     MAINNET,
@@ -461,7 +422,7 @@ export const mainnetTokens = {
     18,
     "FOR",
     "Fortube Token",
-    "https://www.for.tube/home"
+    "https://www.for.tube/home",
   ),
   bux: new Token(
     MAINNET,
@@ -469,7 +430,7 @@ export const mainnetTokens = {
     18,
     "BUX",
     "Bux Crypto Token",
-    "https://getbux.com/bux-crypto/"
+    "https://getbux.com/bux-crypto/",
   ),
   nuls: new Token(
     MAINNET,
@@ -477,7 +438,7 @@ export const mainnetTokens = {
     8,
     "NULS",
     "Nuls Token",
-    "https://www.nuls.io/"
+    "https://www.nuls.io/",
   ),
   ramp: new Token(
     MAINNET,
@@ -485,7 +446,7 @@ export const mainnetTokens = {
     18,
     "RAMP",
     "RAMP DEFI Token",
-    "https://rampdefi.com/"
+    "https://rampdefi.com/",
   ),
   bfi: new Token(
     MAINNET,
@@ -493,7 +454,7 @@ export const mainnetTokens = {
     18,
     "BFI",
     "bearn.fi Token",
-    "https://bearn.fi/"
+    "https://bearn.fi/",
   ),
   dexe: new Token(
     MAINNET,
@@ -501,7 +462,7 @@ export const mainnetTokens = {
     18,
     "DEXE",
     "DeXe Token",
-    "https://dexe.network/"
+    "https://dexe.network/",
   ),
   bel: new Token(
     MAINNET,
@@ -509,7 +470,7 @@ export const mainnetTokens = {
     18,
     "BEL",
     "Bella Protocol Token",
-    "https://bella.fi/"
+    "https://bella.fi/",
   ),
   tpt: new Token(
     MAINNET,
@@ -517,7 +478,7 @@ export const mainnetTokens = {
     4,
     "TPT",
     "Tokenpocket Token",
-    "https://www.tokenpocket.pro/"
+    "https://www.tokenpocket.pro/",
   ),
   xmark: new Token(
     MAINNET,
@@ -525,7 +486,7 @@ export const mainnetTokens = {
     9,
     "xMARK",
     "Benchmark Protocol Token",
-    "https://benchmarkprotocol.finance/"
+    "https://benchmarkprotocol.finance/",
   ),
   bmxx: new Token(
     MAINNET,
@@ -533,7 +494,7 @@ export const mainnetTokens = {
     18,
     "bMXX",
     "Multiplier Token",
-    "https://multiplier.finance/"
+    "https://multiplier.finance/",
   ),
   iotx: new Token(
     MAINNET,
@@ -541,7 +502,7 @@ export const mainnetTokens = {
     18,
     "IOTX",
     "Binance-Peg IoTeX Network Token",
-    "https://iotex.io/"
+    "https://iotex.io/",
   ),
   bor: new Token(
     MAINNET,
@@ -549,7 +510,7 @@ export const mainnetTokens = {
     18,
     "BOR",
     "BoringDAO Token",
-    "https://www.boringdao.com/"
+    "https://www.boringdao.com/",
   ),
   bopen: new Token(
     MAINNET,
@@ -557,7 +518,7 @@ export const mainnetTokens = {
     18,
     "bOPEN",
     "OPEN Governance Token",
-    "https://opendao.io/"
+    "https://opendao.io/",
   ),
   dodo: new Token(
     MAINNET,
@@ -565,7 +526,7 @@ export const mainnetTokens = {
     18,
     "DODO",
     "Dodo Token",
-    "https://dodoex.io/"
+    "https://dodoex.io/",
   ),
   swingby: new Token(
     MAINNET,
@@ -573,7 +534,7 @@ export const mainnetTokens = {
     18,
     "SWINGBY",
     "Swingby Network Token",
-    "https://swingby.network/"
+    "https://swingby.network/",
   ),
   zee: new Token(
     MAINNET,
@@ -581,7 +542,7 @@ export const mainnetTokens = {
     18,
     "ZEE",
     "Zeroswap Token",
-    "https://zeroswap.io/"
+    "https://zeroswap.io/",
   ),
   swgb: new Token(
     MAINNET,
@@ -589,7 +550,7 @@ export const mainnetTokens = {
     18,
     "SWGb",
     "SWGb Token",
-    "https://swirgepay.com/"
+    "https://swirgepay.com/",
   ),
   swg: new Token(
     MAINNET,
@@ -597,7 +558,7 @@ export const mainnetTokens = {
     18,
     "SWG",
     "SWG Token",
-    "https://swirgepay.com/"
+    "https://swirgepay.com/",
   ),
   sfp: new Token(
     MAINNET,
@@ -605,7 +566,7 @@ export const mainnetTokens = {
     18,
     "SFP",
     "Safepal Token",
-    "https://www.safepal.io/"
+    "https://www.safepal.io/",
   ),
   lina: new Token(
     MAINNET,
@@ -613,7 +574,7 @@ export const mainnetTokens = {
     18,
     "LINA",
     "Linear Finance Token",
-    "https://linear.finance/"
+    "https://linear.finance/",
   ),
   lit: new Token(
     MAINNET,
@@ -621,7 +582,7 @@ export const mainnetTokens = {
     18,
     "LIT",
     "Litentry Token",
-    "https://www.litentry.com/"
+    "https://www.litentry.com/",
   ),
   hget: new Token(
     MAINNET,
@@ -629,7 +590,7 @@ export const mainnetTokens = {
     6,
     "HGET",
     "Hedget Token",
-    "https://www.hedget.com/"
+    "https://www.hedget.com/",
   ),
   bdo: new Token(
     MAINNET,
@@ -637,7 +598,7 @@ export const mainnetTokens = {
     18,
     "BDO",
     "Bdollar Token",
-    "https://bdollar.fi/"
+    "https://bdollar.fi/",
   ),
   egld: new Token(
     MAINNET,
@@ -645,7 +606,7 @@ export const mainnetTokens = {
     18,
     "EGLD",
     "Elrond Token",
-    "https://elrond.com/"
+    "https://elrond.com/",
   ),
   front: new Token(
     MAINNET,
@@ -653,7 +614,7 @@ export const mainnetTokens = {
     18,
     "FRONT",
     "Frontier Token",
-    "https://frontier.xyz/"
+    "https://frontier.xyz/",
   ),
   btcst: new Token(
     MAINNET,
@@ -661,7 +622,7 @@ export const mainnetTokens = {
     17,
     "BTCST",
     "StandardBTCHashrate Token",
-    "https://www.1-b.tc/"
+    "https://www.1-b.tc/",
   ),
   bscx: new Token(
     MAINNET,
@@ -669,7 +630,7 @@ export const mainnetTokens = {
     18,
     "BSCX",
     "BSCX Token",
-    "https://bscex.org/"
+    "https://bscex.org/",
   ),
   balbt: new Token(
     MAINNET,
@@ -677,7 +638,7 @@ export const mainnetTokens = {
     18,
     "bALBT",
     "AllianceBlock Token",
-    "https://allianceblock.io/"
+    "https://allianceblock.io/",
   ),
   asr: new Token(
     MAINNET,
@@ -685,7 +646,7 @@ export const mainnetTokens = {
     2,
     "ASR",
     "AS Roma Token",
-    "https://www.chiliz.com"
+    "https://www.chiliz.com",
   ),
   atm: new Token(
     MAINNET,
@@ -693,7 +654,7 @@ export const mainnetTokens = {
     2,
     "ATM",
     "Athletico Madrid Token",
-    "https://www.chiliz.com"
+    "https://www.chiliz.com",
   ),
   og: new Token(
     MAINNET,
@@ -701,7 +662,7 @@ export const mainnetTokens = {
     2,
     "OG",
     "OG Nice Token",
-    "https://www.chiliz.com"
+    "https://www.chiliz.com",
   ),
   reef: new Token(
     MAINNET,
@@ -709,7 +670,7 @@ export const mainnetTokens = {
     18,
     "REEF",
     "Reef.finance Token",
-    "https://reef.finance/"
+    "https://reef.finance/",
   ),
   juv: new Token(
     MAINNET,
@@ -717,7 +678,7 @@ export const mainnetTokens = {
     2,
     "JUV",
     "Juventus Token",
-    "https://www.chiliz.com"
+    "https://www.chiliz.com",
   ),
   psg: new Token(
     MAINNET,
@@ -725,7 +686,7 @@ export const mainnetTokens = {
     2,
     "PSG",
     "Paris Saint-Germain Token",
-    "https://www.chiliz.com"
+    "https://www.chiliz.com",
   ),
   vai: new Token(
     MAINNET,
@@ -733,7 +694,7 @@ export const mainnetTokens = {
     18,
     "VAI",
     "VAI Stablecoin",
-    "0x4BD17003473389A42DAF6a0a729f6Fdb328BbBd7"
+    "0x4BD17003473389A42DAF6a0a729f6Fdb328BbBd7",
   ),
   unfi: new Token(
     MAINNET,
@@ -741,7 +702,7 @@ export const mainnetTokens = {
     18,
     "UNFI",
     "UNFI Token",
-    "https://unifiprotocol.com"
+    "https://unifiprotocol.com",
   ),
   twt: new Token(
     MAINNET,
@@ -749,7 +710,7 @@ export const mainnetTokens = {
     18,
     "TWT",
     "Trust Wallet Token",
-    "https://trustwallet.com/"
+    "https://trustwallet.com/",
   ),
   hard: new Token(
     MAINNET,
@@ -757,7 +718,7 @@ export const mainnetTokens = {
     6,
     "HARD",
     "HARD Token",
-    "https://hard.kava.io"
+    "https://hard.kava.io",
   ),
   broobee: new Token(
     MAINNET,
@@ -765,7 +726,7 @@ export const mainnetTokens = {
     18,
     "bROOBEE",
     "ROOBEE Token",
-    "https://roobee.io/"
+    "https://roobee.io/",
   ),
   stax: new Token(
     MAINNET,
@@ -773,7 +734,7 @@ export const mainnetTokens = {
     18,
     "STAX",
     "StableX Token",
-    "https://stablexswap.com/"
+    "https://stablexswap.com/",
   ),
   nar: new Token(
     MAINNET,
@@ -781,7 +742,7 @@ export const mainnetTokens = {
     18,
     "NAR",
     "Narwhalswap Token",
-    "https://narwhalswap.org/"
+    "https://narwhalswap.org/",
   ),
   nya: new Token(
     MAINNET,
@@ -789,7 +750,7 @@ export const mainnetTokens = {
     18,
     "NYA",
     "Nyanswop Token",
-    "https://nyanswop.org/"
+    "https://nyanswop.org/",
   ),
   ctk: new Token(
     MAINNET,
@@ -797,7 +758,7 @@ export const mainnetTokens = {
     6,
     "CTK",
     "Certik Token",
-    "https://www.certik.foundation/"
+    "https://www.certik.foundation/",
   ),
   inj: new Token(
     MAINNET,
@@ -805,39 +766,25 @@ export const mainnetTokens = {
     18,
     "INJ",
     "Injective Protocol Token",
-    "https://injectiveprotocol.com/"
+    "https://injectiveprotocol.com/",
   ),
-  sxp: new Token(
-    MAINNET,
-    "0x47BEAd2563dCBf3bF2c9407fEa4dC236fAbA485A",
-    18,
-    "SXP",
-    "Swipe Token",
-    "https://swipe.io/"
-  ),
+  sxp: new Token(MAINNET, "0x47BEAd2563dCBf3bF2c9407fEa4dC236fAbA485A", 18, "SXP", "Swipe Token", "https://swipe.io/"),
   alpha: new Token(
     MAINNET,
     "0xa1faa113cbE53436Df28FF0aEe54275c13B40975",
     18,
     "ALPHA",
     "Alpha Finance Token",
-    "https://alphafinance.io/"
+    "https://alphafinance.io/",
   ),
-  xvs: new Token(
-    MAINNET,
-    "0xcF6BB5389c92Bdda8a3747Ddb454cB7a64626C63",
-    18,
-    "XVS",
-    "Venus Token",
-    "https://venus.io/"
-  ),
+  xvs: new Token(MAINNET, "0xcF6BB5389c92Bdda8a3747Ddb454cB7a64626C63", 18, "XVS", "Venus Token", "https://venus.io/"),
   sushi: new Token(
     MAINNET,
     "0x947950BcC74888a40Ffa2593C5798F11Fc9124C4",
     18,
     "SUSHI",
     "Binance-Peg SushiToken",
-    "https://sushi.com/"
+    "https://sushi.com/",
   ),
   comp: new Token(
     MAINNET,
@@ -845,7 +792,7 @@ export const mainnetTokens = {
     18,
     "COMP",
     "Compound Finance Token",
-    "https://compound.finance/"
+    "https://compound.finance/",
   ),
   bifi: new Token(
     MAINNET,
@@ -853,7 +800,7 @@ export const mainnetTokens = {
     18,
     "BIFI",
     "Beefy Finance Token",
-    "https://beefy.finance/"
+    "https://beefy.finance/",
   ),
   dusk: new Token(
     MAINNET,
@@ -861,7 +808,7 @@ export const mainnetTokens = {
     18,
     "DUSK",
     "Dusk Network Token",
-    "https://dusk.network/"
+    "https://dusk.network/",
   ),
   beth: new Token(
     MAINNET,
@@ -869,7 +816,7 @@ export const mainnetTokens = {
     18,
     "BETH",
     "Binance Beacon ETH",
-    "https://ethereum.org/en/eth2/beacon-chain/"
+    "https://ethereum.org/en/eth2/beacon-chain/",
   ),
   mamzn: new Token(
     MAINNET,
@@ -877,7 +824,7 @@ export const mainnetTokens = {
     18,
     "mAMZN",
     "Wrapped Mirror AMZN Token",
-    "https://mirror.finance/"
+    "https://mirror.finance/",
   ),
   mgoogl: new Token(
     MAINNET,
@@ -885,7 +832,7 @@ export const mainnetTokens = {
     18,
     "mGOOGL",
     "Wrapped Mirror GOOGL Token",
-    "https://mirror.finance/"
+    "https://mirror.finance/",
   ),
   mnflx: new Token(
     MAINNET,
@@ -893,7 +840,7 @@ export const mainnetTokens = {
     18,
     "mNFLX",
     "Wrapped Mirror NFLX Token",
-    "https://mirror.finance/"
+    "https://mirror.finance/",
   ),
   mtsla: new Token(
     MAINNET,
@@ -901,7 +848,7 @@ export const mainnetTokens = {
     18,
     "mTSLA",
     "Wrapped Mirror TSLA Token",
-    "https://mirror.finance/"
+    "https://mirror.finance/",
   ),
   ltc: new Token(
     MAINNET,
@@ -909,7 +856,7 @@ export const mainnetTokens = {
     18,
     "LTC",
     "Binance-Peg Litecoin Token",
-    "https://litecoin.org/"
+    "https://litecoin.org/",
   ),
   ada: new Token(
     MAINNET,
@@ -917,7 +864,7 @@ export const mainnetTokens = {
     18,
     "ADA",
     " Binance-Peg Cardano Token",
-    "https://www.cardano.org/"
+    "https://www.cardano.org/",
   ),
   band: new Token(
     MAINNET,
@@ -925,7 +872,7 @@ export const mainnetTokens = {
     18,
     "BAND",
     "Binance-Peg Band Protocol Token",
-    "https://bandprotocol.com/"
+    "https://bandprotocol.com/",
   ),
   dot: new Token(
     MAINNET,
@@ -933,7 +880,7 @@ export const mainnetTokens = {
     18,
     "DOT",
     "Binance-Peg Polkadot Token",
-    "https://polkadot.network/"
+    "https://polkadot.network/",
   ),
   eos: new Token(
     MAINNET,
@@ -941,7 +888,7 @@ export const mainnetTokens = {
     18,
     "EOS",
     "Binance-Peg EOS Token",
-    "https://eos.io/"
+    "https://eos.io/",
   ),
   link: new Token(
     MAINNET,
@@ -949,7 +896,7 @@ export const mainnetTokens = {
     18,
     "LINK",
     "Binance-Peg Chainlink Token",
-    "https://chain.link/"
+    "https://chain.link/",
   ),
   xrp: new Token(
     MAINNET,
@@ -957,7 +904,7 @@ export const mainnetTokens = {
     18,
     "XRP",
     "Binance-Peg XRP Token",
-    "https://ripple.com/xrp/"
+    "https://ripple.com/xrp/",
   ),
   atom: new Token(
     MAINNET,
@@ -965,7 +912,7 @@ export const mainnetTokens = {
     18,
     "ATOM",
     "Binance-Peg Cosmos Token",
-    "https://cosmos.network/"
+    "https://cosmos.network/",
   ),
   yfii: new Token(
     MAINNET,
@@ -973,7 +920,7 @@ export const mainnetTokens = {
     18,
     "YFII",
     "Binance-Peg YFII.finance Token",
-    "https://dfi.money/#/"
+    "https://dfi.money/#/",
   ),
   xtz: new Token(
     MAINNET,
@@ -981,7 +928,7 @@ export const mainnetTokens = {
     18,
     "XTZ",
     "Binance-Peg Tezos Token",
-    "https://www.tezos.com/"
+    "https://www.tezos.com/",
   ),
   bch: new Token(
     MAINNET,
@@ -989,7 +936,7 @@ export const mainnetTokens = {
     18,
     "BCH",
     "Binance-Peg Bitcoin Cash Token",
-    "https://bch.info/"
+    "https://bch.info/",
   ),
   yfi: new Token(
     MAINNET,
@@ -997,7 +944,7 @@ export const mainnetTokens = {
     18,
     "YFI",
     "Binance-Peg yearn.finance Token",
-    "https://yearn.finance/"
+    "https://yearn.finance/",
   ),
   uni: new Token(
     MAINNET,
@@ -1005,7 +952,7 @@ export const mainnetTokens = {
     18,
     "UNI",
     "Binance-Peg Uniswap Token",
-    "https://uniswap.org/"
+    "https://uniswap.org/",
   ),
   fil: new Token(
     MAINNET,
@@ -1013,7 +960,7 @@ export const mainnetTokens = {
     18,
     "FIL",
     "Binance-Peg Filecoin Token",
-    "https://filecoin.io/"
+    "https://filecoin.io/",
   ),
   bake: new Token(
     MAINNET,
@@ -1021,7 +968,7 @@ export const mainnetTokens = {
     18,
     "BAKE",
     "Bakeryswap Token",
-    "https://www.bakeryswap.org/"
+    "https://www.bakeryswap.org/",
   ),
   burger: new Token(
     MAINNET,
@@ -1029,7 +976,7 @@ export const mainnetTokens = {
     18,
     "BURGER",
     "Burgerswap Token",
-    "https://burgerswap.org/"
+    "https://burgerswap.org/",
   ),
   bdigg: new Token(
     MAINNET,
@@ -1037,7 +984,7 @@ export const mainnetTokens = {
     18,
     "bDIGG",
     "Badger Sett Digg Token",
-    "https://badger.finance/"
+    "https://badger.finance/",
   ),
   bbadger: new Token(
     MAINNET,
@@ -1045,7 +992,7 @@ export const mainnetTokens = {
     18,
     "bBadger",
     "Badger Sett Badger Token",
-    "https://badger.finance/"
+    "https://badger.finance/",
   ),
   trade: new Token(
     MAINNET,
@@ -1053,7 +1000,7 @@ export const mainnetTokens = {
     18,
     "TRADE",
     "Unitrade Token",
-    "https://unitrade.app/"
+    "https://unitrade.app/",
   ),
   pnt: new Token(
     MAINNET,
@@ -1061,7 +1008,7 @@ export const mainnetTokens = {
     18,
     "PNT",
     "pNetwork Token",
-    "https://ptokens.io/"
+    "https://ptokens.io/",
   ),
   mir: new Token(
     MAINNET,
@@ -1069,7 +1016,7 @@ export const mainnetTokens = {
     18,
     "MIR",
     "Mirror Protocol Token",
-    "https://mirror.finance/"
+    "https://mirror.finance/",
   ),
   pbtc: new Token(
     MAINNET,
@@ -1077,7 +1024,7 @@ export const mainnetTokens = {
     18,
     "pBTC",
     "pTokens BTC Token",
-    "https://ptokens.io/"
+    "https://ptokens.io/",
   ),
   lto: new Token(
     MAINNET,
@@ -1085,7 +1032,7 @@ export const mainnetTokens = {
     18,
     "LTO",
     "LTO Network Token",
-    "https://ltonetwork.com/"
+    "https://ltonetwork.com/",
   ),
   pcws: new Token(
     MAINNET,
@@ -1093,7 +1040,7 @@ export const mainnetTokens = {
     18,
     "pCWS",
     "PolyCrowns Token",
-    "https://game.seascape.network/"
+    "https://game.seascape.network/",
   ),
   zil: new Token(
     MAINNET,
@@ -1101,7 +1048,7 @@ export const mainnetTokens = {
     12,
     "ZIL",
     "Zilliqa Token",
-    "https://www.zilliqa.com/"
+    "https://www.zilliqa.com/",
   ),
   lien: new Token(
     MAINNET,
@@ -1109,7 +1056,7 @@ export const mainnetTokens = {
     8,
     "LIEN",
     "Lien Finance Token",
-    "https://lien.finance/"
+    "https://lien.finance/",
   ),
   swth: new Token(
     MAINNET,
@@ -1117,7 +1064,7 @@ export const mainnetTokens = {
     8,
     "SWTH",
     "Switcheo Network Token",
-    "https://switcheo.network/"
+    "https://switcheo.network/",
   ),
   dft: new Token(
     MAINNET,
@@ -1125,7 +1072,7 @@ export const mainnetTokens = {
     18,
     "DFT",
     "Dfuture Token",
-    "https://www.dfuture.com/home"
+    "https://www.dfuture.com/home",
   ),
   gum: new Token(
     MAINNET,
@@ -1133,7 +1080,7 @@ export const mainnetTokens = {
     18,
     "GUM",
     "GourmetGalaxy Token",
-    "https://gourmetgalaxy.io/"
+    "https://gourmetgalaxy.io/",
   ),
   dego: new Token(
     MAINNET,
@@ -1141,7 +1088,7 @@ export const mainnetTokens = {
     18,
     "DEGO",
     "Dego Finance Token",
-    "https://bsc.dego.finance/home"
+    "https://bsc.dego.finance/home",
   ),
   nrv: new Token(
     MAINNET,
@@ -1149,7 +1096,7 @@ export const mainnetTokens = {
     18,
     "NRV",
     "Nerve Finance Token",
-    "https://nerve.fi/"
+    "https://nerve.fi/",
   ),
   easy: new Token(
     MAINNET,
@@ -1157,31 +1104,17 @@ export const mainnetTokens = {
     18,
     "EASY",
     "EASY Token",
-    "https://easyfi.network/"
+    "https://easyfi.network/",
   ),
-  oddz: new Token(
-    MAINNET,
-    "0xCD40F2670CF58720b694968698A5514e924F742d",
-    18,
-    "ODDZ",
-    "Oddz Token",
-    "https://oddz.fi/"
-  ),
-  hoo: new Token(
-    MAINNET,
-    "0xE1d1F66215998786110Ba0102ef558b22224C016",
-    8,
-    "HOO",
-    "Hoo Token",
-    "https://hoo.com/"
-  ),
+  oddz: new Token(MAINNET, "0xCD40F2670CF58720b694968698A5514e924F742d", 18, "ODDZ", "Oddz Token", "https://oddz.fi/"),
+  hoo: new Token(MAINNET, "0xE1d1F66215998786110Ba0102ef558b22224C016", 8, "HOO", "Hoo Token", "https://hoo.com/"),
   apys: new Token(
     MAINNET,
     "0x37dfACfaeDA801437Ff648A1559d73f4C40aAcb7",
     18,
     "APYS",
     "APY Swap Token",
-    "https://apyswap.com/"
+    "https://apyswap.com/",
   ),
   bondly: new Token(
     MAINNET,
@@ -1189,7 +1122,7 @@ export const mainnetTokens = {
     18,
     "BONDLY",
     "Bondly Token",
-    "https://www.bondly.finance/"
+    "https://www.bondly.finance/",
   ),
   tko: new Token(
     MAINNET,
@@ -1197,7 +1130,7 @@ export const mainnetTokens = {
     18,
     "TKO",
     "Tokocrypto Token",
-    "https://www.tokocrypto.com/"
+    "https://www.tokocrypto.com/",
   ),
   itam: new Token(
     MAINNET,
@@ -1205,7 +1138,7 @@ export const mainnetTokens = {
     18,
     "ITAM",
     "Itam Network Token",
-    "https://itam.network/"
+    "https://itam.network/",
   ),
   arpa: new Token(
     MAINNET,
@@ -1213,7 +1146,7 @@ export const mainnetTokens = {
     18,
     "ARPA",
     "Arpachain Token",
-    "https://arpachain.io/"
+    "https://arpachain.io/",
   ),
   eps: new Token(
     MAINNET,
@@ -1221,7 +1154,7 @@ export const mainnetTokens = {
     18,
     "EPS",
     "Ellipsis Finance Token",
-    "https://ellipsis.finance/"
+    "https://ellipsis.finance/",
   ),
   jgn: new Token(
     MAINNET,
@@ -1229,7 +1162,7 @@ export const mainnetTokens = {
     18,
     "JGN",
     "Juggernaut DeFi Token",
-    "https://jgndefi.com/"
+    "https://jgndefi.com/",
   ),
   tlm: new Token(
     MAINNET,
@@ -1237,7 +1170,7 @@ export const mainnetTokens = {
     4,
     "TLM",
     "Alien Worlds Trilium Token",
-    "https://alienworlds.io/"
+    "https://alienworlds.io/",
   ),
   perl: new Token(
     MAINNET,
@@ -1245,7 +1178,7 @@ export const mainnetTokens = {
     18,
     "PERL",
     "Perlin",
-    "https://perlinx.finance/"
+    "https://perlinx.finance/",
   ),
   alpa: new Token(
     MAINNET,
@@ -1253,7 +1186,7 @@ export const mainnetTokens = {
     18,
     "ALPA",
     "AlpaToken",
-    "https://bsc.alpaca.city/"
+    "https://bsc.alpaca.city/",
   ),
   hzn: new Token(
     MAINNET,
@@ -1261,7 +1194,7 @@ export const mainnetTokens = {
     18,
     "HZN",
     "Horizon Protocol Token",
-    "https://horizonprotocol.com/"
+    "https://horizonprotocol.com/",
   ),
   suter: new Token(
     MAINNET,
@@ -1269,7 +1202,7 @@ export const mainnetTokens = {
     18,
     "SUTER",
     "Suterusu Token",
-    "https://shield.suterusu.io/"
+    "https://shield.suterusu.io/",
   ),
   cgg: new Token(
     MAINNET,
@@ -1277,7 +1210,7 @@ export const mainnetTokens = {
     18,
     "CGG",
     "pTokens CGG Token",
-    "https://chainguardians.io/"
+    "https://chainguardians.io/",
   ),
   mix: new Token(
     MAINNET,
@@ -1285,7 +1218,7 @@ export const mainnetTokens = {
     18,
     "MIX",
     "Mix Token",
-    "https://mixie.chainguardians.io/"
+    "https://mixie.chainguardians.io/",
   ),
   hakka: new Token(
     MAINNET,
@@ -1293,7 +1226,7 @@ export const mainnetTokens = {
     18,
     "HAKKA",
     "Hakka Token",
-    "https://hakka.finance/"
+    "https://hakka.finance/",
   ),
   xed: new Token(
     MAINNET,
@@ -1301,7 +1234,7 @@ export const mainnetTokens = {
     18,
     "XED",
     "Exeedme Token",
-    "https://www.exeedme.com/"
+    "https://www.exeedme.com/",
   ),
   τbtc: new Token(
     MAINNET,
@@ -1309,7 +1242,7 @@ export const mainnetTokens = {
     9,
     "τBTC",
     "τBitcoin Token",
-    "https://www.btcst.finance/"
+    "https://www.btcst.finance/",
   ),
   alpaca: new Token(
     MAINNET,
@@ -1317,7 +1250,7 @@ export const mainnetTokens = {
     18,
     "ALPACA",
     "AlpacaToken",
-    "https://www.alpacafinance.org/"
+    "https://www.alpacafinance.org/",
   ),
   dfd: new Token(
     MAINNET,
@@ -1325,7 +1258,7 @@ export const mainnetTokens = {
     18,
     "DFD",
     "DefiDollar DAO",
-    "https://dusd.finance/"
+    "https://dusd.finance/",
   ),
   lmt: new Token(
     MAINNET,
@@ -1333,7 +1266,7 @@ export const mainnetTokens = {
     18,
     "LMT",
     "Lympo Market Token",
-    "https://lympo.io/lmt/"
+    "https://lympo.io/lmt/",
   ),
   btt: new Token(
     MAINNET,
@@ -1341,7 +1274,7 @@ export const mainnetTokens = {
     18,
     "BTT",
     "Binance-Peg BitTorrent Token",
-    "https://www.bittorrent.com/"
+    "https://www.bittorrent.com/",
   ),
   trx: new Token(
     MAINNET,
@@ -1349,7 +1282,7 @@ export const mainnetTokens = {
     18,
     "TRX",
     "TRON Token",
-    "https://tron.network/"
+    "https://tron.network/",
   ),
   win: new Token(
     MAINNET,
@@ -1357,7 +1290,7 @@ export const mainnetTokens = {
     18,
     "WIN",
     "WIN Token",
-    "https://winklink.org/"
+    "https://winklink.org/",
   ),
   mcoin: new Token(
     MAINNET,
@@ -1365,7 +1298,7 @@ export const mainnetTokens = {
     18,
     "MCOIN",
     "Wrapped Mirror COIN Token",
-    "https://mirror.finance/"
+    "https://mirror.finance/",
   ),
   math: new Token(
     MAINNET,
@@ -1373,7 +1306,7 @@ export const mainnetTokens = {
     18,
     "MATH",
     "MATH Token",
-    "https://mathwallet.org/"
+    "https://mathwallet.org/",
   ),
   kun: new Token(
     MAINNET,
@@ -1381,7 +1314,7 @@ export const mainnetTokens = {
     18,
     "KUN",
     "QIAN governance token",
-    "https://chemix.io/home"
+    "https://chemix.io/home",
   ),
   qsd: new Token(
     MAINNET,
@@ -1389,7 +1322,7 @@ export const mainnetTokens = {
     18,
     "QSD",
     "QIAN second generation dollar",
-    "https://chemix.io/home"
+    "https://chemix.io/home",
   ),
   hyfi: new Token(
     MAINNET,
@@ -1397,7 +1330,7 @@ export const mainnetTokens = {
     18,
     "HYFI",
     "HYFI Token",
-    "https://hyfi.pro/#/"
+    "https://hyfi.pro/#/",
   ),
   oin: new Token(
     MAINNET,
@@ -1405,7 +1338,7 @@ export const mainnetTokens = {
     8,
     "OIN",
     "oinfinance Token",
-    "https://oin.finance/"
+    "https://oin.finance/",
   ),
   doge: new Token(
     MAINNET,
@@ -1413,7 +1346,7 @@ export const mainnetTokens = {
     8,
     "DOGE",
     "Binance-Peg Dogecoin",
-    "https://dogecoin.com/"
+    "https://dogecoin.com/",
   ),
   fine: new Token(
     MAINNET,
@@ -1421,7 +1354,7 @@ export const mainnetTokens = {
     18,
     "FINE",
     "Refinable Token",
-    "https://refinable.com/"
+    "https://refinable.com/",
   ),
   one: new Token(
     MAINNET,
@@ -1429,7 +1362,7 @@ export const mainnetTokens = {
     18,
     "ONE",
     "BigONE Token",
-    "https://www.bigone.com/"
+    "https://www.bigone.com/",
   ),
   pmon: new Token(
     MAINNET,
@@ -1437,7 +1370,7 @@ export const mainnetTokens = {
     18,
     "PMON",
     "Polkamon Token",
-    "https://polkamon.com/"
+    "https://polkamon.com/",
   ),
   τdoge: new Token(
     MAINNET,
@@ -1445,7 +1378,7 @@ export const mainnetTokens = {
     8,
     "τDOGE",
     "τDogecoin",
-    "https://www.btcst.finance/"
+    "https://www.btcst.finance/",
   ),
   btr: new Token(
     MAINNET,
@@ -1453,7 +1386,7 @@ export const mainnetTokens = {
     18,
     "BTR",
     "Bitrue Token",
-    "https://www.bitrue.com/"
+    "https://www.bitrue.com/",
   ),
   ubxt: new Token(
     MAINNET,
@@ -1461,7 +1394,7 @@ export const mainnetTokens = {
     18,
     "UBXT",
     "UpBots Token",
-    "https://upbots.com/"
+    "https://upbots.com/",
   ),
   wmass: new Token(
     MAINNET,
@@ -1469,7 +1402,7 @@ export const mainnetTokens = {
     8,
     "WMASS",
     "Wrapped MASS Token",
-    "https://massnet.org/en/"
+    "https://massnet.org/en/",
   ),
   rfox: new Token(
     MAINNET,
@@ -1477,7 +1410,7 @@ export const mainnetTokens = {
     18,
     "RFOX",
     "RFOX Token",
-    "https://www.redfoxlabs.io/"
+    "https://www.redfoxlabs.io/",
   ),
   xend: new Token(
     MAINNET,
@@ -1485,23 +1418,16 @@ export const mainnetTokens = {
     18,
     "XEND",
     "XEND Token",
-    "https://xend.finance/"
+    "https://xend.finance/",
   ),
-  cyc: new Token(
-    MAINNET,
-    "0x810EE35443639348aDbbC467b33310d2AB43c168",
-    18,
-    "CYC",
-    "CYC Token",
-    "https://cyclone.xyz/"
-  ),
+  cyc: new Token(MAINNET, "0x810EE35443639348aDbbC467b33310d2AB43c168", 18, "CYC", "CYC Token", "https://cyclone.xyz/"),
   chr: new Token(
     MAINNET,
     "0xf9CeC8d50f6c8ad3Fb6dcCEC577e05aA32B224FE",
     6,
     "CHR",
     "Chroma Token",
-    "https://chromia.com/"
+    "https://chromia.com/",
   ),
   deri: new Token(
     MAINNET,
@@ -1509,7 +1435,7 @@ export const mainnetTokens = {
     18,
     "DERI",
     "Deri Token",
-    "https://deri.finance/#/index"
+    "https://deri.finance/#/index",
   ),
   well: new Token(
     MAINNET,
@@ -1517,7 +1443,7 @@ export const mainnetTokens = {
     18,
     "WELL",
     "BitWell Token",
-    "https://www.bitwellex.com/"
+    "https://www.bitwellex.com/",
   ),
   wex: new Token(
     MAINNET,
@@ -1525,7 +1451,7 @@ export const mainnetTokens = {
     18,
     "WEX",
     "WaultSwap Token",
-    "https://wault.finance/"
+    "https://wault.finance/",
   ),
   waultx: new Token(
     MAINNET,
@@ -1533,7 +1459,7 @@ export const mainnetTokens = {
     18,
     "WAULTx",
     "Wault Token",
-    "https://wault.finance/"
+    "https://wault.finance/",
   ),
   popen: new Token(
     MAINNET,
@@ -1541,7 +1467,7 @@ export const mainnetTokens = {
     18,
     "pOPEN",
     "OPEN Governance Token",
-    "https://opendao.io/"
+    "https://opendao.io/",
   ),
   ez: new Token(
     MAINNET,
@@ -1549,7 +1475,7 @@ export const mainnetTokens = {
     18,
     "EZ",
     "Easy V2 Token",
-    "https://easyfi.network/"
+    "https://easyfi.network/",
   ),
   vrt: new Token(
     MAINNET,
@@ -1557,7 +1483,7 @@ export const mainnetTokens = {
     18,
     "VRT",
     "Venus Reward Token",
-    "https://venus.io/"
+    "https://venus.io/",
   ),
   tusd: new Token(
     MAINNET,
@@ -1565,7 +1491,7 @@ export const mainnetTokens = {
     18,
     "TUSD",
     "Binance-Peg TrueUSD Token",
-    "https://www.trueusd.com/"
+    "https://www.trueusd.com/",
   ),
   mtrg: new Token(
     MAINNET,
@@ -1573,7 +1499,7 @@ export const mainnetTokens = {
     18,
     "MTRG",
     "Wrapped MTRG Token",
-    "https://www.meter.io/"
+    "https://www.meter.io/",
   ),
   ktn: new Token(
     MAINNET,
@@ -1581,7 +1507,7 @@ export const mainnetTokens = {
     18,
     "KTN",
     "Kattana Token",
-    "https://kattana.io/"
+    "https://kattana.io/",
   ),
   qkc: new Token(
     MAINNET,
@@ -1589,7 +1515,7 @@ export const mainnetTokens = {
     18,
     "QKC",
     "QuarkChain Token",
-    "https://quarkchain.io/"
+    "https://quarkchain.io/",
   ),
   bcfx: new Token(
     MAINNET,
@@ -1597,23 +1523,16 @@ export const mainnetTokens = {
     18,
     "bCFX",
     "BSC Conflux Token",
-    "https://www.confluxnetwork.org/"
+    "https://www.confluxnetwork.org/",
   ),
-  mx: new Token(
-    MAINNET,
-    "0x9F882567A62a5560d147d64871776EeA72Df41D3",
-    18,
-    "MX",
-    "MX Token",
-    "https://www.mxc.com/"
-  ),
+  mx: new Token(MAINNET, "0x9F882567A62a5560d147d64871776EeA72Df41D3", 18, "MX", "MX Token", "https://www.mxc.com/"),
   ata: new Token(
     MAINNET,
     "0xA2120b9e674d3fC3875f415A7DF52e382F141225",
     18,
     "ATA",
     "Automata Token",
-    "https://www.ata.network/"
+    "https://www.ata.network/",
   ),
   mbox: new Token(
     MAINNET,
@@ -1621,7 +1540,7 @@ export const mainnetTokens = {
     18,
     "MBOX",
     "Mobox Token",
-    "https://www.mobox.io/#/"
+    "https://www.mobox.io/#/",
   ),
   boring: new Token(
     MAINNET,
@@ -1629,7 +1548,7 @@ export const mainnetTokens = {
     18,
     "BORING",
     "BoringDAO Token",
-    "https://www.boringdao.com/"
+    "https://www.boringdao.com/",
   ),
   marsh: new Token(
     MAINNET,
@@ -1637,7 +1556,7 @@ export const mainnetTokens = {
     18,
     "MARSH",
     "Unmarshal Token",
-    "https://unmarshal.io/"
+    "https://unmarshal.io/",
   ),
   ampl: new Token(
     MAINNET,
@@ -1645,7 +1564,7 @@ export const mainnetTokens = {
     9,
     "AMPL",
     "AMPL Token",
-    "https://www.ampleforth.org/"
+    "https://www.ampleforth.org/",
   ),
   o3: new Token(
     MAINNET,
@@ -1653,23 +1572,16 @@ export const mainnetTokens = {
     18,
     "O3",
     "O3 Swap Token",
-    "https://o3swap.com/"
+    "https://o3swap.com/",
   ),
-  hai: new Token(
-    MAINNET,
-    "0xaA9E582e5751d703F85912903bacADdFed26484C",
-    8,
-    "HAI",
-    "Hacken Token",
-    "https://hacken.io/"
-  ),
+  hai: new Token(MAINNET, "0xaA9E582e5751d703F85912903bacADdFed26484C", 8, "HAI", "Hacken Token", "https://hacken.io/"),
   htb: new Token(
     MAINNET,
     "0x4e840AADD28DA189B9906674B4Afcb77C128d9ea",
     18,
     "HTB",
     "Hotbit Token",
-    "https://www.hotbit.io/"
+    "https://www.hotbit.io/",
   ),
   woo: new Token(
     MAINNET,
@@ -1677,7 +1589,7 @@ export const mainnetTokens = {
     18,
     "WOO",
     "Wootrade Network Token",
-    "https://woo.network/"
+    "https://woo.network/",
   ),
   $dg: new Token(
     MAINNET,
@@ -1685,7 +1597,7 @@ export const mainnetTokens = {
     18,
     "$DG",
     "Decentral Games Token",
-    "https://decentral.games/"
+    "https://decentral.games/",
   ),
   safemoon: new Token(
     MAINNET,
@@ -1693,7 +1605,7 @@ export const mainnetTokens = {
     9,
     "SAFEMOON",
     "Safemoon Token",
-    "https://safemoon.net/"
+    "https://safemoon.net/",
   ),
   axs: new Token(
     MAINNET,
@@ -1701,7 +1613,7 @@ export const mainnetTokens = {
     18,
     "AXS",
     "Binance-Pegged Axie Infinity Shard",
-    "https://axieinfinity.com/"
+    "https://axieinfinity.com/",
   ),
   c98: new Token(
     MAINNET,
@@ -1709,7 +1621,7 @@ export const mainnetTokens = {
     18,
     "c98",
     "Coin98 Token",
-    "https://coin98.com/"
+    "https://coin98.com/",
   ),
   pots: new Token(
     MAINNET,
@@ -1717,7 +1629,7 @@ export const mainnetTokens = {
     18,
     "POTS",
     "Moonpot Token",
-    "https://moonpot.com/"
+    "https://moonpot.com/",
   ),
   gnt: new Token(
     MAINNET,
@@ -1725,7 +1637,7 @@ export const mainnetTokens = {
     18,
     "GNT",
     "GreenTrust Token",
-    "https://www.greentrusttoken.com/"
+    "https://www.greentrusttoken.com/",
   ),
   rusd: new Token(
     MAINNET,
@@ -1733,7 +1645,7 @@ export const mainnetTokens = {
     18,
     "rUSD",
     "rUSD Token",
-    "https://appv2.rampdefi.com/#/"
+    "https://appv2.rampdefi.com/#/",
   ),
   bp: new Token(
     MAINNET,
@@ -1741,7 +1653,7 @@ export const mainnetTokens = {
     18,
     "BP",
     "BunnyPark Token",
-    "https://www.bunnypark.com/"
+    "https://www.bunnypark.com/",
   ),
   sfund: new Token(
     MAINNET,
@@ -1749,7 +1661,7 @@ export const mainnetTokens = {
     18,
     "SFUND",
     "Seedify Fund Token",
-    "https://seedify.fund/"
+    "https://seedify.fund/",
   ),
   naos: new Token(
     MAINNET,
@@ -1757,7 +1669,7 @@ export const mainnetTokens = {
     18,
     "NAOS",
     "NAOSToken",
-    "https://naos.finance/"
+    "https://naos.finance/",
   ),
   cart: new Token(
     MAINNET,
@@ -1765,7 +1677,7 @@ export const mainnetTokens = {
     18,
     "CART",
     "CryptoArt.ai",
-    "https://cryptoart.ai/"
+    "https://cryptoart.ai/",
   ),
   light: new Token(
     MAINNET,
@@ -1773,7 +1685,7 @@ export const mainnetTokens = {
     18,
     "LIGHT",
     "Lightning",
-    "https://lightningprotocol.finance/"
+    "https://lightningprotocol.finance/",
   ),
   rpg: new Token(
     MAINNET,
@@ -1781,7 +1693,7 @@ export const mainnetTokens = {
     18,
     "RPG",
     "Rangers Protocol",
-    "https://www.rangersprotocol.com/"
+    "https://www.rangersprotocol.com/",
   ),
   mcb: new Token(
     MAINNET,
@@ -1789,7 +1701,7 @@ export const mainnetTokens = {
     18,
     "MCB",
     "MCDEX",
-    "https://mcdex.io/homepage/"
+    "https://mcdex.io/homepage/",
   ),
   lazio: new Token(
     MAINNET,
@@ -1797,23 +1709,16 @@ export const mainnetTokens = {
     8,
     "LAZIO",
     "FC Lazio Fan Token",
-    "https://launchpad.binance.com/en/subscription/LAZIO_BNB"
+    "https://launchpad.binance.com/en/subscription/LAZIO_BNB",
   ),
-  arv: new Token(
-    MAINNET,
-    "0x6679eB24F59dFe111864AEc72B443d1Da666B360",
-    8,
-    "ARV",
-    "ARIVA",
-    "https://ariva.digital"
-  ),
+  arv: new Token(MAINNET, "0x6679eB24F59dFe111864AEc72B443d1Da666B360", 8, "ARV", "ARIVA", "https://ariva.digital"),
   moni: new Token(
     MAINNET,
     "0x9573c88aE3e37508f87649f87c4dd5373C9F31e0",
     18,
     "MONI",
     "Monsta Infinite",
-    "https://monstainfinite.com/"
+    "https://monstainfinite.com/",
   ),
   xms: new Token(
     MAINNET,
@@ -1821,7 +1726,7 @@ export const mainnetTokens = {
     18,
     "XMS",
     "Mars Ecosystem",
-    "https://marsecosystem.com/"
+    "https://marsecosystem.com/",
   ),
   zoo: new Token(
     MAINNET,
@@ -1829,7 +1734,7 @@ export const mainnetTokens = {
     18,
     "ZOO",
     "ZOO Crypto World",
-    "https://zoogame.finance/"
+    "https://zoogame.finance/",
   ),
   fina: new Token(
     MAINNET,
@@ -1837,7 +1742,7 @@ export const mainnetTokens = {
     18,
     "FINA",
     "Defina Finance",
-    "https://defina.finance/"
+    "https://defina.finance/",
   ),
   dar: new Token(
     MAINNET,
@@ -1845,7 +1750,7 @@ export const mainnetTokens = {
     6,
     "DAR",
     "Mines of Dalarnia",
-    "https://www.minesofdalarnia.com/"
+    "https://www.minesofdalarnia.com/",
   ),
   xwg: new Token(
     MAINNET,
@@ -1853,7 +1758,7 @@ export const mainnetTokens = {
     18,
     "XWG",
     "X World Games",
-    "https://xwg.games/"
+    "https://xwg.games/",
   ),
   eternal: new Token(
     MAINNET,
@@ -1861,7 +1766,7 @@ export const mainnetTokens = {
     18,
     "ETERNAL",
     "CryptoMines Eternal",
-    "https://cryptomines.app/"
+    "https://cryptomines.app/",
   ),
   porto: new Token(
     MAINNET,
@@ -1869,7 +1774,7 @@ export const mainnetTokens = {
     8,
     "PORTO",
     "FC Porto Fan Token",
-    "https://launchpad.binance.com/en/subscription/PORTO_BNB"
+    "https://launchpad.binance.com/en/subscription/PORTO_BNB",
   ),
   kart: new Token(
     MAINNET,
@@ -1877,23 +1782,16 @@ export const mainnetTokens = {
     18,
     "KART",
     "Dragon Kart",
-    "https://dragonkart.com/"
+    "https://dragonkart.com/",
   ),
-  qi: new Token(
-    MAINNET,
-    "0x8729438EB15e2C8B576fCc6AeCdA6A148776C0F5",
-    18,
-    "QI",
-    "BENQI",
-    "https://benqi.fi/"
-  ),
+  qi: new Token(MAINNET, "0x8729438EB15e2C8B576fCc6AeCdA6A148776C0F5", 18, "QI", "BENQI", "https://benqi.fi/"),
   sheesha: new Token(
     MAINNET,
     "0x232FB065D9d24c34708eeDbF03724f2e95ABE768",
     18,
     "SHEESHA",
     "Sheesha Finance",
-    "https://www.sheeshafinance.io/"
+    "https://www.sheeshafinance.io/",
   ),
   bcoin: new Token(
     MAINNET,
@@ -1901,7 +1799,7 @@ export const mainnetTokens = {
     18,
     "BCOIN",
     "Bomb Crypto",
-    "https://bombcrypto.io/"
+    "https://bombcrypto.io/",
   ),
   quidd: new Token(
     MAINNET,
@@ -1909,7 +1807,7 @@ export const mainnetTokens = {
     18,
     "QUIDD",
     "Quidd Token",
-    "https://www.quiddtoken.com/"
+    "https://www.quiddtoken.com/",
   ),
   santos: new Token(
     MAINNET,
@@ -1917,7 +1815,7 @@ export const mainnetTokens = {
     8,
     "SANTOS",
     "FC Santos Fan Token",
-    "https://launchpad.binance.com/en/launchpool/SANTOS_BNB"
+    "https://launchpad.binance.com/en/launchpool/SANTOS_BNB",
   ),
   nabox: new Token(
     MAINNET,
@@ -1925,7 +1823,7 @@ export const mainnetTokens = {
     18,
     "NABOX",
     "Nabox Token",
-    "https://nabox.io/"
+    "https://nabox.io/",
   ),
   xcv: new Token(
     MAINNET,
@@ -1933,7 +1831,7 @@ export const mainnetTokens = {
     18,
     "XCV",
     "XCarnival",
-    "https://xcarnival.fi/"
+    "https://xcarnival.fi/",
   ),
   idia: new Token(
     MAINNET,
@@ -1941,7 +1839,7 @@ export const mainnetTokens = {
     18,
     "IDIA",
     "Impossible Decentralized Incubator Access Token",
-    "https://impossible.finance/"
+    "https://impossible.finance/",
   ),
   tt: new Token(
     MAINNET,
@@ -1949,7 +1847,7 @@ export const mainnetTokens = {
     18,
     "TT",
     "Thunder Token",
-    "https://www.thundercore.com/"
+    "https://www.thundercore.com/",
   ),
   gmee: new Token(
     MAINNET,
@@ -1957,23 +1855,16 @@ export const mainnetTokens = {
     18,
     "GMEE",
     "GAMEE",
-    "https://www.gamee.com/token"
+    "https://www.gamee.com/token",
   ),
-  htd: new Token(
-    MAINNET,
-    "0x5E2689412Fae5c29BD575fbe1d5C1CD1e0622A8f",
-    18,
-    "HTD",
-    "HeroesTD",
-    "https://heroestd.io/"
-  ),
+  htd: new Token(MAINNET, "0x5E2689412Fae5c29BD575fbe1d5C1CD1e0622A8f", 18, "HTD", "HeroesTD", "https://heroestd.io/"),
   dpt: new Token(
     MAINNET,
     "0xE69cAef10A488D7AF31Da46c89154d025546e990",
     18,
     "DPT",
     "Diviner Protocol",
-    "https://diviner.finance/"
+    "https://diviner.finance/",
   ),
   thg: new Token(
     MAINNET,
@@ -1981,7 +1872,7 @@ export const mainnetTokens = {
     18,
     "THG",
     "Thetan Gem",
-    "https://thetanarena.com/"
+    "https://thetanarena.com/",
   ),
   ccar: new Token(
     MAINNET,
@@ -1989,7 +1880,7 @@ export const mainnetTokens = {
     18,
     "CCAR",
     "CryptoCars",
-    "https://cryptocars.me/"
+    "https://cryptocars.me/",
   ),
   high: new Token(
     MAINNET,
@@ -1997,7 +1888,7 @@ export const mainnetTokens = {
     18,
     "HIGH",
     "Highstreet Token",
-    "https://highstreet.market/"
+    "https://highstreet.market/",
   ),
   sdao: new Token(
     MAINNET,
@@ -2005,51 +1896,85 @@ export const mainnetTokens = {
     18,
     "SDAO",
     "Singularity Dao",
-    "https://app.singularitydao.ai/"
+    "https://app.singularitydao.ai/",
   ),
-  antex: new Token(
-    MAINNET,
-    "0xCA1aCAB14e85F30996aC83c64fF93Ded7586977C",
-    8,
-    "ANTEX",
-    "Antex",
-    "https://antex.org/"
-  ),
+  antex: new Token(MAINNET, "0xCA1aCAB14e85F30996aC83c64fF93Ded7586977C", 8, "ANTEX", "Antex", "https://antex.org/"),
   bbt: new Token(
     MAINNET,
     "0xD48474E7444727bF500a32D5AbE01943f3A59A64",
     8,
     "BBT",
     "BitBook",
-    "https://www.bitbook.network/"
+    "https://www.bitbook.network/",
   ),
-};
+});
 
-const tokens = (): TokenList => {
+export const testnetTokens = defineTokens({
+  wbnb: new Token(
+    TESTNET,
+    "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
+    18,
+    "WBNB",
+    "Wrapped BNB",
+    "https://www.binance.com/",
+  ),
+  cake: new Token(
+    TESTNET,
+    "0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe",
+    18,
+    "CAKE",
+    "PancakeSwap Token",
+    "https://pancakeswap.finance/",
+  ),
+  busd: new Token(
+    TESTNET,
+    "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee",
+    18,
+    "BUSD",
+    "Binance USD",
+    "https://www.paxos.com/busd/",
+  ),
+  syrup: new Token(
+    TESTNET,
+    "0xfE1e507CeB712BDe086f3579d2c03248b2dB77f9",
+    18,
+    "SYRUP",
+    "SyrupBar Token",
+    "https://pancakeswap.finance/",
+  ),
+  bake: new Token(
+    TESTNET,
+    "0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5",
+    18,
+    "BAKE",
+    "Bakeryswap Token",
+    "https://www.bakeryswap.org/",
+  ),
+} as const);
+
+const tokens = () => {
   const chainId = process.env.GATSBY_CHAIN_ID!;
 
   // If testnet - return list comprised of testnetTokens wherever they exist, and mainnetTokens where they don't
   if (parseInt(chainId, 10) === ChainId.TESTNET) {
     return Object.keys(mainnetTokens).reduce((accum, key) => {
-      const index = key as keyof TokenList;
-      return { ...accum, [key]: mainnetTokens[index] } as TokenList;
-    }, {} as TokenList);
+      // @ts-ignore
+      return { ...accum, [key]: testnetTokens[key] || mainnetTokens[key] };
+    }, {} as typeof testnetTokens & typeof mainnetTokens);
   }
 
   return mainnetTokens;
 };
 
-export const serializeTokens = (): SerializedTokenList => {
-  const unserializedTokens = tokens();
-  const serializedTokens = Object.keys(unserializedTokens).reduce(
-    (accum, key) => {
-      const index = key as keyof TokenList;
-      return { ...accum, [key]: serializeToken(unserializedTokens[index]) };
-    },
-    {}
-  );
+const unserializedTokens = tokens();
+
+export const serializeTokens = () => {
+  const serializedTokens = Object.keys(unserializedTokens).reduce((accum, key) => {
+    //@ts-ignore
+    return { ...accum, [key]: serializeToken(unserializedTokens[key]) };
+  }, {} as SerializedTokenList);
 
   return serializedTokens;
 };
 
-export default tokens();
+export default unserializedTokens;
