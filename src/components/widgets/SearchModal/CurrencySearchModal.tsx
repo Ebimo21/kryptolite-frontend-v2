@@ -1,31 +1,20 @@
-import { TokenList } from '@uniswap/token-lists'
-import classNames from 'classnames'
-import React, { useCallback, useState } from 'react'
-import { Currency } from '../../../config/entities/currency'
-import { Token } from '../../../config/entities/token'
-import Button from '../../Buttons/Button'
-import { InjectedModalProps } from '../../Modal'
-import Modal, { ModalBackButton, ModalBody, ModalCloseButton, ModalContainer, ModalHeader, ModalTitle } from '../../Modal/Modal'
-import ImportToken from './importToken'
-
-
-
-
-const StyledModalBody = styled(ModalBody)`
-  padding: 24px;
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`
+import { TokenList } from "@uniswap/token-lists";
+import React, { useCallback, useState } from "react";
+import { Currency } from "../../../config/entities/currency";
+import { Token } from "../../../config/entities/token";
+import Button from "../../Buttons/Button";
+import { InjectedModalProps } from "../../Modal";
+import Modal, { ModalBackButton, ModalCloseButton, ModalContainer, ModalHeader, ModalTitle } from "../../Modal/Modal";
+import ImportToken from "./importToken";
+import CurrencyModalView from "./types";
+import usePrevious from "../../../hooks/usePreviousValue";
+import ImportList from "./ImportList";
 
 interface CurrencySearchModalProps extends InjectedModalProps {
-  selectedCurrency?: Currency | null
-  onCurrencySelect: (currency: Currency) => void
-  otherSelectedCurrency?: Currency | null
-  showCommonBases?: boolean
+  selectedCurrency?: Currency | null;
+  onCurrencySelect: (currency: Currency) => void;
+  otherSelectedCurrency?: Currency | null;
+  showCommonBases?: boolean;
 }
 
 export default function CurrencySearchModal({
@@ -35,42 +24,38 @@ export default function CurrencySearchModal({
   otherSelectedCurrency,
   showCommonBases = false,
 }: CurrencySearchModalProps) {
-  const [modalView, setModalView] = useState<CurrencyModalView>(CurrencyModalView.search)
+  const [modalView, setModalView] = useState<CurrencyModalView>(CurrencyModalView.search);
 
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
-      onDismiss?.()
-      onCurrencySelect(currency)
+      onDismiss?.();
+      onCurrencySelect(currency);
     },
     [onDismiss, onCurrencySelect],
-  )
+  );
 
   // for token import view
-  const prevView = usePrevious(modalView)
+  const prevView = usePrevious(modalView);
 
   // used for import token flow
-  const [importToken, setImportToken] = useState<Token | undefined>()
+  const [importToken, setImportToken] = useState<Token | undefined>();
 
   // used for import list
-  const [importList, setImportList] = useState<TokenList | undefined>()
-  const [listURL, setListUrl] = useState<string | undefined>()
-
-  const { t } = useTranslation()
+  const [importList, setImportList] = useState<TokenList | undefined>();
+  const [listURL, setListUrl] = useState<string | undefined>();
 
   const config = {
-    [CurrencyModalView.search]: { title: t('Select a Token'), onBack: undefined },
-    [CurrencyModalView.manage]: { title: t('Manage'), onBack: () => setModalView(CurrencyModalView.search) },
+    [CurrencyModalView.search]: { title: "Select a Token", onBack: undefined },
+    [CurrencyModalView.manage]: { title: "Manage", onBack: () => setModalView(CurrencyModalView.search) },
     [CurrencyModalView.importToken]: {
-      title: t('Import Tokens'),
+      title: "Import Tokens",
       onBack: () =>
         setModalView(prevView && prevView !== CurrencyModalView.importToken ? prevView : CurrencyModalView.search),
     },
-    [CurrencyModalView.importList]: { title: t('Import List'), onBack: () => setModalView(CurrencyModalView.search) },
-  }
+    [CurrencyModalView.importList]: { title: "Import List", onBack: () => setModalView(CurrencyModalView.search) },
+  };
 
   return (
-    
-
     <ModalContainer className="max-w-md w-full">
       <ModalHeader>
         <ModalTitle>
@@ -79,7 +64,7 @@ export default function CurrencySearchModal({
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
       </ModalHeader>
-      <StyledModalBody>
+      <div className="p-6 overflow-y-auto">
         {modalView === CurrencyModalView.search ? (
           <CurrencySearch
             onCurrencySelect={handleCurrencySelect}
@@ -101,22 +86,16 @@ export default function CurrencySearchModal({
             setListUrl={setListUrl}
           />
         ) : (
-          ''
+          ""
         )}
         {modalView === CurrencyModalView.search && (
-            
-          <div className='w-full text-center'>
-            <Button
-              scale="sm"
-              variant="text"
-              onClick={() => setModalView(CurrencyModalView.manage)}
-              className="list-token-manage-button"
-            >
-              {t('Manage Tokens')}
+          <div className="w-full text-center">
+            <Button onClick={() => setModalView(CurrencyModalView.manage)} className="list-token-manage-button">
+              Manage Tokens
             </Button>
           </div>
         )}
-      </StyledModalBody>
-    </Modal>
-  )
+      </div>
+    </ModalContainer>
+  );
 }
