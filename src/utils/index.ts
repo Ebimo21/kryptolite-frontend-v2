@@ -7,6 +7,9 @@ import { CHAIN_ID } from "../config/constants/networks";
 import { Percent } from "../config/entities/fractions/percent";
 import { getContract, getProviderOrSigner } from "./contractHelpers";
 import IPancakeRouter02ABI from "../config/abi/IPancakeRouter02ABI.json";
+import { Currency, ETHER } from "../config/entities/currency";
+import { Token } from "../config/entities/token";
+import { TokenAddressMap } from "../state/types";
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -45,3 +48,8 @@ export const copyText = (text: string, cb?: () => void) => {
     cb?.();
   }
 };
+
+export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
+  if (currency === ETHER) return true;
+  return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address]);
+}

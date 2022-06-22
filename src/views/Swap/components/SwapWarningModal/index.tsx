@@ -5,16 +5,16 @@ import { WrappedTokenInfo } from "../../../../state/types";
 import Acknowledgement from "./Acknowledgement";
 
 interface SwapWarningModalProps {
-  swapCurrency: WrappedTokenInfo;
-  onDismiss: () => void;
+  swapCurrency: WrappedTokenInfo | null;
+  onDismiss?: () => void;
 }
 
 const SwapWarningModal: React.FC<SwapWarningModalProps> = ({ swapCurrency, onDismiss }) => {
   const TOKEN_WARNINGS: { [index: WrappedTokenInfo["address"]]: { symbol: string; component: React.ReactNode } } = {};
 
-  const SWAP_WARNING = TOKEN_WARNINGS[swapCurrency.address];
+  const SWAP_WARNING = swapCurrency != null && TOKEN_WARNINGS[swapCurrency.address];
 
-  return (
+  return SWAP_WARNING ? (
     <div className="min-w-[280px] max-w-md">
       <ModalHeader>
         <ModalTitle>{`Notice for trading ${SWAP_WARNING.symbol}`}</ModalTitle>
@@ -26,6 +26,8 @@ const SwapWarningModal: React.FC<SwapWarningModalProps> = ({ swapCurrency, onDis
         <Acknowledgement handleContinueClick={onDismiss} />
       </ModalBody>
     </div>
+  ) : (
+    <div className="min-w-[280px] max-w-md" />
   );
 };
 

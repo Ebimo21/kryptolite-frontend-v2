@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, AppState } from "../../";
 import { GAS_PRICE_GWEI, serializeToken } from "./helpers";
 import { useCallback } from "react";
-import { addSerializedToken, updateUserSingleHopOnly } from "../actions";
+import { addSerializedToken, removeSerializedToken, updateUserSingleHopOnly } from "../actions";
 import { Token } from "../../../config/entities/token";
 
 export function useGasPrice(): string {
@@ -34,6 +34,16 @@ export function useAddUserToken(): (token: Token) => void {
   return useCallback(
     (token: Token) => {
       dispatch(addSerializedToken({ serializedToken: serializeToken(token) }));
+    },
+    [dispatch],
+  );
+}
+
+export function useRemoveUserAddedToken(): (chainId: number, address: string) => void {
+  const dispatch = useDispatch<AppDispatch>();
+  return useCallback(
+    (chainId: number, address: string) => {
+      dispatch(removeSerializedToken({ chainId, address }));
     },
     [dispatch],
   );

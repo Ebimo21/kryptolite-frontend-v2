@@ -1,0 +1,38 @@
+import { TokenList } from "@uniswap/token-lists";
+import React, { useState } from "react";
+import { Token } from "../../../config/entities/token";
+import { ModalBody } from "../../Modal/Modal";
+import ButtonMenu from "../ButtonMenu/ButtonMenu";
+import ButtonMenuItem from "../ButtonMenu/ButtonMenuItem";
+import ManageLists from "./ManageLists";
+import ManageTokens from "./ManageToken";
+
+import { CurrencyModalView } from "./types";
+
+export default function Manage({
+  setModalView,
+  setImportList,
+  setImportToken,
+  setListUrl,
+}: {
+  setModalView: (view: CurrencyModalView) => void;
+  setImportToken: (token: Token) => void;
+  setImportList: (list: TokenList) => void;
+  setListUrl: (url: string) => void;
+}) {
+  const [showLists, setShowLists] = useState(true);
+
+  return (
+    <ModalBody>
+      <ButtonMenu activeIndex={showLists ? 0 : 1} onItemClick={() => setShowLists((prev) => !prev)}>
+        <ButtonMenuItem className="w-1/2">Lists</ButtonMenuItem>
+        <ButtonMenuItem className="w-1/2">Tokens</ButtonMenuItem>
+      </ButtonMenu>
+      {showLists ? (
+        <ManageLists setModalView={setModalView} setImportList={setImportList} setListUrl={setListUrl} />
+      ) : (
+        <ManageTokens setModalView={setModalView} setImportToken={setImportToken} />
+      )}
+    </ModalBody>
+  );
+}

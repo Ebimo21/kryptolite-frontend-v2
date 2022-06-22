@@ -1,24 +1,22 @@
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from "react";
+import { FixedSizeList } from "react-window";
+import { Currency, ETHER } from "../../../config/entities/currency";
+import { CurrencyAmount } from "../../../config/entities/fractions/currencyAmount";
+import { Token, currencyEquals } from "../../../config/entities/token";
+import { useIsUserAddedToken } from "../../../hooks/Tokens";
+import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
+import { useCombinedActiveList } from "../../../state/lists/hooks";
+import { useCurrencyBalance } from "../../../state/wallet/hooks";
+import { wrappedCurrency } from "../../../utils/wrappedCurrency";
+import CurrencyLogo from "../../Logo/CurrencyLogo";
+import QuestionHelper from "../../QuestionHelper/QuestionHelper";
 import ImportRow from "./ImportRow";
+import cls from "classnames";
+import { isTokenOnList } from "../../../utils";
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? "ETHER" : "";
 }
-
-const StyledBalanceText = styled(Text)`
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 5rem;
-  text-overflow: ellipsis;
-`;
-
-const FixedContentRow = styled.div`
-  padding: 4px 20px;
-  height: 56px;
-  display: grid;
-  grid-gap: 16px;
-  align-items: center;
-`;
 
 function Balance({ balance }: { balance: CurrencyAmount }) {
   return (
@@ -28,26 +26,36 @@ function Balance({ balance }: { balance: CurrencyAmount }) {
   );
 }
 
-const MenuItem = styled(RowBetween)<{ disabled: boolean; selected: boolean }>`
-  padding: 4px 20px;
-  height: 56px;
-  display: grid;
-  grid-template-columns: auto minmax(auto, 1fr) minmax(0, 72px);
-  grid-gap: 8px;
-  cursor: ${({ disabled }) => !disabled && "pointer"};
-  pointer-events: ${({ disabled }) => disabled && "none"};
-  :hover {
-    background-color: ${({ theme, disabled }) => !disabled && theme.colors.background};
-  }
-  opacity: ${({ disabled, selected }) => (disabled || selected ? 0.5 : 1)};
-`;
+const MenuItem: React.FC<{ disabled: boolean; selected: boolean; onClick: () => void; className?: string }> = ({
+  children,
+  disabled,
+  selected,
+  onClick,
+  className,
+}) => {
+  return (
+    <div
+      className={cls(
+        "py-1 px-5 h-[56px] grid gap-2 opacity-100",
+        {
+          "opacity-50": disabled || selected,
+          "cursor-pointer hover:bg-gray-100": !disabled,
+          "pointer-events-none": disabled,
+        },
+        className,
+      )}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+};
 
 function CurrencyRow({
   currency,
   onSelect,
   isSelected,
   otherSelected,
-  style,
 }: {
   currency: Currency;
   onSelect: () => void;
@@ -56,7 +64,6 @@ function CurrencyRow({
   style: CSSProperties;
 }) {
   const { account } = useActiveWeb3React();
-  const { t } = useTranslation();
   const key = currencyKey(currency);
   const selectedTokenList = useCombinedActiveList();
   const isOnSelectedList = isTokenOnList(selectedTokenList, currency);
@@ -64,24 +71,24 @@ function CurrencyRow({
   const balance = useCurrencyBalance(account ?? undefined, currency);
 
   // only show add or remove buttons if not on selected list
+
   return (
     <MenuItem
-      style={style}
       className={`token-item-${key}`}
       onClick={() => (isSelected ? null : onSelect())}
       disabled={isSelected}
       selected={otherSelected}
     >
       <CurrencyLogo currency={currency} size="24px" />
-      <Column>
-        <Text bold>{currency.symbol}</Text>
-        <Text color="textSubtle" small ellipsis maxWidth="200px">
-          {!isOnSelectedList && customAdded && `${t("Added by user")} •`} {currency.name}
-        </Text>
-      </Column>
-      <RowFixed style={{ justifySelf: "flex-end" }}>
-        {balance ? <Balance balance={balance} /> : account ? <CircleLoader /> : null}
-      </RowFixed>
+      <div className="flex flex-col">
+        <p className="font-bold">{currency.symbol}</p>
+        <p className="text-sm text-ellipsis max-w-[200px]">
+          {!isOnSelectedList && customAdded && "Added by user •"} {currency.name}
+        </p>
+      </div>
+      <div className="flex justify-self-end">
+        {balance ? <Balance balance={balance} /> : account ? "Loading..." : null}
+      </div>
     </MenuItem>
   );
 }
@@ -123,8 +130,6 @@ export default function CurrencyList({
 
   const { chainId } = useActiveWeb3React();
 
-  const { t } = useTranslation();
-
   const Row = useCallback(
     ({ data, index, style }) => {
       const currency: Currency = data[index];
@@ -138,19 +143,14 @@ export default function CurrencyList({
 
       if (index === breakIndex || !data) {
         return (
-          <FixedContentRow style={style}>
-            <LightGreyCard padding="8px 12px" borderRadius="8px">
-              <RowBetween>
-                <Text small>{t("Expanded results from inactive Token Lists")}</Text>
-                <QuestionHelper
-                  text={t(
-                    "Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists.",
-                  )}
-                  ml="4px"
-                />
-              </RowBetween>
-            </LightGreyCard>
-          </FixedContentRow>
+          <div className="py-1 px-5 h-[56px] grid gap-4 items-center">
+            <div className="py-2 px-3 rounded-lg">
+              <div className="flex justify-between">
+                <p className="text-sm">Expanded results from inactive Token Lists</p>
+                <QuestionHelper text="Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists." />
+              </div>
+            </div>
+          </div>
         );
       }
 
@@ -176,7 +176,6 @@ export default function CurrencyList({
       currencies.length,
       breakIndex,
       onCurrencySelect,
-      t,
       showImportView,
       setImportToken,
     ],

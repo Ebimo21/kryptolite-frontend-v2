@@ -4,11 +4,13 @@ import { Currency } from "../../../config/entities/currency";
 import { Token } from "../../../config/entities/token";
 import Button from "../../Buttons/Button";
 import { InjectedModalProps } from "../../Modal";
-import Modal, { ModalBackButton, ModalCloseButton, ModalContainer, ModalHeader, ModalTitle } from "../../Modal/Modal";
+import { ModalBackButton, ModalCloseButton, ModalContainer, ModalHeader, ModalTitle } from "../../Modal/Modal";
 import ImportToken from "./importToken";
 import CurrencyModalView from "./types";
 import usePrevious from "../../../hooks/usePreviousValue";
 import ImportList from "./ImportList";
+import CurrencySearch from "./CurrencySearch";
+import Manage from "./Manage";
 
 interface CurrencySearchModalProps extends InjectedModalProps {
   selectedCurrency?: Currency | null;

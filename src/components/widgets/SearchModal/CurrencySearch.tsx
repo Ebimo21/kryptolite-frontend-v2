@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import { isAddress } from "ethers/lib/utils";
-import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from "react";
+import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect, Fragment } from "react";
 import { Currency, ETHER } from "../../../config/entities/currency";
 import { Token } from "../../../config/entities/token";
 import { useAllTokens, useToken, useIsUserAddedToken } from "../../../hooks/Tokens";
@@ -13,6 +13,7 @@ import useDebounce from "../../../hooks/useDebounce";
 import useTokenComparator from "./sorting";
 import ImportRow from "./ImportRow";
 import CommonBases from "./CommonBases";
+import CurrencyList from "./CurrencyList";
 
 interface CurrencySearchProps {
   selectedCurrency?: Currency | null;
@@ -204,7 +205,7 @@ function CurrencySearch({
   ]);
 
   return (
-    <>
+    <Fragment>
       <div className="flex flex-col gap-4">
         <div className="flex">
           <input
@@ -222,7 +223,7 @@ function CurrencySearch({
         )}
       </div>
       {getCurrencyListRows()}
-    </>
+    </Fragment>
   );
 }
 

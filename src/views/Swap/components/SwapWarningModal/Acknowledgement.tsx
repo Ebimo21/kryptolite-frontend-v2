@@ -3,7 +3,7 @@ import Button from "../../../../components/Buttons/Button";
 import { Checkbox } from "../../../../components/Checkbox";
 
 interface AcknowledgementProps {
-  handleContinueClick: () => void;
+  handleContinueClick?: () => void;
 }
 
 const Acknowledgement: React.FC<AcknowledgementProps> = ({ handleContinueClick }) => {
