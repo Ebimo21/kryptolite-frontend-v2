@@ -8,31 +8,24 @@ import cls from "classnames";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const toggleMenu: React.MouseEventHandler<HTMLButtonElement> = useCallback(
-    (e) => {
-      e.stopPropagation();
-      setOpen((p) => !p);
-    },
-    []
-  );
+  const toggleMenu: React.MouseEventHandler<HTMLButtonElement> = useCallback((e) => {
+    e.stopPropagation();
+    setOpen((p) => !p);
+  }, []);
 
   const closeMenu = useCallback(() => setOpen(false), []);
 
   return (
     <Section
       containerClass="bg-transparent fixed top-0 w-full z-50"
-      className={cls(
-        "!max-w-screen-2xl bg-white shadow-md shadow-gray-400/20",
-        {
-          "shadow-lg": !open,
-        }
-      )}
+      className={cls("!max-w-screen-2xl bg-white shadow-md shadow-gray-400/20", {
+        "shadow-lg": !open,
+      })}
     >
       <div className="bg-[#975C10] text-white w-full p-1 text-sm text-center rounded">
         <p>
           Bitcoin Pizza Day NFTs now available for all those who attended the{" "}
-          <span className="text-[#00FFFF]">#BitcoinPizzaDayHangout2022</span>{" "}
-          and filled{" "}
+          <span className="text-[#00FFFF]">#BitcoinPizzaDayHangout2022</span> and filled{" "}
           <Link
             className="text-[#00FFFF]"
             to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform"

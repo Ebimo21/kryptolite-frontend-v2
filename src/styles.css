@@ -88,6 +88,22 @@
       left: -4px;
     }
   }*/
+
+  .custom__numeric-text-field {
+    -webkit-appearance: textfield;
+  }
+  .custom__numeric-text-field::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  .custom__numeric-text-field[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .custom__numeric-text-field::-webkit-outer-spin-button,
+  .custom__numeric-text-field::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 }
 
 .custom_checkbox::after {

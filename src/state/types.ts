@@ -99,3 +99,11 @@ export interface TagInfo extends TagDetails {
 export type TokenAddressMap = Readonly<{
   [chainId in ChainId]: Readonly<{ [tokenAddress: string]: { token: WrappedTokenInfo; list: TokenList } }>;
 }>;
+
+/**
+ * An empty result, useful as a default.
+ */
+export const EMPTY_LIST: TokenAddressMap = {
+  [ChainId.MAINNET]: {},
+  [ChainId.TESTNET]: {},
+};

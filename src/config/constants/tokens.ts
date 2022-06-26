@@ -1,7 +1,7 @@
 import { Token } from "../entities/token";
 import { serializeToken } from "../../state/user/hooks/helpers";
-import { ChainId } from "./";
 import { SerializedToken } from "./types";
+import { ChainId } from "./networks";
 
 const { MAINNET, TESTNET } = ChainId;
 

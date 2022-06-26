@@ -14,6 +14,7 @@ import useTokenComparator from "./sorting";
 import ImportRow from "./ImportRow";
 import CommonBases from "./CommonBases";
 import CurrencyList from "./CurrencyList";
+import { Input } from "../../Input";
 
 interface CurrencySearchProps {
   selectedCurrency?: Currency | null;
@@ -208,7 +209,7 @@ function CurrencySearch({
     <Fragment>
       <div className="flex flex-col gap-4">
         <div className="flex">
-          <input
+          <Input
             id="token-search-input"
             placeholder="Search name or paste address"
             autoComplete="off"

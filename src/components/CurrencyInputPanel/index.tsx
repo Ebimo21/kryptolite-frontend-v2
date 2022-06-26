@@ -13,6 +13,10 @@ import ChevronDownIcon from "../Svg/Icons/ChevronDown";
 import { CopyButton } from "../widgets/CopyButton";
 import { isAddress } from "../../utils";
 import CurrencyLogo from "../Logo/CurrencyLogo";
+import CurrencySearchModal from "../widgets/SearchModal/CurrencySearchModal";
+import MetamaskIcon from "../Svg/Icons/Metamask";
+import DoubleCurrencyLogo from "../Logo/DoubleCurrencyLogo";
+import NumericalInput from "./NumericalInput";
 
 interface CurrencyInputPanelProps {
   value: string;
@@ -23,7 +27,6 @@ interface CurrencyInputPanelProps {
   onCurrencySelect: (currency: Currency) => void;
   currency?: Currency | null;
   disableCurrencySelect?: boolean;
-  hideBalance?: boolean;
   pair?: Pair | null;
   otherCurrency?: Currency | null;
   id: string;
@@ -38,7 +41,6 @@ export default function CurrencyInputPanel({
   onCurrencySelect,
   currency,
   disableCurrencySelect = false,
-  hideBalance = false,
   pair = null, // used for double token logo
   otherCurrency,
   id,
@@ -91,7 +93,7 @@ export default function CurrencyInputPanel({
                     : currency?.symbol) || "Select a currency"}
                 </p>
               )}
-              {!disableCurrencySelect && <ChevronDownIcon />}
+              {!disableCurrencySelect && <ChevronDownIcon width={24} />}
             </div>
           </Button>
           {token && tokenAddress ? (
@@ -100,7 +102,7 @@ export default function CurrencyInputPanel({
                 width="16px"
                 buttonColor="textSubtle"
                 text={tokenAddress}
-                tooltipMessage={t("Token address copied")}
+                tooltipMessage="Token address copied"
                 tooltipTop={-20}
                 tooltipRight={40}
                 tooltipFontSize={12}
@@ -112,7 +114,7 @@ export default function CurrencyInputPanel({
                   onClick={() =>
                     registerToken(
                       tokenAddress,
-                      token.symbol,
+                      token.symbol ?? "",
                       token.decimals,
                       token instanceof WrappedTokenInfo ? token.logoURI : undefined,
                     )
@@ -123,16 +125,16 @@ export default function CurrencyInputPanel({
           ) : null}
         </div>
         {account && (
-          <p onClick={onMax} color="textSubtle" style={{ display: "inline", cursor: "pointer" }}>
-            {!hideBalance && !!currency ? `Balance: ${selectedCurrencyBalance?.toSignificant(6) ?? "Loading"}` : " -"}
+          <p onClick={onMax} className="text-gray-500 inline cursor-pointer text-sm">
+            {!!currency ? `Balance: ${selectedCurrencyBalance?.toSignificant(6) ?? "Loading"}` : " -"}
           </p>
         )}
       </div>
       <div className="flex flex-col relative rounded-3xl z-[1]">
-        <label className="rounded-2xl shadow-md block">
-          <div className="flex items-center text-xs leading-4 pt-3 pr-4 pb-0 pl-4">
+        <label className="rounded-2xl shadow-md block w-full border">
+          <div className="flex items-center w-full text-xs leading-4 pt-3 pr-4 pb-0 pl-4">
             <NumericalInput
-              className="token-amount-input"
+              className="w-full"
               value={value}
               onUserInput={(val) => {
                 onUserInput(val);
@@ -143,7 +145,11 @@ export default function CurrencyInputPanel({
             className={cls("flex items-center justify-end")}
             style={{ padding: disableCurrencySelect ? "0.75rem 0.5rem 0.75rem 1rem" : "0.75rem 0.75rem 0.75rem 1rem" }}
           >
-            {account && currency && showMaxButton && label !== "To" && <Button onClick={onMax}>Max </Button>}
+            {account && currency && showMaxButton && label !== "To" && (
+              <Button variant="outline" className="rounded-full text-xs px-1 py-0.5" onClick={onMax}>
+                Max
+              </Button>
+            )}
           </div>
         </label>
       </div>

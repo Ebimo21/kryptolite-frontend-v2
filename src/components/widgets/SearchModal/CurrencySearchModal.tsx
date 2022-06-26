@@ -4,7 +4,14 @@ import { Currency } from "../../../config/entities/currency";
 import { Token } from "../../../config/entities/token";
 import Button from "../../Buttons/Button";
 import { InjectedModalProps } from "../../Modal";
-import { ModalBackButton, ModalCloseButton, ModalContainer, ModalHeader, ModalTitle } from "../../Modal/Modal";
+import {
+  ModalBackButton,
+  ModalBody,
+  ModalCloseButton,
+  ModalContainer,
+  ModalHeader,
+  ModalTitle,
+} from "../../Modal/Modal";
 import ImportToken from "./importToken";
 import CurrencyModalView from "./types";
 import usePrevious from "../../../hooks/usePreviousValue";
@@ -58,7 +65,7 @@ export default function CurrencySearchModal({
   };
 
   return (
-    <ModalContainer className="max-w-md w-full">
+    <ModalContainer>
       <ModalHeader>
         <ModalTitle>
           {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
@@ -66,7 +73,7 @@ export default function CurrencySearchModal({
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
       </ModalHeader>
-      <div className="p-6 overflow-y-auto">
+      <ModalBody className="p-6 overflow-y-auto">
         {modalView === CurrencyModalView.search ? (
           <CurrencySearch
             onCurrencySelect={handleCurrencySelect}
@@ -90,14 +97,14 @@ export default function CurrencySearchModal({
         ) : (
           ""
         )}
-        {modalView === CurrencyModalView.search && (
-          <div className="w-full text-center">
-            <Button onClick={() => setModalView(CurrencyModalView.manage)} className="list-token-manage-button">
-              Manage Tokens
-            </Button>
-          </div>
-        )}
-      </div>
+      </ModalBody>
+      {modalView === CurrencyModalView.search && (
+        <div className="w-full text-center">
+          <Button onClick={() => setModalView(CurrencyModalView.manage)} className="list-token-manage-button">
+            Manage Tokens
+          </Button>
+        </div>
+      )}
     </ModalContainer>
   );
 }

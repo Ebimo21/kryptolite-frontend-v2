@@ -36,15 +36,16 @@ const MenuItem: React.FC<{ disabled: boolean; selected: boolean; onClick: () => 
   return (
     <div
       className={cls(
-        "py-1 px-5 h-[56px] grid gap-2 opacity-100",
+        "py-1 px-5 h-[56px] grid gap-2",
         {
-          "opacity-50": disabled || selected,
+          "opacity-40": disabled || selected,
           "cursor-pointer hover:bg-gray-100": !disabled,
           "pointer-events-none": disabled,
         },
         className,
       )}
       onClick={onClick}
+      style={{ gridTemplateColumns: "auto minmax(auto, 1fr) minmax(0, 72px)" }}
     >
       {children}
     </div>
@@ -80,13 +81,13 @@ function CurrencyRow({
       selected={otherSelected}
     >
       <CurrencyLogo currency={currency} size="24px" />
-      <div className="flex flex-col">
+      <div className="flex flex-col -space-y-1">
         <p className="font-bold">{currency.symbol}</p>
-        <p className="text-sm text-ellipsis max-w-[200px]">
+        <p className="text-xs text-ellipsis max-w-[200px]">
           {!isOnSelectedList && customAdded && "Added by user •"} {currency.name}
         </p>
       </div>
-      <div className="flex justify-self-end">
+      <div className="flex justify-self-end text-xs">
         {balance ? <Balance balance={balance} /> : account ? "Loading..." : null}
       </div>
     </MenuItem>

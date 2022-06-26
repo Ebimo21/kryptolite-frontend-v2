@@ -31,7 +31,7 @@ export default function CurrencyLogo({
   }, [currency, uriLocations]);
 
   if (currency === ETHER) {
-    return <BinanceIcon width={size} style={style} />;
+    return <BinanceIcon className="flex-none" width={size} style={style} />;
   }
 
   return <Logo className="w-6 h-6" srcs={srcs} alt={`${currency?.symbol ?? "token"} logo`} style={style} />;

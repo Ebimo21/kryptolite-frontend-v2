@@ -61,16 +61,19 @@ export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> 
 export const ModalHeader: React.FC = ({ children }) => (
   <div className="flex items-center border-b py-3 px-6">{children}</div>
 );
-export const ModalTitle: React.FC = ({ children }) => <h2 className="py-3 px-6">{children}</h2>;
+export const ModalTitle: React.FC = ({ children }) => <h2>{children}</h2>;
 
-export const ModalBody: React.FC = ({ children }) => (
-  <div className="flex flex-col max-h-[90vh] overflow-y-auto">{children}</div>
+export const ModalBody: React.FC<{ className?: string }> = ({ children, className }) => (
+  <div className={cls("flex flex-col w-full max-h-[90vh] overflow-y-auto", className)}>{children}</div>
 );
 
 export const ModalContainer: React.FC<{ className?: string }> = ({ children, className }) => {
   return (
     <div
-      className={cls("overflow-hidden shadow-lg border w-auto sm:w-full max-w-full max-h-screen z-[999]", className)}
+      className={cls(
+        "overflow-hidden shadow-lg border max-h-screen z-[999] relative bg-white max-w-lg mx-auto",
+        className,
+      )}
     >
       {children}
     </div>

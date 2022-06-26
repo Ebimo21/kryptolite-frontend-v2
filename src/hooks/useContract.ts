@@ -9,7 +9,8 @@ import {
   getProviderOrSigner,
 } from "../utils/contractHelpers";
 import { Contract } from "ethers";
-import { ERC20_ABI, ERC20_BYTES32_ABI } from "../config/abi/erc20";
+import ERC20_ABI from "../config/abi/erc20.json";
+import ERC20_BYTES32_ABI from "../config/abi/erc20_bytes32.json";
 import WETH_ABI from "../config/abi/weth.json";
 import { WETH } from "../config/entities/token";
 
@@ -34,8 +35,7 @@ function useContract<T extends Contract = Contract>(
   return useMemo(() => {
     if (!canReturnContract) return null;
     try {
-      //@ts-ignore
-      return getContract(address, ABI, signer);
+      return getContract(ABI, address!, signer ?? undefined);
     } catch (error) {
       console.error("Failed to get contract", error);
       return null;

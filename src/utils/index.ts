@@ -53,3 +53,7 @@ export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currenc
   if (currency === ETHER) return true;
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address]);
 }
+
+export function escapeRegExp(string: string): string {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+}

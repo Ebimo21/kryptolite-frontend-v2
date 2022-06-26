@@ -1,10 +1,9 @@
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "contexts/Localization";
-import useActiveWeb3React from "hooks/useActiveWeb3React";
-import { useCurrentBlock } from "state/block/hooks";
 import { ToastDescriptionWithTx } from "../../components/Toast";
+import useActiveWeb3React from "../../hooks/useActiveWeb3React";
 import useToast from "../../hooks/useToast";
+import { useCurrentBlock } from "../block/hooks";
 import { AppDispatch, AppState } from "../index";
 import { checkedTransaction, finalizeTransaction } from "./actions";
 
@@ -31,7 +30,6 @@ export function shouldCheck(
 
 export default function Updater(): null {
   const { library, chainId } = useActiveWeb3React();
-  const { t } = useTranslation();
 
   const currentBlock = useCurrentBlock();
 
@@ -70,7 +68,7 @@ export default function Updater(): null {
               );
 
               const toast = receipt.status === 1 ? toastSuccess : toastError;
-              toast(t("Transaction receipt"), <ToastDescriptionWithTx txHash={receipt.transactionHash} />);
+              toast("Transaction receipt", <ToastDescriptionWithTx txHash={receipt.transactionHash} />);
             } else {
               dispatch(checkedTransaction({ chainId, hash, blockNumber: currentBlock }));
             }
@@ -79,7 +77,7 @@ export default function Updater(): null {
             console.error(`failed to check transaction hash: ${hash}`, error);
           });
       });
-  }, [chainId, library, transactions, currentBlock, dispatch, toastSuccess, toastError, t]);
+  }, [chainId, library, transactions, currentBlock, dispatch, toastSuccess, toastError]);
 
   return null;
 }

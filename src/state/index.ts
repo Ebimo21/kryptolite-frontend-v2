@@ -20,6 +20,7 @@ import IndexedDBStorage from "../utils/IndexedDBStorage";
 import lists from "./lists/reducer";
 import swap from "./swap/reducer";
 import transactions from "./transactions/reducer";
+import multicall from "./multicall/reducer";
 
 const PERSISTED_KEYS: string[] = ["user", "transactions"];
 
@@ -67,6 +68,7 @@ const persistedReducer = persistReducer(
     user,
     transactions,
     swap,
+    multicall,
     lists: persistReducer(ListsConfig, lists),
   }),
 );

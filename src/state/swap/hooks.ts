@@ -202,11 +202,11 @@ function parseIndependentFieldURLParameter(urlParam: any): Field {
   return typeof urlParam === "string" && urlParam.toLowerCase() === "output" ? Field.OUTPUT : Field.INPUT;
 }
 
-export function queryParametersToSwapState(parsedQs: ParsedUrlQuery): SwapState {
-  let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency) || DEFAULT_INPUT_CURRENCY;
-  let outputCurrency = parseCurrencyFromURLParameter(parsedQs.outputCurrency) || DEFAULT_OUTPUT_CURRENCY;
+export function queryParametersToSwapState(parsedQs: ParsedUrlQuery | null): SwapState {
+  let inputCurrency = parseCurrencyFromURLParameter(parsedQs?.inputCurrency) || DEFAULT_INPUT_CURRENCY;
+  let outputCurrency = parseCurrencyFromURLParameter(parsedQs?.outputCurrency) || DEFAULT_OUTPUT_CURRENCY;
   if (inputCurrency === outputCurrency) {
-    if (typeof parsedQs.outputCurrency === "string") {
+    if (typeof parsedQs?.outputCurrency === "string") {
       inputCurrency = "";
     } else {
       outputCurrency = "";
@@ -220,8 +220,8 @@ export function queryParametersToSwapState(parsedQs: ParsedUrlQuery): SwapState 
     [Field.OUTPUT]: {
       currencyId: outputCurrency,
     },
-    typedValue: parseTokenAmountURLParameter(parsedQs.exactAmount),
-    independentField: parseIndependentFieldURLParameter(parsedQs.exactField),
+    typedValue: parseTokenAmountURLParameter(parsedQs?.exactAmount),
+    independentField: parseIndependentFieldURLParameter(parsedQs?.exactField),
     pairDataById: {},
     derivedPairDataById: {},
   };
@@ -233,7 +233,7 @@ export function useDefaultsFromURLSearch():
   | undefined {
   const { chainId } = useActiveWeb3React();
   const dispatch = useDispatch<AppDispatch>();
-  const { query } = useParams();
+  const query = useParams();
   const [result, setResult] = useState<
     { inputCurrencyId: string | undefined; outputCurrencyId: string | undefined } | undefined
   >();
