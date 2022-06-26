@@ -4,7 +4,7 @@ import { usePopper } from "react-popper";
 import isTouchDevice from "../../utils/isTouchDevice";
 import { TooltipOptions, TooltipRefs } from "./types";
 
-const portalRoot = document.getElementById("portal-root");
+let portalRoot = typeof window !== "undefined" ? document.getElementById("portal-root") : null;
 
 const useTooltip = (content: React.ReactNode, options: TooltipOptions): TooltipRefs => {
   const {
