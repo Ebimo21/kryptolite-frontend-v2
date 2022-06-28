@@ -51,7 +51,18 @@
   }
 
   .btn-danger {
-    @apply text-red-600;
+    @apply text-red-600 bg-white hover:bg-red-400 hover:text-black ring-2
+    focus:bg-red-400 focus:text-black focus-within:bg-red-400 focus-within:text-black
+    ring-red-600 hover:ring-red-400 focus:ring-red-400 focus-within:ring-red-400;
+  }
+
+  .custom_checkbox::after {
+    content: "";
+    @apply absolute border-b-2 border-l-2 border-transparent top-[30%] left-0 right-0 w-1/2 h-1/4 m-auto
+      rotate-[50] transition-colors;
+  }
+  .custom_checkbox:checked::after {
+    @apply bg-white;
   }
 
   .custom_checkbox:hover:not(:disabled):not(:checked) {
@@ -63,7 +74,7 @@
   }
 
   .custom_checkbox:checked {
-    @apply bg-primary-500;
+    @apply bg-primary-800;
   }
 
   .custom_checkbox:disabled {
@@ -104,20 +115,4 @@
   .custom__numeric-text-field::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-}
-
-.custom_checkbox::after {
-  content: "";
-  position: absolute;
-  border-bottom: 2px solid;
-  border-left: 2px solid;
-  border-color: transparent;
-  top: 30%;
-  left: 0;
-  right: 0;
-  width: 50%;
-  height: 25%;
-  margin: auto;
-  transform: rotate(-50deg);
-  transition: border-color 0.2s ease-in-out;
 }

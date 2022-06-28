@@ -19,7 +19,7 @@ export default function Checkbox({ scale = scales.MD, ...rest }: CheckboxProps) 
       {...rest}
       className={cls(
         "appearance-none overflow-hidden cursor-pointer relative inline-block align-middle shadow-md",
-        "transition-colors duration-200 ease-in-out border-0 rounded-lg bg-primary-800 custom_checkbox",
+        "transition-colors duration-200 ease-in-out border-0 rounded-lg bg-gray-400 custom_checkbox",
       )}
       style={{ height: getScale({ scale }), width: getScale({ scale }) }}
     />

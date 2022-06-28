@@ -4,11 +4,7 @@ import { ButtonProps, PolymorphicComponent } from "../../Buttons/types";
 
 import { ButtonMenuItemProps } from "./types";
 
-interface InactiveButtonProps extends ButtonProps {
-  forwardedAs: ButtonProps["as"];
-}
-
-const InactiveButton: PolymorphicComponent<InactiveButtonProps, "button"> = (props) => <Button {...props} />;
+const InactiveButton: PolymorphicComponent<ButtonProps, "button"> = (props) => <Button {...props} />;
 
 const ButtonMenuItem: PolymorphicComponent<ButtonMenuItemProps, "button"> = ({
   isActive = false,
@@ -16,7 +12,7 @@ const ButtonMenuItem: PolymorphicComponent<ButtonMenuItemProps, "button"> = ({
   ...props
 }: ButtonMenuItemProps) => {
   if (!isActive) {
-    return <InactiveButton forwardedAs={as} {...props} />;
+    return <InactiveButton {...props} />;
   }
 
   return <Button as={as} {...props} />;

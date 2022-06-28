@@ -9,6 +9,17 @@ import ModalProvider from "../Modal/ModalContext";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import AppWalletProvider from "../../contexts/AppContext";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor } from "../../state";
+import { Updaters } from "../Updaters";
+import { SWRConfig } from "swr";
+import { fetchStatusMiddleware } from "../../hooks/useSWRContract";
+import { usePollBlockNumber } from "../../state/block/hooks";
+
+function GlobalHooks() {
+  usePollBlockNumber();
+  return null;
+}
 
 export default function Layout(props: { children: React.ReactNode }) {
   return (
@@ -17,15 +28,25 @@ export default function Layout(props: { children: React.ReactNode }) {
         <AppWalletProvider>
           <ToastsProvider>
             <ToastListener />
-            <RefreshContextProvider>
-              <ModalProvider>
-                <Navbar />
-                {/* Fixed navbar space */}
-                <div className="h-[60px] invisible" />
-                {props.children}
-                <Footer />
-              </ModalProvider>
-            </RefreshContextProvider>
+            <SWRConfig
+              value={{
+                use: [fetchStatusMiddleware],
+              }}
+            >
+              <RefreshContextProvider>
+                <ModalProvider>
+                  <GlobalHooks />
+                  <PersistGate loading={null} persistor={persistor}>
+                    <Updaters />
+                    <Navbar />
+                    {/* Fixed navbar space */}
+                    <div className="h-[60px] invisible" />
+                    {props.children}
+                    <Footer />
+                  </PersistGate>
+                </ModalProvider>
+              </RefreshContextProvider>
+            </SWRConfig>
           </ToastsProvider>
         </AppWalletProvider>
       </Provider>

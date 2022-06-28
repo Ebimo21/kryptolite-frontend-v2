@@ -8,6 +8,7 @@ import useUserAddedTokens from "../../../state/user/hooks/useUserAddedTokens";
 import { isAddress } from "../../../utils";
 import { getBscScanLink } from "../../../utils/getBscScanLink";
 import Button from "../../Buttons/Button";
+import { Input } from "../../Input";
 import Link from "../../Link";
 import CurrencyLogo from "../../Logo/CurrencyLogo";
 import CloseIcon from "../../Svg/Icons/Close";
@@ -76,8 +77,8 @@ export default function ManageTokens({
     <div className="w-full h-[calc(100%-60px)] relative pb-[60px]">
       <div className="flex flex-col" style={{ width: "100%", flex: "1 1" }}>
         <div className="flex flex-col gap-4">
-          <div className="flex">
-            <input
+          <div className="flex mb-3">
+            <Input
               id="token-search-input"
               placeholder="0x0000"
               value={searchQuery}
@@ -87,7 +88,7 @@ export default function ManageTokens({
               //   isWarning={!isAddressValid}
             />
           </div>
-          {!isAddressValid && <p className="text-red-500">Enter valid token address</p>}
+          {!isAddressValid && <p className="text-red-500 text-sm text-center">Enter valid token address</p>}
           {searchToken && (
             <ImportRow
               token={searchToken}
@@ -99,10 +100,14 @@ export default function ManageTokens({
         </div>
         {tokenList}
         <div className="absolute bottom-0 w-full flex justify-between items-center">
-          <p className="font-bold">
+          <p className="font-bold text-sm">
             {userAddedTokens?.length} {userAddedTokens.length === 1 ? "Custom Token" : "Custom Tokens"}
           </p>
-          {userAddedTokens.length > 0 && <Button onClick={handleRemoveAll}>Clear all</Button>}
+          {userAddedTokens.length > 0 && (
+            <Button onClick={handleRemoveAll} className="text-sm">
+              Clear all
+            </Button>
+          )}
         </div>
       </div>
     </div>

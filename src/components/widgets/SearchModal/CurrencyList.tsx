@@ -26,13 +26,13 @@ function Balance({ balance }: { balance: CurrencyAmount }) {
   );
 }
 
-const MenuItem: React.FC<{ disabled: boolean; selected: boolean; onClick: () => void; className?: string }> = ({
-  children,
-  disabled,
-  selected,
-  onClick,
-  className,
-}) => {
+const MenuItem: React.FC<{
+  style?: CSSProperties;
+  disabled: boolean;
+  selected: boolean;
+  onClick: () => void;
+  className?: string;
+}> = ({ children, disabled, selected, onClick, className, style }) => {
   return (
     <div
       className={cls(
@@ -45,7 +45,7 @@ const MenuItem: React.FC<{ disabled: boolean; selected: boolean; onClick: () => 
         className,
       )}
       onClick={onClick}
-      style={{ gridTemplateColumns: "auto minmax(auto, 1fr) minmax(0, 72px)" }}
+      style={{ gridTemplateColumns: "auto minmax(auto, 1fr) minmax(0, 72px)", ...style }}
     >
       {children}
     </div>
@@ -57,6 +57,7 @@ function CurrencyRow({
   onSelect,
   isSelected,
   otherSelected,
+  style,
 }: {
   currency: Currency;
   onSelect: () => void;
@@ -79,6 +80,7 @@ function CurrencyRow({
       onClick={() => (isSelected ? null : onSelect())}
       disabled={isSelected}
       selected={otherSelected}
+      style={style}
     >
       <CurrencyLogo currency={currency} size="24px" />
       <div className="flex flex-col -space-y-1">
@@ -139,6 +141,7 @@ export default function CurrencyList({
       const handleSelect = () => onCurrencySelect(currency);
 
       const token = wrappedCurrency(currency, chainId);
+      // console.log(style);
 
       const showImport = index > currencies.length;
 

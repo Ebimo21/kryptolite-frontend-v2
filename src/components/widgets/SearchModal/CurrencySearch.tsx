@@ -12,7 +12,6 @@ import { FixedSizeList } from "react-window";
 import useDebounce from "../../../hooks/useDebounce";
 import useTokenComparator from "./sorting";
 import ImportRow from "./ImportRow";
-import CommonBases from "./CommonBases";
 import CurrencyList from "./CurrencyList";
 import { Input } from "../../Input";
 
@@ -20,7 +19,6 @@ interface CurrencySearchProps {
   selectedCurrency?: Currency | null;
   onCurrencySelect: (currency: Currency) => void;
   otherSelectedCurrency?: Currency | null;
-  showCommonBases?: boolean;
   showImportView: () => void;
   setImportToken: (token: Token) => void;
 }
@@ -76,12 +74,9 @@ function CurrencySearch({
   selectedCurrency,
   onCurrencySelect,
   otherSelectedCurrency,
-  showCommonBases,
   showImportView,
   setImportToken,
 }: CurrencySearchProps) {
-  const { chainId } = useActiveWeb3React();
-
   // refs for fixed size lists
   const fixedList = useRef<FixedSizeList>();
 
@@ -219,9 +214,6 @@ function CurrencySearch({
             onKeyDown={handleEnter}
           />
         </div>
-        {showCommonBases && (
-          <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
-        )}
       </div>
       {getCurrencyListRows()}
     </Fragment>

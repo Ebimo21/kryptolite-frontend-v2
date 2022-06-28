@@ -13,6 +13,7 @@ export default function ImportRow({
   dim,
   showImportView,
   setImportToken,
+  style,
 }: {
   token: Token;
   style?: CSSProperties;
@@ -33,21 +34,20 @@ export default function ImportRow({
 
   return (
     <div
-      className="py-1 px-20 h-14 grid gap-3 items-center md:gap-4"
-      style={{ gridTemplateColumns: "auto minmax(auto, 1fr) auto" }}
+      className="py-1 px-20 h-14 grid gap-3 items-center md:gap-4 bg-gray-100 mb-3"
+      style={{ gridTemplateColumns: "auto minmax(auto, 1fr) auto", ...style }}
     >
       <CurrencyLogo currency={token} style={{ opacity: dim ? "0.6" : "1" }} />
       <div className="flex flex-col gap-1" style={{ opacity: dim ? "0.6" : "1" }}>
         <div className="flex">
-          <p className="mr-2">{token.symbol}</p>
-          <p className="text-gray-100">
-            <div
-              className="whitespace-nowrap overflow-hidden overflow-ellipsis max-w-[140px] text-xs"
-              title={token.name}
-            >
-              {token.name}
-            </div>
-          </p>
+          <p className="mr-2 text-base">{token.symbol}</p>
+          <div
+            className="whitespace-nowrap overflow-hidden overflow-ellipsis max-w-[140px] text-xs
+              text-gray-100"
+            title={token.name}
+          >
+            {token.name}
+          </div>
         </div>
         {list && list.logoURI && (
           <div className="flex">
@@ -64,12 +64,13 @@ export default function ImportRow({
             }
             showImportView();
           }}
+          className="text-sm"
         >
           Import
         </Button>
       ) : (
-        <div className="max-w-fit">
-          <CheckmarkCircleIcon className="h-4 w-4 mr-2 ring ring-primary-600" />
+        <div className="max-w-fit flex items-center">
+          <CheckmarkCircleIcon className="h-4 w-4 mr-2 ring ring-primary-600 rounded-full" />
           <p className="text-primary-600">Active</p>
         </div>
       )}

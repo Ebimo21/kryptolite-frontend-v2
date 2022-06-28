@@ -12,7 +12,7 @@ const Icons = {
 };
 
 const MessageContainer: React.FC<MessageProps> = ({ children, className }) => (
-  <div className={cls("flex bg-gray-100 p-4 rounded-2xl border gap-1", className)}>{children}</div>
+  <div className={cls("flex bg-red-50 p-4 rounded-2xl border gap-2", className)}>{children}</div>
 );
 
 const colors = {
@@ -25,7 +25,7 @@ const colors = {
 export const MessageText: React.FC = ({ children }) => {
   const ctx = useContext(MessageContext);
   return (
-    <p className="text-sm" color={colors[ctx?.variant]}>
+    <p className="text-sm font-medium" style={{ color: colors[ctx?.variant] }}>
       {children}
     </p>
   );
@@ -36,7 +36,9 @@ const Message: React.FC<MessageProps> = ({ children, variant, icon, ...props }) 
   return (
     <MessageContext.Provider value={{ variant }}>
       <MessageContainer variant={variant} {...props}>
-        <div className="text-xs">{icon ?? <Icon width="24px" />}</div>
+        <div className="text-xs" style={{ color: colors[variant], fill: colors[variant] }}>
+          {icon ?? <Icon width="24px" />}
+        </div>
         {children}
       </MessageContainer>
     </MessageContext.Provider>

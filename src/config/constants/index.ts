@@ -9,6 +9,9 @@ export enum ChainId {
   TESTNET = 97,
 }
 
+export const FAST_INTERVAL = 10000;
+export const SLOW_INTERVAL = 60000;
+
 // a list of tokens by chain
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[];

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { InputProps, scales } from "./types";
 import cls from "classnames";
 
@@ -14,7 +14,7 @@ const getHeight = ({ scale = scales.MD }: InputProps) => {
   }
 };
 
-const Input: React.FC<InputProps> = ({ scale, className, ...rest }) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ scale, className, ...rest }, ref) => {
   return (
     <input
       className={cls(
@@ -23,9 +23,10 @@ const Input: React.FC<InputProps> = ({ scale, className, ...rest }) => {
         className,
       )}
       style={{ height: getHeight({ scale }) }}
+      ref={ref}
       {...rest}
     />
   );
-};
+});
 
 export default Input;

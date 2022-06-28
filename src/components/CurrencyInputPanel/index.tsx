@@ -30,7 +30,6 @@ interface CurrencyInputPanelProps {
   pair?: Pair | null;
   otherCurrency?: Currency | null;
   id: string;
-  showCommonBases?: boolean;
 }
 export default function CurrencyInputPanel({
   value,
@@ -44,7 +43,6 @@ export default function CurrencyInputPanel({
   pair = null, // used for double token logo
   otherCurrency,
   id,
-  showCommonBases,
 }: CurrencyInputPanelProps) {
   const { account, library } = useActiveWeb3React();
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined);
@@ -57,7 +55,6 @@ export default function CurrencyInputPanel({
       onCurrencySelect={onCurrencySelect}
       selectedCurrency={currency}
       otherSelectedCurrency={otherCurrency}
-      showCommonBases={showCommonBases}
     />,
   );
   return (

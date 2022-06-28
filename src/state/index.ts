@@ -57,6 +57,8 @@ const ListsConfig = {
   serialize: false,
   deserialize: false,
   storage: IndexedDBStorage("lists"),
+  // There is an issue in the source code of redux-persist (default setTimeout does not cleaning)
+  timeout: undefined,
 };
 
 const persistedReducer = persistReducer(

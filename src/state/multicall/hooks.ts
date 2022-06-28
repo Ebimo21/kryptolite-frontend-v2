@@ -204,6 +204,7 @@ export function useMultipleContractSingleData(
     () => contractInterface.getFunction && contractInterface.getFunction(methodName),
     [contractInterface, methodName],
   );
+
   const callData: string | undefined = useMemo(
     () =>
       fragment && isValidMethodArgs(callInputs)
