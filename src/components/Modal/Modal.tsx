@@ -64,7 +64,7 @@ export const ModalHeader: React.FC = ({ children }) => (
 export const ModalTitle: React.FC = ({ children }) => <h2>{children}</h2>;
 
 export const ModalBody: React.FC<{ className?: string }> = ({ children, className }) => (
-  <div className={cls("flex flex-col w-full max-h-[90vh] overflow-y-auto", className)}>{children}</div>
+  <div className={cls("flex flex-col w-full max-h-[90vh] p-6 overflow-y-auto", className)}>{children}</div>
 );
 
 export const ModalContainer: React.FC<{ className?: string }> = ({ children, className }) => {

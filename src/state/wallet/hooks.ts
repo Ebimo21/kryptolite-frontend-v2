@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { useWeb3React } from "@web3-react/core";
-import ERC20_INTERFACE from "../../config/abi/erc20";
 import { useAllTokens } from "../../hooks/Tokens";
 import { useMulticallContract } from "../../hooks/useContract";
 import { isAddress } from "../../utils";
@@ -11,7 +10,10 @@ import { Currency, ETHER } from "../../config/entities/currency";
 import { CurrencyAmount } from "../../config/entities/fractions/currencyAmount";
 import { TokenAmount } from "../../config/entities/fractions/tokenAmount";
 import { Token } from "../../config/entities/token";
+import { Interface } from "ethers/lib/utils";
+import ERC20_ABI from "../../config/abi/erc20.json";
 
+const ERC20_INTERFACE = new Interface(ERC20_ABI);
 /**
  * Returns a map of the given addresses to their eventually consistent BNB balances.
  */

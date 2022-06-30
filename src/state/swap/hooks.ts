@@ -17,7 +17,7 @@ import { Token } from "../../config/entities/token";
 import { Trade } from "../../config/entities/trade";
 import { useParams } from "@reach/router";
 import { isAddress } from "../../utils";
-import { useUserSlippageTolerance } from "../../utils/calls/swap";
+// import { useUserSlippageTolerance } from "../../utils/calls/swap";
 
 export function useSwapState(): AppState["swap"] {
   return useSelector<AppState, AppState["swap"]>((state) => state.swap);
@@ -160,7 +160,8 @@ export function useDerivedSwapInfo(
     inputError = inputError ?? "Invalid recipient";
   }
 
-  const [allowedSlippage] = useUserSlippageTolerance(); // Convert to auto
+  // const [allowedSlippage] = useUserSlippageTolerance(); // Convert to auto
+  const [allowedSlippage] = [0];
 
   const slippageAdjustedAmounts =
     v2Trade && allowedSlippage && computeSlippageAdjustedAmounts(v2Trade, allowedSlippage);

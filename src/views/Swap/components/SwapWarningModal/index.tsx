@@ -1,5 +1,5 @@
 import React from "react";
-import { ModalHeader, ModalTitle, ModalBody } from "../../../../components/Modal/Modal";
+import { ModalHeader, ModalTitle, ModalBody, ModalContainer } from "../../../../components/Modal/Modal";
 import Message from "../../../../components/widgets/Message/Message";
 import { WrappedTokenInfo } from "../../../../state/types";
 import Acknowledgement from "./Acknowledgement";
@@ -15,7 +15,7 @@ const SwapWarningModal: React.FC<SwapWarningModalProps> = ({ swapCurrency, onDis
   const SWAP_WARNING = swapCurrency != null && TOKEN_WARNINGS[swapCurrency.address];
 
   return SWAP_WARNING ? (
-    <div className="min-w-[280px] max-w-md">
+    <ModalContainer>
       <ModalHeader>
         <ModalTitle>{`Notice for trading ${SWAP_WARNING.symbol}`}</ModalTitle>
       </ModalHeader>
@@ -25,7 +25,7 @@ const SwapWarningModal: React.FC<SwapWarningModalProps> = ({ swapCurrency, onDis
         </Message>
         <Acknowledgement handleContinueClick={onDismiss} />
       </ModalBody>
-    </div>
+    </ModalContainer>
   ) : (
     <div className="min-w-[280px] max-w-md" />
   );

@@ -71,7 +71,7 @@ export default function CurrencySearchModal({
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
       </ModalHeader>
-      <ModalBody className="p-6 overflow-y-auto">
+      <ModalBody>
         {modalView === CurrencyModalView.search ? (
           <CurrencySearch
             onCurrencySelect={handleCurrencySelect}
