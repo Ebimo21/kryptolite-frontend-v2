@@ -9,7 +9,8 @@ import { registerToken } from "../../utils/wallet";
 import { wrappedCurrency } from "../../utils/wrappedCurrency";
 import Button from "../Buttons/Button";
 import Link from "../Link";
-import { InjectedModalProps, Modal } from "../Modal";
+import { InjectedModalProps } from "../Modal";
+import { ModalBody, ModalCloseButton, ModalContainer, ModalHeader, ModalTitle } from "../Modal/Modal";
 import { ErrorIcon } from "../Svg";
 import ArrowUpIcon from "../Svg/Icons/ArrowUp";
 import MetamaskIcon from "../Svg/Icons/Metamask";
@@ -146,20 +147,26 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
   if (!chainId) return null;
 
   return (
-    <Modal title={title} headerBackground="gradients.cardHeader" onDismiss={handleDismiss}>
-      {attemptingTxn ? (
-        <ConfirmationPendingContent pendingText={pendingText} />
-      ) : hash ? (
-        <TransactionSubmittedContent
-          chainId={chainId}
-          hash={hash}
-          onDismiss={handleDismiss}
-          currencyToAdd={currencyToAdd}
-        />
-      ) : (
-        content()
-      )}
-    </Modal>
+    <ModalContainer>
+      <ModalHeader>
+        <ModalTitle>{title}</ModalTitle>
+        <ModalCloseButton onDismiss={handleDismiss} />
+      </ModalHeader>
+      <ModalBody>
+        {attemptingTxn ? (
+          <ConfirmationPendingContent pendingText={pendingText} />
+        ) : hash ? (
+          <TransactionSubmittedContent
+            chainId={chainId}
+            hash={hash}
+            onDismiss={handleDismiss}
+            currencyToAdd={currencyToAdd}
+          />
+        ) : (
+          content()
+        )}
+      </ModalBody>
+    </ModalContainer>
   );
 };
 

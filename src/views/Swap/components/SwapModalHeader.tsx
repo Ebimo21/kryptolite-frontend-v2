@@ -41,29 +41,30 @@ export default function SwapModalHeader({
   const [estimatedText, transactionRevertText] = tradeInfoText.split(`${amount} ${symbol}`);
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex justify-start">
-        <div className="flex">
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <CurrencyLogo currency={trade.inputAmount.currency} size="24px" style={{ marginRight: "12px" }} />
           <p
-            className="text-2xl w-56"
+            className="text-2xl"
             color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? "primary" : "text"}
           >
             {trade.inputAmount.toSignificant(6)}
           </p>
         </div>
         <div className="0px">
-          <p className="text-2xl ml-2">{trade.inputAmount.currency.symbol}</p>
+          <p>{trade.inputAmount.currency.symbol}</p>
         </div>
       </div>
-      <div className="flex justify-center items-center">
-        <ArrowDownIcon width="16px" />
+      <div className="flex items-center">
+        <ArrowDownIcon className="w-7 fill-gray-700" />
       </div>
-      <div className="flex justify-end items-center">
-        <div className="gap-0 flex">
+      <div className="flex items-center gap-3">
+        <div className="flex gap-2 items-center">
           <CurrencyLogo currency={trade.outputAmount.currency} size="24px" style={{ marginRight: "12px" }} />
-          <div
-          /* fontSize="24px"
+          <p
+            className="text-2xl"
+            /* fontSize="24px"
             color={
               priceImpactSeverity > 2
                 ? "failure"
@@ -73,21 +74,21 @@ export default function SwapModalHeader({
             } */
           >
             {trade.outputAmount.toSignificant(6)}
-          </div>
+          </p>
         </div>
-        <div className="gap-0 flex items-center">
+        <div className="0px">
           <p>{trade.outputAmount.currency.symbol}</p>
         </div>
       </div>
       {showAcceptChanges ? (
-        <div className="flex">
-          <div className="flex justify-between">
-            <div className="flex items-center">
-              <ErrorIcon className="mr-2" />
-              <p className="font-bold">Price Updated</p>
-            </div>
-            <Button onClick={onAcceptChanges}>Accept</Button>
+        <div className="flex justify-between w-full my-2">
+          <div className="flex items-center w-full">
+            <ErrorIcon className="mr-2 w-10" />
+            <p className="font-bold">Price Updated</p>
           </div>
+          <Button onClick={onAcceptChanges} className="text-sm">
+            Accept
+          </Button>
         </div>
       ) : null}
       <div className="flex flex-col gap-5 pt-6">

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Button from "../../../components/Buttons/Button";
-import QuestionHelper from "../../../components/QuestionHelper/QuestionHelper";
 import AutoRenewIcon from "../../../components/Svg/Icons/AutoRenew";
+import QuestionHelper from "../../../components/widgets/QuestionHelper";
 import { TradeType } from "../../../config/constants/types";
 import { Trade } from "../../../config/entities/trade";
 import { Field } from "../../../state/swap/actions";
@@ -31,7 +31,7 @@ export default function SwapModalFooter({
     () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
     [allowedSlippage, trade],
   );
-  const { priceImpactWithoutFee, realizedLPFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade]);
+  const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade]);
   const severity = warningSeverity(priceImpactWithoutFee);
 
   return (
@@ -48,7 +48,7 @@ export default function SwapModalFooter({
         </div>
 
         <div className="flex justify-between">
-          <div className="flex">
+          <div className="flex items-center gap-1">
             <p className="text-sm">{trade.tradeType === TradeType.EXACT_INPUT ? "Minimum received" : "Maximum sold"}</p>
             <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
           </div>
@@ -66,30 +66,13 @@ export default function SwapModalFooter({
           </div>
         </div>
         <div className="flex justify-between">
-          <div className="flex">
+          <div className="flex items-center gap-1">
             <p>Price Impact</p>
             <QuestionHelper text="The difference between the market price and your price due to trade size." />
           </div>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </div>
-        <div className="flex justify-between">
-          <div className="flex">
-            <p>Liquidity Provider Fee</p>
-            <QuestionHelper
-              text={
-                <>
-                  <p className="mb-3">For each trade a 0.25% fee is paid</p>
-                  <p>- 0.17% to LP token holders</p>
-                  <p>- 0.03% to the Treasury</p>
-                  <p>- 0.05% towards CAKE buyback and burn</p>
-                </>
-              }
-            />
-          </div>
-          <p>{realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.symbol}` : "-"}</p>
-        </div>
       </div>
-
       <div className="flex">
         <Button
           variant={severity > 2 ? "danger" : "primary"}

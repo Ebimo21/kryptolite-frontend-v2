@@ -347,7 +347,7 @@ export default function Swap() {
                 />
                 {showWrap ? null : (
                   <div className="flex flex-col gap-2" style={{ padding: "0 16px" }}>
-                    <div className="flex">
+                    <div className="flex gap-2 text-sm items-baseline">
                       {Boolean(trade) && (
                         <Fragment>
                           <p>Price</p>

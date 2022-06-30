@@ -175,7 +175,8 @@ const useTooltip = (content: React.ReactNode, options: TooltipOptions): TooltipR
 
   const tooltip = (
     <div
-      className="p-4 text-sm leading-snug rounded-2xl max-w-xs z-[101] shadow-md custom__tooltip-container"
+      className="p-4 text-sm leading-snug rounded-2xl max-w-xs z-[101] shadow-md custom__tooltip-container
+        bg-white border border-gray-200"
       ref={setTooltipElement}
       style={styles.popper}
       {...attributes.popper}

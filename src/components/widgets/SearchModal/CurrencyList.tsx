@@ -9,10 +9,10 @@ import { useCombinedActiveList } from "../../../state/lists/hooks";
 import { useCurrencyBalance } from "../../../state/wallet/hooks";
 import { wrappedCurrency } from "../../../utils/wrappedCurrency";
 import CurrencyLogo from "../../Logo/CurrencyLogo";
-import QuestionHelper from "../../QuestionHelper/QuestionHelper";
 import ImportRow from "./ImportRow";
 import cls from "classnames";
 import { isTokenOnList } from "../../../utils";
+import QuestionHelper from "../QuestionHelper";
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? "ETHER" : "";
