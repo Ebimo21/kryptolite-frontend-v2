@@ -1,7 +1,6 @@
 import { TokenList } from "@uniswap/token-lists";
 import React, { useState } from "react";
 import { Token } from "../../../config/entities/token";
-import { ModalBody } from "../../Modal/Modal";
 import ButtonMenu from "../ButtonMenu/ButtonMenu";
 import ButtonMenuItem from "../ButtonMenu/ButtonMenuItem";
 import ManageLists from "./ManageLists";
@@ -23,7 +22,7 @@ export default function Manage({
   const [showLists, setShowLists] = useState(true);
 
   return (
-    <ModalBody>
+    <div>
       <ButtonMenu activeIndex={showLists ? 0 : 1} onItemClick={() => setShowLists((prev) => !prev)}>
         <ButtonMenuItem className="w-1/2">Lists</ButtonMenuItem>
         <ButtonMenuItem className="w-1/2">Tokens</ButtonMenuItem>
@@ -33,6 +32,6 @@ export default function Manage({
       ) : (
         <ManageTokens setModalView={setModalView} setImportToken={setImportToken} />
       )}
-    </ModalBody>
+    </div>
   );
 }

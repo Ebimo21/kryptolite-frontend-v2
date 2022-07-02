@@ -55,7 +55,6 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
                 <div className="gap-2 flex flex-col ml-5">
                   <div className="flex">
                     <p className="font-bold mr-2">{list.name}</p>
-
                     <div className="h-1 w-1 rounded-full" />
                     <p className="text-sm ml-2">{list.tokens.length} tokens</p>
                   </div>
@@ -66,7 +65,6 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
               </div>
             </div>
           </div>
-
           <Message variant="danger">
             <div className="flex flex-col">
               <p className="text-sm text-center mb-4">Import at your own risk</p>
@@ -90,7 +88,6 @@ function ImportList({ listURL, list, onImport }: ImportProps) {
               </div>
             </div>
           </Message>
-
           <Button disabled={!confirmed} onClick={handleAddList}>
             Import
           </Button>

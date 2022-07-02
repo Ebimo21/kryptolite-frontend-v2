@@ -7,7 +7,7 @@ const Toggle: React.FC<ToggleProps> = ({ checked, startIcon, endIcon, ...props }
       className="inline-flex items-center rounded-md cursor-pointer h-5 w-5 relative transition-colors
         duration-200"
     >
-      <input checked={checked} {...props} type="checkbox" />
+      <input checked={checked} type="checkbox" {...props} />
       {startIcon && endIcon ? (
         <Fragment>
           <div className="rounded-full cursor-pointer h-5 w-5 left-0.5 absolute top-0.5 z-[1]">

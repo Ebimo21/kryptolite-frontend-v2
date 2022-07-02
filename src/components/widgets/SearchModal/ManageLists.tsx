@@ -15,6 +15,7 @@ import { UNSUPPORTED_LIST_URLS } from "../../../config/constants/lists";
 import CheckmarkIcon from "../../Svg/Icons/Checkmark";
 import Toggle from "../Toggle/Toggle";
 import { useTooltip } from "../../../hooks/useTooltip";
+import { Input } from "../../Input";
 
 function listVersionLabel(version: Version): string {
   return `v${version.major}.${version.minor}.${version.patch}`;
@@ -55,11 +56,16 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
     <div>
       <p>{list && listVersionLabel(list.version)}</p>
       <Link to={`https://tokenlists.org/token-list?url=${listUrl}`}>See</Link>
-      <Button variant="danger" onClick={handleRemoveList} disabled={Object.keys(listsByUrl).length === 1}>
+      <Button
+        variant="danger"
+        className="text-sm"
+        onClick={handleRemoveList}
+        disabled={Object.keys(listsByUrl).length === 1}
+      >
         Remove
       </Button>
       {pending && (
-        <Button onClick={handleAcceptListUpdate} style={{ fontSize: "12px" }}>
+        <Button onClick={handleAcceptListUpdate} className="text-sm">
           Update list
         </Button>
       )}
@@ -181,6 +187,7 @@ function ManageLists({
   const [addError, setAddError] = useState<string | undefined>();
 
   useEffect(() => {
+    console.log(validUrl);
     async function fetchTempList() {
       fetchList(listUrlInput, false)
         .then((list) => setTempList(list))
@@ -217,9 +224,9 @@ function ManageLists({
     <div className="flex flex-col w-full h-full">
       <div className="flex flex-col">
         <div className="flex">
-          <input id="list-add-input" placeholder="https:// or ipfs://" value={listUrlInput} onChange={handleInput} />
+          <Input id="list-add-input" placeholder="https:// or ipfs://" value={listUrlInput} onChange={handleInput} />
         </div>
-        {addError ? <p className="text-ellipsis overflow-hidden text-red-500">{addError}</p> : null}
+        {addError ? <p className="text-ellipsis overflow-hidden text-red-500 text-sm text-center">{addError}</p> : null}
       </div>
       {tempList && (
         <div className="flex flex-col pt-0">
