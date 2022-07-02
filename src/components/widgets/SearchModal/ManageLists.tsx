@@ -13,9 +13,9 @@ import Link from "../../Link";
 import CogIcon from "../../Svg/Icons/Cog";
 import { UNSUPPORTED_LIST_URLS } from "../../../config/constants/lists";
 import CheckmarkIcon from "../../Svg/Icons/Checkmark";
-import Toggle from "../Toggle/Toggle";
 import { useTooltip } from "../../../hooks/useTooltip";
 import { Input } from "../../Input";
+import { Checkbox } from "../../Checkbox";
 
 function listVersionLabel(version: Version): string {
   return `v${version.major}.${version.minor}.${version.patch}`;
@@ -98,7 +98,9 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
           </span>
         </div>
       </div>
-      <Toggle
+      <Checkbox
+        name="confirmed"
+        type="checkbox"
         checked={isActive}
         onChange={() => {
           if (isActive) {
@@ -107,6 +109,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
             handleEnableList();
           }
         }}
+        scale="sm"
       />
     </div>
   );
@@ -187,7 +190,6 @@ function ManageLists({
   const [addError, setAddError] = useState<string | undefined>();
 
   useEffect(() => {
-    console.log(validUrl);
     async function fetchTempList() {
       fetchList(listUrlInput, false)
         .then((list) => setTempList(list))

@@ -81,6 +81,14 @@
     @apply cursor-default opacity-60;
   }
 
+  .custom_currency_search_modal {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .custom_currency_search_modal::-webkit-scrollbar {
+    display: none;
+  }
+
   /* 
   div.custom__tooltip-container {
     &[data-popper-placement^="top"] > ${Arrow} {

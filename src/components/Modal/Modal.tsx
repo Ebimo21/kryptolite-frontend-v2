@@ -37,10 +37,9 @@ export const ModalBackButton: React.FC<{ onBack: ModalProps["onBack"] }> = ({ on
     <span
       onClick={onBack}
       area-label="go back"
-      className="absolute top-4 right-4 p-1 bg-primary-50 inline-block rounded-full
-            hover:bg-primary-100 cursor-pointer flex-none"
+      className="p-1 bg-primary-50 inline-block rounded-full hover:bg-primary-100 cursor-pointer flex-none"
     >
-      <BiArrowBack className="h-8 w-8" />
+      <BiArrowBack className="h-7 w-7" />
     </span>
   );
 };
@@ -50,8 +49,7 @@ export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> 
     <span
       onClick={onDismiss}
       aria-label="Close the dialog"
-      className="absolute top-4 right-4 p-1 bg-primary-50 inline-block rounded-full
-            hover:bg-primary-100 cursor-pointer flex-none"
+      className="p-1 bg-primary-50 inline-block rounded-full hover:bg-primary-100 cursor-pointer flex-none"
     >
       <RiCloseLine className="h-8 w-8" />
     </span>
@@ -59,9 +57,11 @@ export const ModalCloseButton: React.FC<{ onDismiss: ModalProps["onDismiss"] }> 
 };
 
 export const ModalHeader: React.FC = ({ children }) => (
-  <div className="flex items-center border-b py-3 px-6">{children}</div>
+  <div className="flex items-center border-b py-2 px-6">{children}</div>
 );
-export const ModalTitle: React.FC = ({ children }) => <h2>{children}</h2>;
+export const ModalTitle: React.FC = ({ children }) => (
+  <h2 className="flex items-center w-full text-lg !mb-0">{children}</h2>
+);
 
 export const ModalBody: React.FC<{ className?: string }> = ({ children, className }) => (
   <div className={cls("flex flex-col w-full max-h-[90vh] p-6 overflow-y-auto", className)}>{children}</div>
