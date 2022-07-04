@@ -39,12 +39,12 @@ export default function SwapModalFooter({
       <div className="flex flex-col mt-6 p-4 rounded border bg-gray-100 text-sm">
         <div className="flex items-center justify-between">
           <p className="text-sm">Price</p>
-          <p className="text-sm flex items-center justify-center text-right pl-1">
+          <div className="text-sm flex items-center justify-center text-right pl-1">
             {formatExecutionPrice(trade, showInverted)}
             <div onClick={() => setShowInverted(!showInverted)}>
               <AutoRenewIcon width="14px" />
             </div>
-          </p>
+          </div>
         </div>
 
         <div className="flex justify-between">

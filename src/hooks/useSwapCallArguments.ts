@@ -29,7 +29,7 @@ export function useSwapCallArguments(
   return useMemo(() => {
     if (!trade || !account || !library || !account || !chainId) return [];
 
-    const contract = getRouterContract(chainId, library, account);
+    const contract = getRouterContract(library, account);
     if (!contract) {
       return [];
     }

@@ -6,7 +6,7 @@ import { ROUTER_ADDRESS } from "../config/constants";
 import { CHAIN_ID } from "../config/constants/networks";
 import { Percent } from "../config/entities/fractions/percent";
 import { getContract, getProviderOrSigner } from "./contractHelpers";
-import IPancakeRouter02ABI from "../config/abi/IPancakeRouter02ABI.json";
+import KrlRouterABI from "../config/abi/KrlSwapRouterABI.json";
 import { Currency, ETHER } from "../config/entities/currency";
 import { Token } from "../config/entities/token";
 import { TokenAddressMap } from "../state/types";
@@ -31,8 +31,8 @@ export function calculateGasMargin(value: BigNumber): BigNumber {
 }
 
 // account is optional
-export function getRouterContract(_: number, library: Web3Provider, account?: string) {
-  return getContract(IPancakeRouter02ABI, ROUTER_ADDRESS[CHAIN_ID], getProviderOrSigner(library, account));
+export function getRouterContract(library: Web3Provider, account?: string) {
+  return getContract(KrlRouterABI, ROUTER_ADDRESS[CHAIN_ID], getProviderOrSigner(library, account));
 }
 
 export const copyText = (text: string, cb?: () => void) => {

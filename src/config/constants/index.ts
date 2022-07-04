@@ -126,8 +126,8 @@ export const DEFAULT_OUTPUT_CURRENCY = "0xF1288cF18B1FAaA35F40111c3E5d2f827e1E92
 export const GELATO_NATIVE = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 
 export const ROUTER_ADDRESS = {
-  [ChainId.MAINNET]: "0x10ED43C718714eb63d5aA57B78B54704E256024E",
-  [ChainId.TESTNET]: "0xD99D1c33F9fC3444f8101754aBC46c52416550D1",
+  [ChainId.MAINNET]: "0xB664085874BDc4313066b4011B2C6d7E7e3AB463",
+  [ChainId.TESTNET]: "",
 };
 
 // used to ensure the user doesn't send so much BNB so they end up with <.01
