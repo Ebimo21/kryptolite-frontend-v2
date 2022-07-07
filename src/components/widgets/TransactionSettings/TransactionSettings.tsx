@@ -49,14 +49,14 @@ const SlippageTabs = () => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col mb-4">
-        <div className="flex items-center gap-1 mb-2">
+        <div className="flex items-center gap-1 mb-2 justify-center">
           <p className="text-sm">Slippage Tolerance</p>
           <QuestionHelper
             text="Setting a high slippage tolerance can help transactions succeed, but you may not get such a good price. Use with caution."
             placement="top-start"
           />
         </div>
-        <div className="flex flex-wrap items-center">
+        <div className="flex flex-wrap items-center justify-center">
           <Button
             className="text-sm mr-2 px-2 py-1"
             onClick={() => {
@@ -112,7 +112,7 @@ const SlippageTabs = () => {
         </div>
         {!!slippageError && (
           <p
-            className="text-sm mt-1"
+            className="text-sm mt-1 text-center"
             style={{ color: slippageError === SlippageError.InvalidInput ? "red" : "#F3841E" }}
           >
             {slippageError === SlippageError.InvalidInput

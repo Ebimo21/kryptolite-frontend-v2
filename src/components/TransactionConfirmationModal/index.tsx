@@ -11,7 +11,6 @@ import Button from "../Buttons/Button";
 import Link from "../Link";
 import { InjectedModalProps } from "../Modal";
 import { ModalBody, ModalCloseButton, ModalContainer, ModalHeader, ModalTitle } from "../Modal/Modal";
-import { ErrorIcon } from "../Svg";
 import MetamaskIcon from "../Svg/Icons/Metamask";
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
@@ -97,13 +96,9 @@ export function ConfirmationModalContent({
 export function TransactionErrorContent({ message, onDismiss }: { message: string; onDismiss?: () => void }) {
   return (
     <div>
-      <div className="flex justify-center flex-col">
-        <ErrorIcon color="failure" width="64px" />
-        <p color="failure" style={{ textAlign: "center", width: "85%", wordBreak: "break-word" }}>
-          {message}
-        </p>
+      <div className="flex justify-center flex-col text-center break-words text-base text-red-600">
+        <p>{message}</p>
       </div>
-
       <div className="flex justify-center pt-6">
         <Button onClick={onDismiss}>Dismiss</Button>
       </div>
