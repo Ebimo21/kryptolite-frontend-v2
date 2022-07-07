@@ -127,7 +127,7 @@ export const GELATO_NATIVE = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 export const NULL_ADDRESS = "0x0000000000000000000000000000000000000000";
 
 export const ROUTER_ADDRESS = {
-  [ChainId.MAINNET]: "0xB664085874BDc4313066b4011B2C6d7E7e3AB463",
+  [ChainId.MAINNET]: "0xfd28480e8fabbc1f3d66cf164dfe6b0818249a25",
   [ChainId.TESTNET]: "",
 };
 
