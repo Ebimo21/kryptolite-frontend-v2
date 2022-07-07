@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, AppState } from "../../";
 import { GAS_PRICE_GWEI, serializeToken } from "./helpers";
 import { useCallback } from "react";
-import { addSerializedToken, removeSerializedToken, updateUserSingleHopOnly } from "../actions";
+import {
+  addSerializedToken,
+  removeSerializedToken,
+  updateUserSingleHopOnly,
+  updateUserSlippageTolerance,
+} from "../actions";
 import { Token } from "../../../config/entities/token";
 
 export function useGasPrice(): string {
@@ -47,4 +52,20 @@ export function useRemoveUserAddedToken(): (chainId: number, address: string) =>
     },
     [dispatch],
   );
+}
+
+export function useUserSlippageTolerance(): [number, (slippage: number) => void] {
+  const dispatch = useDispatch<AppDispatch>();
+  const userSlippageTolerance = useSelector<AppState, AppState["user"]["userSlippageTolerance"]>((state) => {
+    return state.user.userSlippageTolerance;
+  });
+
+  const setUserSlippageTolerance = useCallback(
+    (slippage: number) => {
+      dispatch(updateUserSlippageTolerance({ userSlippageTolerance: slippage }));
+    },
+    [dispatch],
+  );
+
+  return [userSlippageTolerance, setUserSlippageTolerance];
 }

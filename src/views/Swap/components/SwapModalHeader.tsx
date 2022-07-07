@@ -42,7 +42,7 @@ export default function SwapModalHeader({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 justify-center">
         <div className="flex items-center gap-2">
           <CurrencyLogo currency={trade.inputAmount.currency} size="24px" style={{ marginRight: "12px" }} />
           <p
@@ -56,10 +56,10 @@ export default function SwapModalHeader({
           <p>{trade.inputAmount.currency.symbol}</p>
         </div>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center mx-auto">
         <ArrowDownIcon className="w-7 fill-gray-700" />
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 justify-center">
         <div className="flex gap-2 items-center">
           <CurrencyLogo currency={trade.outputAmount.currency} size="24px" style={{ marginRight: "12px" }} />
           <p

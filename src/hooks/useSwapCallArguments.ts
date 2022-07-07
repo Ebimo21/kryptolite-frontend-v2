@@ -8,6 +8,7 @@ import { Percent } from "../config/entities/fractions/percent";
 import { Trade } from "../config/entities/trade";
 import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE } from "../config/constants";
 import { getRouterContract } from "../utils";
+import { useAppContext } from "./useAppContext";
 
 interface SwapCall {
   contract: Contract;
@@ -25,6 +26,7 @@ export function useSwapCallArguments(
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
 ): SwapCall[] {
   const { account, chainId, library } = useActiveWeb3React();
+  const { refAddress } = useAppContext();
 
   return useMemo(() => {
     if (!trade || !account || !library || !account || !chainId) return [];
@@ -40,6 +42,7 @@ export function useSwapCallArguments(
       Router.swapCallParameters(trade, {
         feeOnTransfer: false,
         allowedSlippage: new Percent(JSBI.BigInt(allowedSlippage), BIPS_BASE),
+        referrer: refAddress,
       }),
     );
 
@@ -48,6 +51,7 @@ export function useSwapCallArguments(
         Router.swapCallParameters(trade, {
           feeOnTransfer: true,
           allowedSlippage: new Percent(JSBI.BigInt(allowedSlippage), BIPS_BASE),
+          referrer: refAddress,
         }),
       );
     }

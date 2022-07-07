@@ -3,7 +3,7 @@ import QuestionHelper from "../../../components/widgets/QuestionHelper";
 import { TradeType } from "../../../config/constants/types";
 import { Trade } from "../../../config/entities/trade";
 import { Field } from "../../../state/swap/actions";
-import { useUserSlippageTolerance } from "../../../utils/calls/swap";
+import { useUserSlippageTolerance } from "../../../state/user/hooks";
 import { computeSlippageAdjustedAmounts } from "../../../utils/prices";
 import SwapRoute from "./SwapRoute";
 

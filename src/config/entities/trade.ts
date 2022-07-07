@@ -205,6 +205,7 @@ export class Trade {
    */
   public minimumAmountOut(slippageTolerance: Percent): CurrencyAmount {
     invariant(!slippageTolerance.lessThan(ZERO), "SLIPPAGE_TOLERANCE");
+    // return this.outputAmount;
     if (this.tradeType === TradeType.EXACT_OUTPUT) {
       return this.outputAmount;
     } else {
@@ -224,6 +225,7 @@ export class Trade {
    */
   public maximumAmountIn(slippageTolerance: Percent): CurrencyAmount {
     invariant(!slippageTolerance.lessThan(ZERO), "SLIPPAGE_TOLERANCE");
+    // return this.inputAmount;
     if (this.tradeType === TradeType.EXACT_INPUT) {
       return this.inputAmount;
     } else {

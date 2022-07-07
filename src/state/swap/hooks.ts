@@ -17,7 +17,7 @@ import { Token } from "../../config/entities/token";
 import { Trade } from "../../config/entities/trade";
 import { useParams } from "@reach/router";
 import { isAddress } from "../../utils";
-import { useUserSlippageTolerance } from "../../utils/calls/swap";
+import { useUserSlippageTolerance } from "../user/hooks";
 
 export function useSwapState(): AppState["swap"] {
   return useSelector<AppState, AppState["swap"]>((state) => state.swap);

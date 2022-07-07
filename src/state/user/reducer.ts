@@ -1,7 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
+import { DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from "../../config/constants";
 import { SerializedToken } from "../../config/constants/types";
-import { updateGasPrice, addSerializedToken, removeSerializedToken } from "./actions";
+import { updateGasPrice, addSerializedToken, removeSerializedToken, updateUserSlippageTolerance } from "./actions";
 import { GAS_PRICE_GWEI } from "./hooks/helpers";
+import { updateVersion } from "../global/actions";
 
 const currentTimestamp = () => new Date().getTime();
 
@@ -15,17 +17,44 @@ export interface UserState {
   timestamp: number;
   // only allow swaps on direct pairs
   userSingleHopOnly: boolean;
+  // user defined slippage tolerance in bips, used in all txns
+  userSlippageTolerance: number;
+  // deadline set by user in minutes, used in all txns
+  userDeadline: number;
+  // the timestamp of the last updateVersion action
+  lastUpdateVersionTimestamp?: number;
 }
 
 export const initialState: UserState = {
   gasPrice: GAS_PRICE_GWEI.default,
+  userSlippageTolerance: INITIAL_ALLOWED_SLIPPAGE,
   tokens: {},
   timestamp: currentTimestamp(),
   userSingleHopOnly: false,
+  userDeadline: DEFAULT_DEADLINE_FROM_NOW,
 };
 
 export default createReducer(initialState, (builder) =>
   builder
+    .addCase(updateVersion, (state) => {
+      // slippage isnt being tracked in local storage, reset to default
+      // noinspection SuspiciousTypeOfGuard
+      if (typeof state.userSlippageTolerance !== "number") {
+        state.userSlippageTolerance = INITIAL_ALLOWED_SLIPPAGE;
+      }
+
+      // deadline isnt being tracked in local storage, reset to default
+      // noinspection SuspiciousTypeOfGuard
+      if (typeof state.userDeadline !== "number") {
+        state.userDeadline = DEFAULT_DEADLINE_FROM_NOW;
+      }
+
+      state.lastUpdateVersionTimestamp = currentTimestamp();
+    })
+    .addCase(updateUserSlippageTolerance, (state, action) => {
+      state.userSlippageTolerance = action.payload.userSlippageTolerance;
+      state.timestamp = currentTimestamp();
+    })
     .addCase(updateGasPrice, (state, action) => {
       state.gasPrice = action.payload.gasPrice;
     })

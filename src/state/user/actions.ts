@@ -5,3 +5,6 @@ export const updateGasPrice = createAction<{ gasPrice: string }>("user/updateGas
 export const addSerializedToken = createAction<{ serializedToken: SerializedToken }>("user/addSerializedToken");
 export const removeSerializedToken = createAction<{ chainId: number; address: string }>("user/removeSerializedToken");
 export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean }>("user/updateUserSingleHopOnly");
+export const updateUserSlippageTolerance = createAction<{ userSlippageTolerance: number }>(
+  "user/updateUserSlippageTolerance",
+);

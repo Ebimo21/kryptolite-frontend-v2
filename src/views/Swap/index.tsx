@@ -9,6 +9,7 @@ import ImportTokenWarningModal from "../../components/ImportTokenWarningModal";
 import Section from "../../components/Layouts/Section";
 import useModal from "../../components/Modal/useModal";
 import Skeleton from "../../components/widgets/Skeleton";
+import SlippageTabs from "../../components/widgets/TransactionSettings/TransactionSettings";
 import { CurrencyAmount } from "../../config/entities/fractions/currencyAmount";
 import { Token } from "../../config/entities/token";
 import { Trade } from "../../config/entities/trade";
@@ -25,12 +26,12 @@ import {
   useSwapActionHandlers,
   useSwapState,
 } from "../../state/swap/hooks";
-import { useUserSingleHopOnly } from "../../state/user/hooks";
-import { useUserSlippageTolerance } from "../../utils/calls/swap";
+import { useUserSingleHopOnly, useUserSlippageTolerance } from "../../state/user/hooks";
 import { maxAmountSpend } from "../../utils/maxAmountSpend";
 import { computeTradePriceBreakdown, warningSeverity } from "../../utils/prices";
 import shouldShowSwapWarning from "../../utils/shouldShowSwapWarning";
 import AdvancedSwapDetailsDropdown from "./components/AdvancedSwapDetailsDropdown";
+import confirmPriceImpactWithoutFee from "./components/ConfirmPriceImpactWithoutFee";
 import ConfirmSwapModal from "./components/ConfirmSwapModal";
 import CurrencyInputHeader from "./components/CurrencyInputHeader";
 import SwapWarningModal from "./components/SwapWarningModal";
@@ -166,7 +167,7 @@ export default function Swap() {
   const [singleHopOnly] = useUserSingleHopOnly();
 
   const handleSwap = useCallback(() => {
-    if (priceImpactWithoutFee) {
+    if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee)) {
       return;
     }
     if (!swapCallback) {
@@ -178,6 +179,7 @@ export default function Swap() {
         setSwapState({ attemptingTxn: false, tradeToConfirm, swapErrorMessage: undefined, txHash: hash });
       })
       .catch((error) => {
+        console.log(error);
         setSwapState({
           attemptingTxn: false,
           tradeToConfirm,
@@ -345,6 +347,7 @@ export default function Swap() {
                   otherCurrency={currencies[Field.INPUT]}
                   id="swap-currency-output"
                 />
+                <SlippageTabs />
                 {showWrap ? null : (
                   <div className="flex flex-col gap-2" style={{ padding: "0 16px" }}>
                     <div className="flex gap-2 text-sm items-baseline">
@@ -363,9 +366,9 @@ export default function Swap() {
                         </Fragment>
                       )}
                     </div>
-                    <p className="text-xs text-center text-blue-600">
+                    {/* <p className="text-xs text-center text-blue-600">
                       Auto slippage is enabled your transaction will run at the best price possible
-                    </p>
+                    </p> */}
                   </div>
                 )}
               </div>
@@ -389,7 +392,7 @@ export default function Swap() {
                 ) : showApproveFlow ? (
                   <div className="flex justify-between">
                     <Button
-                      variant={approval === ApprovalState.APPROVED ? "success" : "primary"}
+                      variant={approval === ApprovalState.APPROVED ? "primary" : "danger"}
                       onClick={approveCallback}
                       disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                       className="w-[48%]"

@@ -9,7 +9,7 @@ import { TokenAmount } from "../config/entities/fractions/tokenAmount";
 import { Trade } from "../config/entities/trade";
 import { Field } from "../state/swap/actions";
 
-const BASE_FEE = new Percent(JSBI.BigInt(25), JSBI.BigInt(10000));
+const BASE_FEE = new Percent(JSBI.BigInt(153), JSBI.BigInt(10000));
 const ONE_HUNDRED_PERCENT = new Percent(JSBI.BigInt(10000), JSBI.BigInt(10000));
 const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE);
 
@@ -18,8 +18,7 @@ export function computeTradePriceBreakdown(trade?: Trade | null): {
   priceImpactWithoutFee: Percent | undefined;
   realizedLPFee: CurrencyAmount | undefined | null;
 } {
-  // for each hop in our trade, take away the x*y=k price impact from 0.3% fees
-  // e.g. for 3 tokens/2 hops: 1 - ((1 - .03) * (1-.03))
+  // The fees 1.5% in total
   const realizedLPFee = !trade
     ? undefined
     : ONE_HUNDRED_PERCENT.subtract(

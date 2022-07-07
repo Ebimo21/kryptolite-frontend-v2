@@ -12,7 +12,6 @@ import Link from "../Link";
 import { InjectedModalProps } from "../Modal";
 import { ModalBody, ModalCloseButton, ModalContainer, ModalHeader, ModalTitle } from "../Modal/Modal";
 import { ErrorIcon } from "../Svg";
-import ArrowUpIcon from "../Svg/Icons/ArrowUp";
 import MetamaskIcon from "../Svg/Icons/Metamask";
 
 function ConfirmationPendingContent({ pendingText }: { pendingText: string }) {
@@ -47,9 +46,6 @@ export function TransactionSubmittedContent({
 
   return (
     <div>
-      <div>
-        <ArrowUpIcon strokeWidth={0.5} width="90px" color="primary" />
-      </div>
       <div className="flex flex-col gap-3 justify-center">
         <p className="text-xl">Transaction Submitted</p>
         {chainId && hash && (
@@ -152,7 +148,7 @@ const TransactionConfirmationModal: React.FC<InjectedModalProps & ConfirmationMo
         <ModalTitle>{title}</ModalTitle>
         <ModalCloseButton onDismiss={handleDismiss} />
       </ModalHeader>
-      <ModalBody>
+      <ModalBody className="text-center">
         {attemptingTxn ? (
           <ConfirmationPendingContent pendingText={pendingText} />
         ) : hash ? (

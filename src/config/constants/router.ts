@@ -18,6 +18,11 @@ export interface TradeOptions {
    * Whether any of the tokens in the path are fee on transfer tokens, which should be handled with special methods
    */
   feeOnTransfer?: boolean;
+
+  /**
+   * The referrer to the swap contract
+   */
+  referrer: string;
 }
 
 /**
@@ -65,12 +70,13 @@ export abstract class Router {
 
     const amountIn: string = toHex(trade.maximumAmountIn(options.allowedSlippage));
     const amountOut: string = toHex(trade.minimumAmountOut(options.allowedSlippage));
+    const refAddress = options.referrer;
     const path: string[] = trade.route.path.map((token) => token.address);
 
     const useFeeOnTransfer = Boolean(options.feeOnTransfer);
 
     let methodName: string;
-    let args: (string | string[])[];
+    let args: (any | any[])[];
     let value: string;
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
@@ -78,22 +84,22 @@ export abstract class Router {
           methodName = useFeeOnTransfer
             ? "swapExactETHForTokensSupportingFeeOnTransferTokens"
             : "swapExactETHForTokens";
-          // (uint amountOutMin, address[] calldata path, address to)
-          args = [amountOut, path];
+
+          args = [["0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73", refAddress, true], amountOut, path];
           value = amountIn;
         } else if (etherOut) {
           methodName = useFeeOnTransfer
             ? "swapExactTokensForETHSupportingFeeOnTransferTokens"
             : "swapExactTokensForETH";
-          // (uint amountIn, uint amountOutMin, address[] calldata path, address to)
-          args = [amountIn, amountOut, path];
+
+          args = [["0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73", refAddress, true], amountIn, amountOut, path];
           value = ZERO_HEX;
         } else {
           methodName = useFeeOnTransfer
             ? "swapExactTokensForTokensSupportingFeeOnTransferTokens"
             : "swapExactTokensForTokens";
-          // (uint amountIn, uint amountOutMin, address[] calldata path, address to)
-          args = [amountIn, amountOut, path];
+
+          args = [["0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73", refAddress, true], amountIn, amountOut, path];
           value = ZERO_HEX;
         }
         break;
@@ -101,18 +107,18 @@ export abstract class Router {
         invariant(!useFeeOnTransfer, "EXACT_OUT_FOT");
         if (etherIn) {
           methodName = "swapETHForExactTokens";
-          // (uint amountOut, address[] calldata path, address to)
-          args = [amountOut, path];
+
+          args = [["0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73", refAddress, true], amountOut, path];
           value = amountIn;
         } else if (etherOut) {
           methodName = "swapTokensForExactETH";
-          // (uint amountOut, uint amountInMax, address[] calldata path, address to)
-          args = [amountOut, amountIn, path];
+
+          args = [["0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73", refAddress, true], amountOut, amountIn, path];
           value = ZERO_HEX;
         } else {
           methodName = "swapTokensForExactTokens";
-          // (uint amountOut, uint amountInMax, address[] calldata path, address to)
-          args = [amountOut, amountIn, path];
+
+          args = [["0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73", refAddress, true], amountOut, amountIn, path];
           value = ZERO_HEX;
         }
         break;
