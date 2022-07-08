@@ -14,12 +14,12 @@ const getHeight = ({ scale = scales.MD }: InputProps) => {
   }
 };
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({ scale, className, ...rest }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ scale, className, isWarning, isSuccess, ...rest }, ref) => {
   return (
     <input
       className={cls(
-        `first-letter:rounded-2xl block text-base outline-none py-0 px-4 w-full border border-gray-400
-        disabled:cursor-not-allowed shadow-md disabled:shadow-none`,
+        `first-letter:rounded-2xl block text-base outline-none py-0 px-4 w-full border border-gray-300
+        disabled:cursor-not-allowed rounded-sm`,
         className,
       )}
       style={{ height: getHeight({ scale }) }}

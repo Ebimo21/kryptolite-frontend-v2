@@ -24,8 +24,12 @@ export default function Manage({
   return (
     <div>
       <ButtonMenu activeIndex={showLists ? 0 : 1} onItemClick={() => setShowLists((prev) => !prev)}>
-        <ButtonMenuItem className="w-1/2">Lists</ButtonMenuItem>
-        <ButtonMenuItem className="w-1/2">Tokens</ButtonMenuItem>
+        <ButtonMenuItem className="w-1/2" variant="outline">
+          Lists
+        </ButtonMenuItem>
+        <ButtonMenuItem className="w-1/2" variant="outline">
+          Tokens
+        </ButtonMenuItem>
       </ButtonMenu>
       {showLists ? (
         <ManageLists setModalView={setModalView} setImportList={setImportList} setListUrl={setListUrl} />

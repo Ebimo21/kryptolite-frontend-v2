@@ -8,8 +8,9 @@ import CurrencyInputPanel from "../../components/CurrencyInputPanel";
 import ImportTokenWarningModal from "../../components/ImportTokenWarningModal";
 import Section from "../../components/Layouts/Section";
 import useModal from "../../components/Modal/useModal";
+import CopyToClipboard from "../../components/widgets/CopyToClipboard";
 import Skeleton from "../../components/widgets/Skeleton";
-// import SlippageTabs from "../../components/widgets/TransactionSettings/TransactionSettings";
+import SlippageTabs from "../../components/widgets/TransactionSettings/TransactionSettings";
 import { CurrencyAmount } from "../../config/entities/fractions/currencyAmount";
 import { Token } from "../../config/entities/token";
 import { Trade } from "../../config/entities/trade";
@@ -26,7 +27,7 @@ import {
   useSwapActionHandlers,
   useSwapState,
 } from "../../state/swap/hooks";
-import { useUserSingleHopOnly, useUserSlippageTolerance } from "../../state/user/hooks";
+import { useUserId, useUserSingleHopOnly, useUserSlippageTolerance } from "../../state/user/hooks";
 import { maxAmountSpend } from "../../utils/maxAmountSpend";
 import { computeTradePriceBreakdown, warningSeverity } from "../../utils/prices";
 import shouldShowSwapWarning from "../../utils/shouldShowSwapWarning";
@@ -38,6 +39,7 @@ import SwapWarningModal from "./components/SwapWarningModal";
 import TradePrice from "./components/TradePrice";
 import UnsupportedCurrencyFooter from "./components/UnsupportedCurrencyFooter";
 import useRefreshBlockNumberID from "./hooks/useRefreshBlockNumber";
+import { getSiteUrl } from "../../lib/hashAddress";
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch();
@@ -298,11 +300,13 @@ export default function Swap() {
     }
   }, [hasAmount, refreshBlockNumber]);
 
+  const [userId] = useUserId();
+
   return (
     <Section padding>
       <div className="w-full justify-center relative">
         <div className="flex flex-col items-center">
-          <div className="w-[328px]  p-3 shadow-md rounded-md">
+          <div className="w-[328px]  p-3 shadow-md rounded-md border">
             <CurrencyInputHeader
               title={"Swap"}
               subtitle={"Trade tokens in an instant"}
@@ -346,7 +350,7 @@ export default function Swap() {
                   otherCurrency={currencies[Field.INPUT]}
                   id="swap-currency-output"
                 />
-                {/* <SlippageTabs /> */}
+                <SlippageTabs />
                 {showWrap ? null : (
                   <div className="flex flex-col gap-2" style={{ padding: "0 16px" }}>
                     <div className="flex gap-2 text-sm items-baseline">
@@ -453,6 +457,16 @@ export default function Swap() {
             ) : (
               <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
             )}
+          </div>
+          <div className="w-[328px]  p-3 shadow-md rounded-md border mt-10 text-sm">
+            <p>Refer a friend to trade on KryptoliteSwap and earn tokens from every trade they do.</p>
+            <ol className="list-inside list-decimal my-3 text-gray-600">
+              <li> Generate your referral link</li>
+              <li> Invite your friends to trade</li>
+              <li> Get 0.1% of any trade for life!</li>
+            </ol>
+            <CopyToClipboard content={`${getSiteUrl()}/?ref=${userId}`} />
+            <p className="my-2">Share your referral link:</p>
           </div>
         </div>
       </div>

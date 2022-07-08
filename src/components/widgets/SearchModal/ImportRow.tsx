@@ -34,7 +34,7 @@ export default function ImportRow({
 
   return (
     <div
-      className="py-1 px-20 h-14 grid gap-3 items-center md:gap-4 bg-gray-100 mb-3"
+      className="p-1 rounded-full h-14 grid gap-3 items-center md:gap-4 bg-gray-100 mb-3"
       style={{ gridTemplateColumns: "auto minmax(auto, 1fr) auto", ...style }}
     >
       <CurrencyLogo currency={token} style={{ opacity: dim ? "0.6" : "1" }} />

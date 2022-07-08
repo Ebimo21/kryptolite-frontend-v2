@@ -1,5 +1,4 @@
 /* eslint-disable no-restricted-syntax */
-import { isAddress } from "ethers/lib/utils";
 import React, { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect, Fragment } from "react";
 import { Currency, ETHER } from "../../../config/entities/currency";
 import { Token } from "../../../config/entities/token";
@@ -14,6 +13,7 @@ import useTokenComparator from "./sorting";
 import ImportRow from "./ImportRow";
 import CurrencyList from "./CurrencyList";
 import { Input } from "../../Input";
+import { isAddress } from "../../../utils";
 
 interface CurrencySearchProps {
   selectedCurrency?: Currency | null;

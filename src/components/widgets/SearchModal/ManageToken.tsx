@@ -12,6 +12,7 @@ import { Input } from "../../Input";
 import Link from "../../Link";
 import CurrencyLogo from "../../Logo/CurrencyLogo";
 import CloseIcon from "../../Svg/Icons/Close";
+import OpenNewIcon from "../../Svg/Icons/OpenNew";
 import ImportRow from "./ImportRow";
 import { CurrencyModalView } from "./types";
 
@@ -53,18 +54,20 @@ export default function ManageTokens({
     return (
       chainId &&
       userAddedTokens.map((token) => (
-        <div className="flex justify-between w-full" key={token.address}>
+        <div className="flex justify-between w-full items-center" key={token.address}>
           <div className="flex">
             <CurrencyLogo currency={token} size="20px" />
             <Link to={getBscScanLink(token.address, "address", chainId)} className="ml-3">
               {token.symbol}
             </Link>
           </div>
-          <div className="flex">
-            <Button onClick={() => removeToken(chainId, token.address)}>
-              <CloseIcon />
-            </Button>
-            <Link to={getBscScanLink(token.address, "address", chainId)} />
+          <div className="flex items-center">
+            <button onClick={() => removeToken(chainId, token.address)}>
+              <CloseIcon className="w-6 h-6 fill-red-600" />
+            </button>
+            <Link to={getBscScanLink(token.address, "address", chainId)}>
+              <OpenNewIcon className="fill-primary-600 ml-1 w-5 h-5" />
+            </Link>
           </div>
         </div>
       ))
@@ -85,7 +88,7 @@ export default function ManageTokens({
               autoComplete="off"
               ref={inputRef as RefObject<HTMLInputElement>}
               onChange={handleInput}
-              //   isWarning={!isAddressValid}
+              isWarning={!isAddressValid}
             />
           </div>
           {!isAddressValid && <p className="text-red-500 text-sm text-center">Enter valid token address</p>}
@@ -104,7 +107,7 @@ export default function ManageTokens({
             {userAddedTokens?.length} {userAddedTokens.length === 1 ? "Custom Token" : "Custom Tokens"}
           </p>
           {userAddedTokens.length > 0 && (
-            <Button onClick={handleRemoveAll} className="text-sm">
+            <Button onClick={handleRemoveAll} className="text-xs" variant="danger">
               Clear all
             </Button>
           )}
