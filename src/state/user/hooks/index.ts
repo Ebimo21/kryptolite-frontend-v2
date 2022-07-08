@@ -6,6 +6,7 @@ import { useCallback } from "react";
 import {
   addSerializedToken,
   removeSerializedToken,
+  updateUserId,
   updateUserSingleHopOnly,
   updateUserSlippageTolerance,
 } from "../actions";
@@ -68,4 +69,20 @@ export function useUserSlippageTolerance(): [number, (slippage: number) => void]
   );
 
   return [userSlippageTolerance, setUserSlippageTolerance];
+}
+
+export function useUserId(): [string, (id: string) => void] {
+  const dispatch = useDispatch<AppDispatch>();
+  const userId = useSelector<AppState, AppState["user"]["userId"]>((state) => {
+    return state.user.userId;
+  });
+
+  const setUserId = useCallback(
+    (id: string) => {
+      dispatch(updateUserId({ userId: id }));
+    },
+    [dispatch],
+  );
+
+  return [userId, setUserId];
 }

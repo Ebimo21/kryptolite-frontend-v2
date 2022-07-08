@@ -8,3 +8,4 @@ export const updateUserSingleHopOnly = createAction<{ userSingleHopOnly: boolean
 export const updateUserSlippageTolerance = createAction<{ userSlippageTolerance: number }>(
   "user/updateUserSlippageTolerance",
 );
+export const updateUserId = createAction<{ userId: string }>("user/updateUserId");

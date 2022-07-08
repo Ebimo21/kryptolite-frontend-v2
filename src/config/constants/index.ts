@@ -135,7 +135,7 @@ export const ROUTER_ADDRESS = {
 export const MIN_BNB: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)); // .01 BNB
 
 // default allowed slippage, in bips
-export const INITIAL_ALLOWED_SLIPPAGE = 150;
+export const INITIAL_ALLOWED_SLIPPAGE = 70;
 
 // 20 minutes, denominated in seconds
 export const DEFAULT_DEADLINE_FROM_NOW = 60 * 20;

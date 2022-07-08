@@ -9,7 +9,7 @@ import ImportTokenWarningModal from "../../components/ImportTokenWarningModal";
 import Section from "../../components/Layouts/Section";
 import useModal from "../../components/Modal/useModal";
 import Skeleton from "../../components/widgets/Skeleton";
-import SlippageTabs from "../../components/widgets/TransactionSettings/TransactionSettings";
+// import SlippageTabs from "../../components/widgets/TransactionSettings/TransactionSettings";
 import { CurrencyAmount } from "../../config/entities/fractions/currencyAmount";
 import { Token } from "../../config/entities/token";
 import { Trade } from "../../config/entities/trade";
@@ -179,7 +179,6 @@ export default function Swap() {
         setSwapState({ attemptingTxn: false, tradeToConfirm, swapErrorMessage: undefined, txHash: hash });
       })
       .catch((error) => {
-        console.log(error);
         setSwapState({
           attemptingTxn: false,
           tradeToConfirm,
@@ -347,7 +346,7 @@ export default function Swap() {
                   otherCurrency={currencies[Field.INPUT]}
                   id="swap-currency-output"
                 />
-                <SlippageTabs />
+                {/* <SlippageTabs /> */}
                 {showWrap ? null : (
                   <div className="flex flex-col gap-2" style={{ padding: "0 16px" }}>
                     <div className="flex gap-2 text-sm items-baseline">

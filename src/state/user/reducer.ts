@@ -1,7 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from "../../config/constants";
 import { SerializedToken } from "../../config/constants/types";
-import { updateGasPrice, addSerializedToken, removeSerializedToken, updateUserSlippageTolerance } from "./actions";
+import {
+  updateGasPrice,
+  addSerializedToken,
+  removeSerializedToken,
+  updateUserSlippageTolerance,
+  updateUserId,
+} from "./actions";
 import { GAS_PRICE_GWEI } from "./hooks/helpers";
 import { updateVersion } from "../global/actions";
 
@@ -23,6 +29,8 @@ export interface UserState {
   userDeadline: number;
   // the timestamp of the last updateVersion action
   lastUpdateVersionTimestamp?: number;
+  // Unique User Id
+  userId: string;
 }
 
 export const initialState: UserState = {
@@ -32,6 +40,7 @@ export const initialState: UserState = {
   timestamp: currentTimestamp(),
   userSingleHopOnly: false,
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
+  userId: "",
 };
 
 export default createReducer(initialState, (builder) =>
@@ -73,5 +82,8 @@ export default createReducer(initialState, (builder) =>
       state.tokens[chainId] = state.tokens[chainId] || {};
       delete state.tokens[chainId][address];
       state.timestamp = currentTimestamp();
+    })
+    .addCase(updateUserId, (state, action) => {
+      state.userId = action.payload.userId;
     }),
 );
