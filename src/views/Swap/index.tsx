@@ -62,7 +62,7 @@ export default function Swap() {
       return !(token.address in defaultTokens);
     });
 
-  const { account } = useActiveWeb3React();
+  const { account, active } = useActiveWeb3React();
 
   // get custom setting values for user
   const [allowedSlippage] = useUserSlippageTolerance();
@@ -465,7 +465,7 @@ export default function Swap() {
               <li> Invite your friends to trade</li>
               <li> Get 0.1% of any trade for life!</li>
             </ol>
-            <CopyToClipboard content={`${getSiteUrl()}/?ref=${userId}`} />
+            {<CopyToClipboard content={active ? `${getSiteUrl()}/?ref=${userId}` : "Connect your wallet"} />}
             <p className="my-2">Share your referral link</p>
           </div>
         </div>

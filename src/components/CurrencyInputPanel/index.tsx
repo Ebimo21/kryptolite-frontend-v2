@@ -122,7 +122,7 @@ export default function CurrencyInputPanel({
           ) : null}
         </div>
         {account && (
-          <p onClick={onMax} className="text-gray-500 inline cursor-pointer text-sm">
+          <p onClick={onMax} className="text-gray-500 inline cursor-pointer text-sm text-right">
             {!!currency ? `Balance: ${selectedCurrencyBalance?.toSignificant(6) ?? "Loading"}` : " -"}
           </p>
         )}

@@ -1,6 +1,10 @@
 const KRYPTOLITE_SWAP_EXTENDED = "https://tokens.pancakeswap.finance/pancakeswap-extended.json";
 const CMC = "https://tokens.pancakeswap.finance/cmc.json";
 
+/* const KRYPTOLITE_SWAP_EXTENDED = "https://kryptolite.rocks/assets/tokens/kryptoliteswap-extended.json";
+const CMC = "https://kryptolite.rocks/assets/tokens/cmc.json";
+ */
+
 // List of official tokens list
 export const OFFICIAL_LISTS = [KRYPTOLITE_SWAP_EXTENDED];
 

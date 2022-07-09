@@ -12,7 +12,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage);
 
   return (
-    <div className="flex flex-col" style={{ padding: "0 16px" }}>
+    <div className="flex flex-col py-0 px-2">
       <div className="flex justify-between w-full">
         <div className="text-sm flex gap-1 items-center">
           {isExactIn ? "Minimum received" : "Maximum sold"}
@@ -49,7 +49,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
           <TradeSummary trade={trade} allowedSlippage={allowedSlippage} />
           {showRoute && (
             <>
-              <div className="flex py-0 px-4">
+              <div className="flex py-0 px-2">
                 <span style={{ display: "flex", alignItems: "center" }}>
                   <p className="text-sm">Route</p>
                   <QuestionHelper text="Routing through these tokens resulted in the best price for your trade." />

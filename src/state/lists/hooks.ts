@@ -9,8 +9,8 @@ import { DEFAULT_LIST_OF_LISTS, OFFICIAL_LISTS, UNSUPPORTED_LIST_URLS } from "..
 import { AppState } from "../index";
 import { WrappedTokenInfo, TagInfo, TokenAddressMap, EMPTY_LIST } from "../types";
 import { ChainId } from "../../config/constants";
-import DEFAULT_TOKEN_LIST from "../../config/constants/tokenLists/pancake-default.tokenlist.json";
-import UNSUPPORTED_TOKEN_LIST from "../../config/constants/tokenLists/pancake-unsupported.tokenlist.json";
+import DEFAULT_TOKEN_LIST from "../../config/constants/tokenLists/krl-default.tokenlist.json";
+import UNSUPPORTED_TOKEN_LIST from "../../config/constants/tokenLists/krl-unsupported.tokenlist.json";
 // use ordering of default list of lists to assign priority
 function sortByListPriority(urlA: string, urlB: string) {
   const first = DEFAULT_LIST_OF_LISTS.includes(urlA) ? DEFAULT_LIST_OF_LISTS.indexOf(urlA) : Number.MAX_SAFE_INTEGER;

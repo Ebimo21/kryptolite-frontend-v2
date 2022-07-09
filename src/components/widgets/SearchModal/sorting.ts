@@ -32,6 +32,8 @@ function getTokenComparator(balances: {
     if (balanceComp !== 0) return balanceComp;
 
     if (tokenA.symbol && tokenB.symbol) {
+      // krl should take precedence
+      if (tokenA.symbol === "KRL" || tokenB.symbol === "KRL") return 1;
       // sort by symbol
       return tokenA.symbol.toLowerCase() < tokenB.symbol.toLowerCase() ? -1 : 1;
     }
