@@ -40,7 +40,7 @@ export default function Layout(props: { children: React.ReactNode }) {
                     <Updaters />
                     <Navbar />
                     {/* Fixed navbar space */}
-                    <div className="h-[90px] invisible" />
+                    <div className="h-[56px] invisible" />
                     {props.children}
                     <Footer />
                   </PersistGate>

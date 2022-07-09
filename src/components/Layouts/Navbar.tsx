@@ -22,22 +22,6 @@ export default function Navbar() {
         "shadow-lg": !open,
       })}
     >
-      <div className="bg-[#975C10] text-white w-full p-1 text-sm text-center rounded">
-        <p>
-          Bitcoin Pizza Day NFTs now available for all those who attended the{" "}
-          <span className="text-[#00FFFF]">#BitcoinPizzaDayHangout2022</span> and filled{" "}
-          <Link
-            className="text-[#00FFFF]"
-            to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform"
-          >
-            this Google form
-          </Link>
-          .{" "}
-          <Link className="text-[#00FFFF]" to="/bitcoin-pizza-day-2022">
-            Claim Yours Today!
-          </Link>
-        </p>
-      </div>
       <div className="flex flex-col py-3 px-4 lg:items-center lg:justify-between lg:flex-row md:px-6">
         <div className="flex flex-row items-center justify-between">
           <SiteLogo />

@@ -305,7 +305,10 @@ export default function Swap() {
   return (
     <Section padding>
       <div className="w-full justify-center relative">
-        <div className="flex flex-col items-center">
+        <div
+          className="flex flex-col items-center md:flex-row gap-10 md:items-start md:justify-center
+          divide-y md:divide-y-0 md:divide-x divide-gray-600 divide-solid"
+        >
           <div className="w-[328px]  p-3 shadow-md rounded-md border">
             <CurrencyInputHeader
               title={"Swap"}
@@ -458,7 +461,7 @@ export default function Swap() {
               <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
             )}
           </div>
-          <div className="w-[328px]  p-3 shadow-md rounded-md border mt-10 text-sm">
+          <div className="w-full max-w-sm p-3 shadow-md rounded-md border text-sm">
             <p>Refer a friend to trade on KryptoliteSwap and earn tokens from every trade they do.</p>
             <ol className="list-inside list-decimal my-3 text-gray-600">
               <li> Generate your referral link</li>
