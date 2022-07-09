@@ -6,6 +6,7 @@ export default function ListLogo({
   logoURI,
   style,
   alt,
+  size = "24px",
 }: {
   logoURI: string;
   size?: string;
@@ -14,5 +15,5 @@ export default function ListLogo({
 }) {
   const srcs: string[] = useHttpLocations(logoURI);
 
-  return <Logo alt={alt} width={24} height={24} srcs={srcs} style={style} />;
+  return <Logo alt={alt} width={size} height={size} srcs={srcs} style={style} />;
 }

@@ -466,7 +466,7 @@ export default function Swap() {
               <li> Get 0.1% of any trade for life!</li>
             </ol>
             <CopyToClipboard content={`${getSiteUrl()}/?ref=${userId}`} />
-            <p className="my-2">Share your referral link:</p>
+            <p className="my-2">Share your referral link</p>
           </div>
         </div>
       </div>

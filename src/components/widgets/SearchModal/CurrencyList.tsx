@@ -141,7 +141,6 @@ export default function CurrencyList({
       const handleSelect = () => onCurrencySelect(currency);
 
       const token = wrappedCurrency(currency, chainId);
-      // console.log(style);
 
       const showImport = index > currencies.length;
 
@@ -151,7 +150,10 @@ export default function CurrencyList({
             <div className="py-2 px-3 rounded-lg">
               <div className="flex justify-between">
                 <p className="text-sm">Expanded results from inactive Token Lists</p>
-                <QuestionHelper text="Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists." />
+                <QuestionHelper
+                  placement="auto-end"
+                  text="Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists."
+                />
               </div>
             </div>
           </div>
@@ -165,7 +167,7 @@ export default function CurrencyList({
       }
       return (
         <CurrencyRow
-          style={style}
+          style={{ ...style, [isSelected ? "position" : ""]: "relative" }}
           currency={currency}
           isSelected={isSelected}
           onSelect={handleSelect}

@@ -38,12 +38,12 @@ interface SwapCallEstimate {
 // and the user has approved the slippage adjusted input amount for the trade
 export function useSwapCallback(
   trade: Trade | undefined, // trade to execute, required
-  allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
+  allowedSlippage: number, // in bips
 ): { state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null } {
   const { account, chainId, library } = useActiveWeb3React();
   const gasPrice = useGasPrice();
 
-  const swapCalls = useSwapCallArguments(trade, allowedSlippage);
+  const swapCalls = useSwapCallArguments(trade, allowedSlippage + INITIAL_ALLOWED_SLIPPAGE);
 
   const addTransaction = useTransactionAdder();
 

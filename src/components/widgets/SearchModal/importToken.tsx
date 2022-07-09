@@ -45,7 +45,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
         return (
           <div key={token.address} className="grid gap-1">
             {list !== undefined ? (
-              <div className="bg-primary-400">via {list.name}</div>
+              <div className="p-2 text-base my-1">via {list.name}</div>
             ) : (
               <div className="text-red-500 text-xs my-2">This token is from an unknown source</div>
             )}

@@ -7,6 +7,7 @@ import Button from "../../Buttons/Button";
 import CurrencyLogo from "../../Logo/CurrencyLogo";
 import ListLogo from "../../Logo/ListLogo";
 import CheckmarkCircleIcon from "../../Svg/Icons/CheckmarkCircle";
+import cls from "classnames";
 
 export default function ImportRow({
   token,
@@ -14,12 +15,14 @@ export default function ImportRow({
   showImportView,
   setImportToken,
   style,
+  className,
 }: {
   token: Token;
   style?: CSSProperties;
   dim?: boolean;
   showImportView: () => void;
   setImportToken: (token: Token) => void;
+  className?: string;
 }) {
   // globals
   const { chainId } = useActiveWeb3React();
@@ -34,25 +37,26 @@ export default function ImportRow({
 
   return (
     <div
-      className="p-1 rounded-full h-14 grid gap-3 items-center md:gap-4 bg-gray-100 mb-3"
+      className={cls("px-5 w-full h-14 max-w-full grid gap-2 items-center place-content-between md:gap-4", className)}
       style={{ gridTemplateColumns: "auto minmax(auto, 1fr) auto", ...style }}
     >
-      <CurrencyLogo currency={token} style={{ opacity: dim ? "0.6" : "1" }} />
-      <div className="flex flex-col gap-1" style={{ opacity: dim ? "0.6" : "1" }}>
-        <div className="flex">
-          <p className="mr-2 text-base">{token.symbol}</p>
-          <div
-            className="whitespace-nowrap overflow-hidden overflow-ellipsis max-w-[140px] text-xs
-              text-gray-100"
-            title={token.name}
-          >
-            {token.name}
+      <CurrencyLogo currency={token} style={{ opacity: dim ? "0.6" : "1", width: 24, height: 24 }} />
+      <div className="flex flex-col" style={{ opacity: dim ? "0.6" : "1" }}>
+        <div className="flex items-center flex-wrap">
+          <p className="mr-2 text-sm">{token.symbol}</p>
+          <div>
+            <div
+              className="whitespace-nowrap overflow-hidden overflow-ellipsis max-w-[140px] text-xs"
+              title={token.name}
+            >
+              {token.name}
+            </div>
           </div>
         </div>
         {list && list.logoURI && (
-          <div className="flex">
+          <div className="flex items-center">
             <p className="text-xs md:text-sm mr-1">via {list.name}</p>
-            <ListLogo logoURI={list.logoURI} size="12px" />
+            <ListLogo logoURI={list.logoURI} size="16px" />
           </div>
         )}
       </div>
@@ -64,7 +68,7 @@ export default function ImportRow({
             }
             showImportView();
           }}
-          className="text-sm"
+          className="text-xs"
         >
           Import
         </Button>

@@ -62,8 +62,6 @@ export default function CurrencySearchModal({
     [CurrencyModalView.importList]: { title: "Import List", onBack: () => setModalView(CurrencyModalView.search) },
   };
 
-  console.log(config[modalView].onBack);
-
   return (
     <ModalContainer>
       <ModalHeader>
@@ -73,7 +71,7 @@ export default function CurrencySearchModal({
         </ModalTitle>
         <ModalCloseButton onDismiss={onDismiss} />
       </ModalHeader>
-      <ModalBody className="custom_currency_search_modal">
+      <ModalBody className="custom_currency_search_modal !py-3">
         {modalView === CurrencyModalView.search ? (
           <CurrencySearch
             onCurrencySelect={handleCurrencySelect}

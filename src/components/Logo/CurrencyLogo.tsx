@@ -34,5 +34,12 @@ export default function CurrencyLogo({
     return <BinanceIcon className="flex-none" width={size} style={style} />;
   }
 
-  return <Logo className="w-6 h-6" srcs={srcs} alt={`${currency?.symbol ?? "token"} logo`} style={style} />;
+  return (
+    <Logo
+      className="!flex-none w-6 h-6 max-w-[24px]"
+      srcs={srcs}
+      alt={`${currency?.symbol ?? "token"} logo`}
+      style={style}
+    />
+  );
 }

@@ -1,52 +1,37 @@
-import React, { useRef, useState } from "react";
-import { FaRegClipboard } from "react-icons/fa";
+import React, { useCallback, useRef, useState } from "react";
+import { copyText } from "../../../utils";
+import CopyIcon from "../../Svg/Icons/Copy";
 
 interface CopyToClipboardProps {
   title?: string;
   content: string;
 }
-export default function CopyToClipboard({
-  title,
-  content,
-}: CopyToClipboardProps) {
+export default function CopyToClipboard({ title, content }: CopyToClipboardProps) {
   const [copied, setCopied] = useState(false);
   const codeElement = useRef<HTMLElement>(null);
 
-  const copyAddress = () => {
-    const text = codeElement.current?.textContent;
-    if (text) {
-      navigator.clipboard
-        .writeText(text)
-        .then(() => {
-          setCopied(true);
-          setTimeout(() => {
-            setCopied(false);
-          }, 1500);
-        })
-        .catch(() => {
-          setCopied(false);
-        });
-    }
-  };
+  const copyHandler = useCallback(() => {
+    copyText(content, () => {
+      setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+      }, 1500);
+    });
+  }, [content]);
 
   return (
-    <div className="relative bg-slate-800 p-1 max-w-lg flex mx-auto">
-      <pre className="overflow-x-scroll md:overflow-x-visible p-1 pl-4 flex-1">
+    <div className="relative bg-gray-50 p-2 border max-w-lg flex mx-auto items-center">
+      <pre className="overflow-x-scroll md:overflow-x-visible flex-1">
         {title && `${title}:`}{" "}
-        <code ref={codeElement} onClick={copyAddress}>
+        <code ref={codeElement} onClick={copyHandler}>
           {content}
         </code>
       </pre>
-      <button
-        className="shadow shadow-gray-600 bg-dark ml-1 p-1 flex-none"
-        onClick={copyAddress}
-      >
-        <FaRegClipboard className="h-6 w-6" />
+      <button className="ml-1 p-1 flex-none rounded" onClick={copyHandler}>
+        <CopyIcon className="h-5 w-5 fill-gray-600" />
       </button>
       {copied && (
-        <span className="absolute bg-dark p-2 rounded-md ring-1 ring-gray-500 right-12 top-1/2 -translate-y-2/3 text-sm font-medium text-white">
-          Copied!
-        </span>
+        <span className="absolute bg-dark p-2 bg-white rounded-md border right-6 text-sm font-medium">Copied!</span>
       )}
     </div>
   );

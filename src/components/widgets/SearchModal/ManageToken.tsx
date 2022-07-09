@@ -54,10 +54,10 @@ export default function ManageTokens({
     return (
       chainId &&
       userAddedTokens.map((token) => (
-        <div className="flex justify-between w-full items-center" key={token.address}>
+        <div className="flex justify-between w-full items-center my-1" key={token.address}>
           <div className="flex">
             <CurrencyLogo currency={token} size="20px" />
-            <Link to={getBscScanLink(token.address, "address", chainId)} className="ml-3">
+            <Link to={getBscScanLink(token.address, "address", chainId)} className="ml-3 text-base">
               {token.symbol}
             </Link>
           </div>

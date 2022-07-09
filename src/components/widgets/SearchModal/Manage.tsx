@@ -24,10 +24,10 @@ export default function Manage({
   return (
     <div>
       <ButtonMenu activeIndex={showLists ? 0 : 1} onItemClick={() => setShowLists((prev) => !prev)}>
-        <ButtonMenuItem className="w-1/2" variant="outline">
+        <ButtonMenuItem className="w-1/2 py-2 px-1" variant="outline">
           Lists
         </ButtonMenuItem>
-        <ButtonMenuItem className="w-1/2" variant="outline">
+        <ButtonMenuItem className="w-1/2 py-2 px-1" variant="outline">
           Tokens
         </ButtonMenuItem>
       </ButtonMenu>

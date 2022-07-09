@@ -157,14 +157,14 @@ function CurrencySearch({
   const getCurrencyListRows = useCallback(() => {
     if (searchToken && !searchTokenIsAdded && !hasFilteredInactiveTokens) {
       return (
-        <div className="flex flex-col py-5 px-0 h-full">
+        <div className="flex flex-col px-0 h-full">
           <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
         </div>
       );
     }
 
     return Boolean(filteredSortedTokens?.length) || hasFilteredInactiveTokens ? (
-      <div className="my-6 -mx-6">
+      <div className="my-3 -mx-6">
         <CurrencyList
           height={390}
           showBNB={showBNB}
