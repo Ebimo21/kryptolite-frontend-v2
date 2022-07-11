@@ -1,4 +1,3 @@
-import { ParsedUrlQuery } from "querystring";
 import { useCallback, useEffect, useState } from "react";
 import { DEFAULT_INPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY } from "../../config/constants";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,9 +14,9 @@ import { Currency, ETHER } from "../../config/entities/currency";
 import { CurrencyAmount } from "../../config/entities/fractions/currencyAmount";
 import { Token } from "../../config/entities/token";
 import { Trade } from "../../config/entities/trade";
-import { useParams } from "@reach/router";
 import { isAddress } from "../../utils";
 import { useUserSlippageTolerance } from "../user/hooks";
+import { DecodedValueMap, StringParam, useQueryParams } from "use-query-params";
 
 export function useSwapState(): AppState["swap"] {
   return useSelector<AppState, AppState["swap"]>((state) => state.swap);
@@ -202,7 +201,7 @@ function parseIndependentFieldURLParameter(urlParam: any): Field {
   return typeof urlParam === "string" && urlParam.toLowerCase() === "output" ? Field.OUTPUT : Field.INPUT;
 }
 
-export function queryParametersToSwapState(parsedQs: ParsedUrlQuery | null): SwapState {
+export function queryParametersToSwapState(parsedQs: DecodedValueMap<any> | null): SwapState {
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs?.inputCurrency) || DEFAULT_INPUT_CURRENCY;
   let outputCurrency = parseCurrencyFromURLParameter(parsedQs?.outputCurrency) || DEFAULT_OUTPUT_CURRENCY;
   if (inputCurrency === outputCurrency) {
@@ -233,7 +232,8 @@ export function useDefaultsFromURLSearch():
   | undefined {
   const { chainId } = useActiveWeb3React();
   const dispatch = useDispatch<AppDispatch>();
-  const query = useParams();
+  const [query] = useQueryParams({ inputCurrency: StringParam, outputCurrency: StringParam });
+
   const [result, setResult] = useState<
     { inputCurrencyId: string | undefined; outputCurrencyId: string | undefined } | undefined
   >();

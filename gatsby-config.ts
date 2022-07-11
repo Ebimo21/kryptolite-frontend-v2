@@ -47,9 +47,8 @@ const config: GatsbyConfig = {
         offset: -100,
       },
     },
-    {
-      resolve: "gatsby-plugin-no-sourcemaps",
-    },
+    "gatsby-plugin-no-sourcemaps",
+    "gatsby-plugin-use-query-params",
   ],
 };
 
