@@ -36,23 +36,27 @@ export default function SwapModalFooter({
 
   return (
     <>
-      <div className="flex flex-col mt-6 p-4 rounded border bg-gray-100 text-sm">
-        <div className="flex items-center justify-between">
-          <p className="text-sm">Price</p>
-          <div className="text-sm flex items-center justify-center text-right pl-1">
+      <div className="flex flex-col mt-6 p-4 rounded border bg-gray-100 text-sm gap-0.5">
+        <div className="flex items-center justify-between text-xs">
+          <p>Price</p>
+          <div className="flex items-center justify-center text-right pl-1">
             {formatExecutionPrice(trade, showInverted)}
             <div onClick={() => setShowInverted(!showInverted)}>
               <AutoRenewIcon width="14px" />
             </div>
           </div>
         </div>
-
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center gap-0.5">
           <div className="flex items-center gap-1">
-            <p className="text-sm">{trade.tradeType === TradeType.EXACT_INPUT ? "Minimum received" : "Maximum sold"}</p>
-            <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
+            <p className="text-xs text-left">
+              {trade.tradeType === TradeType.EXACT_INPUT ? "Minimum received" : "Maximum sold"}
+            </p>
+            <QuestionHelper
+              placement="auto-end"
+              text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed."
+            />
           </div>
-          <div className="flex">
+          <div className="flex text-xs">
             <p className="14px">
               {trade.tradeType === TradeType.EXACT_INPUT
                 ? slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4) ?? "-"
@@ -67,8 +71,11 @@ export default function SwapModalFooter({
         </div>
         <div className="flex justify-between">
           <div className="flex items-center gap-1">
-            <p>Price Impact</p>
-            <QuestionHelper text="The difference between the market price and your price due to trade size." />
+            <p className="text-xs">Price Impact</p>
+            <QuestionHelper
+              text="The difference between the market price and your price due to trade size."
+              placement="auto-end"
+            />
           </div>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </div>
