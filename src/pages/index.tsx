@@ -39,13 +39,9 @@ export default function IndexPage() {
               className="my-5 sm:space-x-5 flex flex-col sm:flex-row items-center space-y-5 sm:space-y-0
               "
             >
-              <Link
-                to="https://pancakeswap.finance/swap?outputCurrency=0xF1288cF18B1FAaA35F40111c3E5d2f827e1E920E"
-                as="button"
-                className="inline-flex space-x-2"
-              >
+              <Link to="/swap" as="button" className="inline-flex space-x-2">
                 <RiMoneyDollarCircleFill />
-                <span>Buy $KRL</span>
+                <span>Swap</span>
               </Link>
               <Link to="/stake" as="button" className="inline-flex space-x-2" variant="outline">
                 <BsShieldFillCheck />
