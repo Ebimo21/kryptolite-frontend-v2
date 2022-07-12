@@ -7,18 +7,13 @@ import krl from "../config/abi/krlReward.json";
 import krlPool2 from "../config/abi/krlPool2.json";
 import pizzaDay from "../config/abi/pizzaDay.json";
 import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
-import { AddressZero } from "@ethersproject/constants";
 import { simpleRpcProvider } from "./providers";
-import { isAddress } from "./";
 
 // account is optional
-export function getContract(ABI: any, address: string, signer?: Signer | Provider): Contract {
-  if (!isAddress(address) || address === AddressZero) {
-    throw Error(`Invalid 'address' parameter '${address}'.`);
-  }
-
-  return new Contract(address, ABI, signer ?? simpleRpcProvider);
-}
+export const getContract = (abi: any, address: string, signer?: Signer | Provider) => {
+  const signerOrProvider = signer ?? simpleRpcProvider;
+  return new Contract(address, abi, signerOrProvider);
+};
 
 // account is not optional
 export function getSigner(library: Web3Provider, account: string): JsonRpcSigner {

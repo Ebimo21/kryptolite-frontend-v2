@@ -59,8 +59,11 @@ export const useKrlPool2Contract = () => {
 };
 
 export function useMulticallContract() {
-  const { library } = useActiveWeb3React();
-  return useMemo(() => getMulticallContract(library?.getSigner()), [library]);
+  const { library, account } = useActiveWeb3React();
+  return useMemo(
+    () => getMulticallContract(library?.getSigner("0x69A3C92cE7d543f6aaC7630E0e4Df265BdBB8c0D")), // Hack to fix unknow account #0
+    [library, account],
+  );
 }
 
 export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {

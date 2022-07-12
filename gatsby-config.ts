@@ -7,6 +7,7 @@ const config: GatsbyConfig = {
     siteUrl: `https://www.yourdomain.tld`,
     description: "KRYPTOLITE - the next 100X DeFi gem you don't want to miss",
   },
+  trailingSlash: "never",
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",

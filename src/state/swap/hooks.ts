@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { DEFAULT_INPUT_CURRENCY, DEFAULT_OUTPUT_CURRENCY } from "../../config/constants";
 import { useDispatch, useSelector } from "react-redux";
 import useActiveWeb3React from "../../hooks/useActiveWeb3React";
@@ -234,8 +234,9 @@ export function useDefaultsFromURLSearch():
   const { chainId } = useActiveWeb3React();
   const dispatch = useDispatch<AppDispatch>();
   const location = useLocation();
+
   const search = location.search;
-  const query = parse(search);
+  const query = useMemo(() => parse(search), [search]);
   const [result, setResult] = useState<
     { inputCurrencyId: string | undefined; outputCurrencyId: string | undefined } | undefined
   >();
@@ -254,7 +255,7 @@ export function useDefaultsFromURLSearch():
     );
 
     setResult({ inputCurrencyId: parsed[Field.INPUT].currencyId, outputCurrencyId: parsed[Field.OUTPUT].currencyId });
-  }, [dispatch, chainId, query, location]);
+  }, [dispatch, chainId, query]);
 
   return result;
 }
