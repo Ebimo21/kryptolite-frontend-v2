@@ -401,7 +401,7 @@ export default function Swap() {
                       variant={approval === ApprovalState.APPROVED ? "primary" : "danger"}
                       onClick={approveCallback}
                       disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                      className="w-[48%]"
+                      className="w-[48%] text-sm"
                     >
                       {approval === ApprovalState.PENDING ? (
                         <div className="flex gap-1 justify-center">{"Enabling..."}</div>
@@ -422,7 +422,7 @@ export default function Swap() {
                         });
                         onPresentConfirmModal();
                       }}
-                      className="w-[48%]"
+                      className="w-[48%] text-sm"
                       id="swap-button"
                       disabled={!isValid || approval !== ApprovalState.APPROVED || priceImpactSeverity > 3}
                     >
@@ -442,7 +442,7 @@ export default function Swap() {
                       onPresentConfirmModal();
                     }}
                     id="swap-button"
-                    className="w-full"
+                    className="w-full text-sm"
                     disabled={!isValid || priceImpactSeverity > 3 || !!swapCallbackError}
                   >
                     {swapInputError ||
