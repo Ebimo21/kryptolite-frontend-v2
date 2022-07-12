@@ -16,7 +16,8 @@ import { Token } from "../../config/entities/token";
 import { Trade } from "../../config/entities/trade";
 import { isAddress } from "../../utils";
 import { useUserSlippageTolerance } from "../user/hooks";
-import { DecodedValueMap, StringParam, useQueryParams } from "use-query-params";
+import { parse, ParsedQuery } from "query-string";
+import { useLocation } from "@reach/router";
 
 export function useSwapState(): AppState["swap"] {
   return useSelector<AppState, AppState["swap"]>((state) => state.swap);
@@ -201,7 +202,7 @@ function parseIndependentFieldURLParameter(urlParam: any): Field {
   return typeof urlParam === "string" && urlParam.toLowerCase() === "output" ? Field.OUTPUT : Field.INPUT;
 }
 
-export function queryParametersToSwapState(parsedQs: DecodedValueMap<any> | null): SwapState {
+export function queryParametersToSwapState(parsedQs: ParsedQuery | null): SwapState {
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs?.inputCurrency) || DEFAULT_INPUT_CURRENCY;
   let outputCurrency = parseCurrencyFromURLParameter(parsedQs?.outputCurrency) || DEFAULT_OUTPUT_CURRENCY;
   if (inputCurrency === outputCurrency) {
@@ -232,12 +233,9 @@ export function useDefaultsFromURLSearch():
   | undefined {
   const { chainId } = useActiveWeb3React();
   const dispatch = useDispatch<AppDispatch>();
-  const [query] = useQueryParams({
-    inputCurrency: StringParam,
-    outputCurrency: StringParam,
-    exactAmount: StringParam,
-    exactField: StringParam,
-  });
+  const location = useLocation();
+  const search = location.search;
+  const query = parse(search);
   const [result, setResult] = useState<
     { inputCurrencyId: string | undefined; outputCurrencyId: string | undefined } | undefined
   >();
@@ -256,7 +254,7 @@ export function useDefaultsFromURLSearch():
     );
 
     setResult({ inputCurrencyId: parsed[Field.INPUT].currencyId, outputCurrencyId: parsed[Field.OUTPUT].currencyId });
-  }, [dispatch, chainId, query]);
+  }, [dispatch, chainId, query, location]);
 
   return result;
 }

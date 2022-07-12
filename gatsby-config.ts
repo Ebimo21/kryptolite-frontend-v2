@@ -48,7 +48,6 @@ const config: GatsbyConfig = {
       },
     },
     "gatsby-plugin-no-sourcemaps",
-    "gatsby-plugin-use-query-params",
   ],
 };
 

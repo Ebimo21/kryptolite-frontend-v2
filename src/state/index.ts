@@ -86,6 +86,7 @@ export function makeStore(preloadedState = undefined) {
         thunk: true,
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          ignoredPaths: ["lists"],
         },
       }),
     devTools: process.env.NODE_ENV === "development",
