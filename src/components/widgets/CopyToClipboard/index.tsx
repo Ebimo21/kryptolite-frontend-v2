@@ -5,31 +5,35 @@ import CopyIcon from "../../Svg/Icons/Copy";
 interface CopyToClipboardProps {
   title?: string;
   content: string;
+  canCopy?: boolean;
 }
-export default function CopyToClipboard({ title, content }: CopyToClipboardProps) {
+export default function CopyToClipboard({ title, content, canCopy }: CopyToClipboardProps) {
   const [copied, setCopied] = useState(false);
   const codeElement = useRef<HTMLElement>(null);
 
   const copyHandler = useCallback(() => {
-    copyText(content, () => {
-      setCopied(true);
-      setTimeout(() => {
-        setCopied(false);
-      }, 1500);
-    });
+    canCopy &&
+      copyText(content, () => {
+        setCopied(true);
+        setTimeout(() => {
+          setCopied(false);
+        }, 1500);
+      });
   }, [content]);
 
   return (
     <div className="relative bg-gray-50 p-2 border max-w-lg flex mx-auto items-center">
       <pre className="overflow-x-scroll md:overflow-x-visible flex-1">
         {title && `${title}:`}{" "}
-        <code ref={codeElement} onClick={copyHandler}>
+        <code ref={codeElement} onClick={copyHandler} className="overflow-x-auto">
           {content}
         </code>
       </pre>
-      <button className="ml-1 p-1 flex-none rounded" onClick={copyHandler}>
-        <CopyIcon className="h-5 w-5 fill-gray-600" />
-      </button>
+      {canCopy && (
+        <button className="ml-1 p-1 flex-none rounded" onClick={copyHandler}>
+          <CopyIcon className="h-5 w-5 fill-gray-600" />
+        </button>
+      )}
       {copied && (
         <span className="absolute bg-dark p-2 bg-white rounded-md border right-6 text-sm font-medium">Copied!</span>
       )}

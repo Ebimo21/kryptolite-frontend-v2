@@ -40,6 +40,8 @@ import TradePrice from "./components/TradePrice";
 import UnsupportedCurrencyFooter from "./components/UnsupportedCurrencyFooter";
 import useRefreshBlockNumberID from "./hooks/useRefreshBlockNumber";
 import { getSiteUrl } from "../../lib/hashAddress";
+import { getKrlRefereeTrackerContract } from "../../utils/contractHelpers";
+import BigNumber from "bignumber.js";
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch();
@@ -62,7 +64,7 @@ export default function Swap() {
       return !(token.address in defaultTokens);
     });
 
-  const { account, active } = useActiveWeb3React();
+  const { account, active, library } = useActiveWeb3React();
 
   // get custom setting values for user
   const [allowedSlippage] = useUserSlippageTolerance();
@@ -302,6 +304,22 @@ export default function Swap() {
 
   const [userId] = useUserId();
 
+  const [referralCount, setReferralCount] = useState(0);
+  useEffect(() => {
+    try {
+      (async () => {
+        if (account && library) {
+          const contract = getKrlRefereeTrackerContract(library.getSigner(account));
+          const { _hex } = await contract.referralCount(account);
+          const count = new BigNumber(_hex).toNumber();
+          setReferralCount(count);
+        }
+      })();
+    } catch (error) {
+      // console.log(error)
+      setReferralCount(0);
+    }
+  }, [account, library]);
   return (
     <Section padding>
       <div className="w-full justify-center relative">
@@ -470,6 +488,10 @@ export default function Swap() {
             </ol>
             {<CopyToClipboard content={active ? `${getSiteUrl()}/?ref=${userId}` : "Connect your wallet"} />}
             <p className="my-2">Share your referral link</p>
+            <div className="border-t mt-5 pt-5">
+              <h3>Total referrals:</h3>
+              <p className="text-gray-500">{referralCount === 0 ? "No referral yet" : referralCount}</p>
+            </div>
           </div>
         </div>
       </div>

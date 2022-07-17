@@ -63,6 +63,10 @@ export const addresses = {
     97: "",
     56: "0x1C03768153bd9883f4997482F8841029e905250D",
   },
+  kryptoliteSwapRefereeTracker: {
+    97: "",
+    56: "0xf284A1FaCD86360DA814FE441e49F118cE5db097",
+  },
   btcPizzaDay: {
     97: "0x28305505a077a69A577092018D38ab59b233BeA6",
     56: "0x4Eac34a0d67214B5E7f950aFeE942DE5F938349c",

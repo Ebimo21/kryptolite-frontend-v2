@@ -11,3 +11,4 @@ export const getKrlAddress = () => getAddress(addresses.kryptolite);
 export const getKrlPool2Address = () => getAddress(addresses.kryptolitePool2);
 export const getMulticallAddress = () => getAddress(addresses.multiCall);
 export const getPizzaDayAddress = () => getAddress(addresses.btcPizzaDay);
+export const getKrlRefereeTrackerAddress = () => getAddress(addresses.kryptoliteSwapRefereeTracker);

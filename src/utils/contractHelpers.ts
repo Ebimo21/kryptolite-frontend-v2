@@ -1,6 +1,12 @@
 import { Contract, Signer } from "ethers";
 import { Provider } from "@ethersproject/providers";
-import { getKrlAddress, getKrlPool2Address, getMulticallAddress, getPizzaDayAddress } from "./addressHelpers";
+import {
+  getKrlAddress,
+  getKrlPool2Address,
+  getKrlRefereeTrackerAddress,
+  getMulticallAddress,
+  getPizzaDayAddress,
+} from "./addressHelpers";
 import bep20Abi from "../config/abi/erc20.json";
 import MultiCallAbi from "../config/abi/Multicall.json";
 import krl from "../config/abi/krlReward.json";
@@ -8,6 +14,7 @@ import krlPool2 from "../config/abi/krlPool2.json";
 import pizzaDay from "../config/abi/pizzaDay.json";
 import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
 import { simpleRpcProvider } from "./providers";
+import KrlRefTracker from "../config/abi/KrlRefTracker.json";
 
 // account is optional
 export const getContract = (abi: any, address: string, signer?: Signer | Provider) => {
@@ -42,3 +49,7 @@ export const getMulticallContract = (signer?: Signer | Provider) => {
 };
 
 export const getPizzaDayContract = (signer?: Signer | Provider) => getContract(pizzaDay, getPizzaDayAddress(), signer);
+
+export const getKrlRefereeTrackerContract = (signer?: Signer | Provider) => {
+  return getContract(KrlRefTracker, getKrlRefereeTrackerAddress(), signer);
+};

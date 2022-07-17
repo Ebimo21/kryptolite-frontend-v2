@@ -8,7 +8,7 @@ export const navigationItems: {
     title: "Swap",
     href: "/swap",
   },
-  { id: 2, title: "Stake $KRL", href: "/stake" },
+  { id: 2, title: "Stake", href: "/stake" },
   {
     id: 3,
     title: "Contract",
