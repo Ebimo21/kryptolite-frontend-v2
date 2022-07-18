@@ -495,7 +495,9 @@ export default function Swap() {
             <p className="my-2">Share your referral link</p>
             <div className="border-t mt-5 pt-5">
               <h3>Total referrals:</h3>
-              <p className="text-gray-500">{referralCount === 0 ? "No referral yet" : referralCount}</p>
+              <p className="text-gray-500">
+                {referralCount === 0 ? "No referral yet" : referralCount + " Total referrals"}{" "}
+              </p>
             </div>
           </div>
         </div>
