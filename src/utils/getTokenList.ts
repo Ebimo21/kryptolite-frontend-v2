@@ -19,7 +19,9 @@ export default async function getTokenList(listUrl: string): Promise<TokenList> 
     const isLast = i === urls.length - 1;
     let response;
     try {
-      response = await fetch(url);
+      response = await fetch(url, {
+        headers: { Accept: "application/json" },
+      });
     } catch (error) {
       console.error("Failed to fetch list", listUrl, error);
       if (isLast) throw new Error(`Failed to download list ${listUrl}`);

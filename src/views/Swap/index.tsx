@@ -327,7 +327,7 @@ export default function Swap() {
           className="flex flex-col items-center md:flex-row gap-10 md:items-start md:justify-center
           divide-y md:divide-y-0 md:divide-x divide-gray-600 divide-solid"
         >
-          <div className="w-[328px]  p-3 shadow-md rounded-md border">
+          <div className="w-[328px] shrink-0  p-3 shadow-md rounded-md border">
             <CurrencyInputHeader
               title={"Swap"}
               subtitle={"Trade tokens in an instant"}
@@ -486,7 +486,12 @@ export default function Swap() {
               <li> Invite your friends to trade</li>
               <li> Get 0.1% of any trade for life!</li>
             </ol>
-            {<CopyToClipboard canCopy={active} content={active ? `${getSiteUrl()}/?ul=${userId}` : "Connect your wallet"} />}
+            {
+              <CopyToClipboard
+                canCopy={active}
+                content={active ? `${getSiteUrl()}/?ul=${userId}` : "Connect your wallet"}
+              />
+            }
             <p className="my-2">Share your referral link</p>
             <div className="border-t mt-5 pt-5">
               <h3>Total referrals:</h3>
