@@ -42,7 +42,7 @@ export default function AppContext({ children }: { children: React.ReactNode }) 
   const [balance, setBalance] = useState("0.000");
   // Refferal
   const [refAddress, setRefAddress] = useState(NULL_ADDRESS);
-  const refFromParams = useQuery().get("ref");
+  const refFromParams = useQuery().get("ul");
   // User ID
   const [, setUserId] = useUserId();
 
