@@ -7,7 +7,7 @@ interface CopyToClipboardProps {
   content: string;
   canCopy?: boolean;
 }
-export default function CopyToClipboard({ title, content, canCopy }: CopyToClipboardProps) {
+export default function CopyToClipboard({ title, content, canCopy = true }: CopyToClipboardProps) {
   const [copied, setCopied] = useState(false);
   const codeElement = useRef<HTMLElement>(null);
 

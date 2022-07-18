@@ -486,7 +486,7 @@ export default function Swap() {
               <li> Invite your friends to trade</li>
               <li> Get 0.1% of any trade for life!</li>
             </ol>
-            {<CopyToClipboard content={active ? `${getSiteUrl()}/?ref=${userId}` : "Connect your wallet"} />}
+            {<CopyToClipboard canCopy={active} content={active ? `${getSiteUrl()}/?ul=${userId}` : "Connect your wallet"} />}
             <p className="my-2">Share your referral link</p>
             <div className="border-t mt-5 pt-5">
               <h3>Total referrals:</h3>
