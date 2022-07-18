@@ -23,9 +23,9 @@ export default function CopyToClipboard({ title, content, canCopy = true }: Copy
 
   return (
     <div className="relative bg-gray-50 p-2 border max-w-lg flex mx-auto items-center">
-      <pre className="overflow-x-scroll md:overflow-x-visible flex-1">
+      <pre className="overflow-x-auto flex-1">
         {title && `${title}:`}{" "}
-        <code ref={codeElement} onClick={copyHandler} className="overflow-x-auto">
+        <code ref={codeElement} onClick={copyHandler}>
           {content}
         </code>
       </pre>

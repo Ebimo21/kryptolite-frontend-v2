@@ -489,7 +489,7 @@ export default function Swap() {
             {
               <CopyToClipboard
                 canCopy={active}
-                content={active ? `${getSiteUrl()}/?ul=${userId}` : "Connect your wallet"}
+                content={active ? `${getSiteUrl()}/swap?ul=${userId}` : "Connect your wallet"}
               />
             }
             <p className="my-2">Share your referral link</p>
