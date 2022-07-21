@@ -44,12 +44,13 @@ const roadMap = [
         checked: true,
       },
       {
+        text: "Futher development of partnerships & recruitment of buyers and sellers on the network via incentive campaigns.",
+        checked: true,
+      },
+      {
         text: "CMC listing.",
       },
       { text: "Coin Gecko listing." },
-      {
-        text: "Futher development of partnerships & recruitment of buyers and sellers on the network via incentive campaigns.",
-      },
     ],
   },
   {
@@ -152,9 +153,7 @@ const LeftLeaf = ({ label, content }: TimelineLeafProps) => {
       className="mb-8 flex flex-col items-center w-full flex-wrap lg:flex-row-reverse
       lg:justify-end gap-5"
     >
-      <div className="p-2 bg-white border border-primary-300 text-primary-700 rounded">
-        {label}
-      </div>
+      <div className="p-2 bg-white border border-primary-300 text-primary-700 rounded">{label}</div>
       <div className="w-1/12 bg-primary-500 h-1 mb-2 lg:mb-0"></div>
       <div
         className="bg-white rounded-lg shadow-lg w-full lg:w-5/12 pl-6 p-4
@@ -173,9 +172,7 @@ const RightLeaf = ({ label, content }: TimelineLeafProps) => {
       lg:justify-end gap-5"
     >
       <div className="order-1 w-1/12 bg-primary-500 h-1 mb-2 lg:mb-0"></div>
-      <div className="p-2 bg-white border border-primary-300 text-primary-700 rounded">
-        {label}
-      </div>
+      <div className="p-2 bg-white border border-primary-300 text-primary-700 rounded">{label}</div>
       <div
         className="order-1 bg-white rounded-lg shadow-lg w-full lg:w-5/12 pl-6 p-4
       border-primary-200 border"
@@ -194,11 +191,7 @@ export default function SimpleTimeline() {
       <div className="relative overflow-hidden py-10 w-full flex flex-col items-stretch">
         {roadMap.map((item) => {
           return isOdd(item.id) ? (
-            <RightLeaf
-              key={item.id}
-              label={item.label}
-              content={item.content}
-            />
+            <RightLeaf key={item.id} label={item.label} content={item.content} />
           ) : (
             <LeftLeaf key={item.id} label={item.label} content={item.content} />
           );

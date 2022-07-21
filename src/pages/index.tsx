@@ -245,7 +245,12 @@ for our community`,
         <li>NFT'S powered</li>
         <li>Fair launch with presale and reasonable token pricing</li>
         <li>LP locked in PancakeSwap until 2030</li>
-        <li>Team tokens locked for 36 months after launch by TrustSwap and can be verified HERE</li>
+        <li>
+          Team tokens locked for 36 months after launch by TrustSwap and can be verified{" "}
+          <Link to="https://team.finance/view-coin/0xF1288cF18B1FAaA35F40111c3E5d2f827e1E920E?name=KRYPTOLITE&symbol=$KRL">
+            HERE
+          </Link>
+        </li>
       </ul>
     ),
     image: <HiUserGroup className="text-primary-800 h-12 w-12" />,
