@@ -94,7 +94,7 @@ export default function IndexPage() {
       <Section className="!px-0 md:!px-8">
         <div
           className="mx-auto my-16 flex flex-col px-4 md:px-0
-          md:flex-row md:justify-between md:items-center gap-3 text-center md:text-left"
+          md:flex-row md:justify-between md:items-center gap-3 text-left"
         >
           <div className="w-full pt-10 space-y-6">
             <h1 className="font-bold">Bitcoin Pizza Day Hangout 2022 NFT</h1>

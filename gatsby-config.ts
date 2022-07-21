@@ -1,6 +1,10 @@
 import path from "path";
 import type { GatsbyConfig } from "gatsby";
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `KRYPTOLITE - the next 100X DeFi gem you don't want to miss`,
@@ -49,6 +53,20 @@ const config: GatsbyConfig = {
       },
     },
     "gatsby-plugin-no-sourcemaps",
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: process.env.GA_TRACKING_ID,
+
+        // Include GTM in development.
+        //
+        // Defaults to false meaning GTM will only be loaded in production.
+        includeInDevelopment: true,
+
+        // Defaults to false
+        enableWebVitalsTracking: true,
+      },
+    },
   ],
 };
 

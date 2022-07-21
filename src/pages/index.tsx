@@ -27,7 +27,7 @@ export default function IndexPage() {
       <Section className="!px-0 md:!px-8 !max-w-screen-lg">
         <div
           className="mx-auto my-16 flex flex-col-reverse px-4 md:px-0
-          md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"
+          md:flex-row md:justify-between md:item-center gap-3 text-left"
         >
           <div className="w-full pt-10 space-y-6">
             <h1 className="uppercase font-light text-primary-700">{highlighText("Advanced")} DeFi protocol</h1>
@@ -73,18 +73,11 @@ export default function IndexPage() {
           </div>
         </div>
       </Section>
-      <Section className="text-center flex flex-col items-center !max-w-screen-lg" padding={true}>
+      <Section className="flex flex-col items-center !max-w-screen-lg" padding={true}>
         <p className="text-xl md:text-3xl text-primary-900 font-medium">
           The Kryptolite Universe is designed to allow our community tap into and utilize the full potential of
           Decentralized Finance without the demands of active portfolio management.
         </p>
-        <Link
-          to="https://pancakeswap.finance/swap?outputCurrency=0xF1288cF18B1FAaA35F40111c3E5d2f827e1E920E"
-          as="button"
-          className="mt-10 block w-auto"
-        >
-          Buy $KRL Today
-        </Link>
       </Section>
       <Section containerClass="bg-primary-50" className="flex flex-col items-start md:flex-row" padding>
         <div className="max-w-sm w-full mx-auto mb-10 md:mb-0">

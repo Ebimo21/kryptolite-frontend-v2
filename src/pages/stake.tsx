@@ -16,7 +16,7 @@ export default function StakePage() {
       <Section padding className="!px-0 md:!px-8 !max-w-screen-lg">
         <div
           className="md:h[700px] mx-auto flex flex-col-reverse px-4 md:px-0
-          md:flex-row md:justify-between md:item-center gap-3 text-center md:text-left"
+          md:flex-row md:justify-between md:item-center gap-3"
         >
           <div className="w-full pt-10 space-y-6">
             <h1 className="uppercase font-light text-primary-700">{highlighText("KRYPTOLITE")} LP Rewards</h1>
