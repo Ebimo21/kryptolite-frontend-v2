@@ -35,7 +35,7 @@ export default function IndexPage() {
               KRYPTOLITE is the first hybrid protocol that leverages Proof-of-Personhood, Proof-of-Stake and human work
               to create a platform that is fast, inclusive and resilient to attacks.
             </p>
-            <div className="my-5 sm:space-x-5 flex flex-row items-center space-y-5 sm:space-y-0">
+            <div className="my-5 flex flex-row items-center gap-5">
               <Link to="/swap" as="button" className="inline-flex space-x-2">
                 <RiMoneyDollarCircleFill />
                 <span>Swap</span>
