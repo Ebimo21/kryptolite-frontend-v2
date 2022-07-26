@@ -5,6 +5,8 @@ import Link from "../Link";
 import Section from "./Section";
 import cls from "classnames";
 import ConnectWalletButton from "../Buttons/ConnectWalletButton";
+import Button from "../Buttons/Button";
+import { BiCaretDown } from "react-icons/bi";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -51,20 +53,52 @@ export default function Navbar() {
         </div>
         <nav className={`${open ? "block" : "hidden"} md:block`}>
           <ul className="flex flex-col gap-1 flex-grow pb-4 md:pb-0 md:flex-row md:justify-end md:items-center">
-            {navigationItems.map((nav) => (
-              <li key={nav.id} className="inline-block mt-2 md:mt-0 text-lg">
-                <Link
-                  to={nav.href}
-                  className="!px-4 !block !py-2 !font-normal !bg-transparent !rounded-lg
+            {navigationItems.map((nav) => {
+              if (nav.children) {
+                return (
+                  <li key={nav.id} className="inline-block mt-2 md:mt-0 text-lg">
+                    <Button
+                      className="!px-4 !py-2 !font-normal !bg-transparent !rounded-lg
                   !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
-                  hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none
-                    focus:!shadow-outline !text-base"
-                  onClick={closeMenu}
-                >
-                  {nav.title}
-                </Link>
-              </li>
-            ))}
+                  hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none !text-base
+                  flex items-center gap-2 group relative mx-1"
+                      onClick={closeMenu}
+                    >
+                      {nav.title}
+                      <BiCaretDown />
+                      <div
+                        className="invisible group-hover:visible top-full shadow-md absolute bg-white
+                        py-3 flex flex-col w-52 text-left border rounded-sm"
+                      >
+                        {nav.children.map((n) => (
+                          <Link
+                            to={n.href}
+                            className="!px-4 !block !py-2 !font-normal !bg-transparent
+                          !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
+                          hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none !text-base"
+                          >
+                            {n.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </Button>
+                  </li>
+                );
+              }
+              return (
+                <li key={nav.id} className="inline-block mt-2 md:mt-0 text-lg">
+                  <Link
+                    to={nav.href}
+                    className="!px-4 !block !py-2 !font-normal !bg-transparent !rounded-lg
+                  !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
+                  hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none !text-base"
+                    onClick={closeMenu}
+                  >
+                    {nav.title}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="inline-block mt-2 md:mt-0 text-lg">
               <ConnectWalletButton />
             </li>

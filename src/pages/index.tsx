@@ -16,6 +16,7 @@ import { FaInfoCircle } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import SimpleTimeline from "../components/widgets/SimpleTimeline";
 import OurPartnersSection from "../components/SharedSections/OurPartnersSection";
+import { MdSwapHorizontalCircle } from "react-icons/md";
 
 export default function IndexPage() {
   return (
@@ -24,29 +25,29 @@ export default function IndexPage() {
         title="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
         description="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
       />
-      <Section className="!px-0 md:!px-8 !max-w-screen-lg">
+      <Section padding className="flex flex-col gap-10 items-stretch">
         <div
-          className="mx-auto my-16 flex flex-col-reverse px-4 md:px-0
-          md:flex-row md:justify-between md:item-center gap-3"
+          className="mx-auto flex flex-col-reverse w-full
+          md:flex-row md:justify-between md:item-center gap-3 text-left"
         >
           <div className="w-full pt-10 space-y-6">
-            <h1 className="uppercase font-light text-primary-700">{highlighText("Advanced")} DeFi protocol</h1>
-            <p className="md:text-xl max-w-2xl text-justify">
+            <h1 className="uppercase font-normal text-primary-700">{highlighText("Advanced")} DeFi protocol</h1>
+            <p className="md:text-xl max-w-2xl">
               KRYPTOLITE is the first hybrid protocol that leverages Proof-of-Personhood, Proof-of-Stake and human work
               to create a platform that is fast, inclusive and resilient to attacks.
             </p>
             <div className="my-5 flex flex-row items-center gap-5">
-              <Link to="/swap" as="button" className="inline-flex space-x-2">
-                <RiMoneyDollarCircleFill />
+              <Link to="/swap" as="button" className="inline-flex space-x-2 rounded-none">
+                <MdSwapHorizontalCircle />
                 <span>Swap</span>
               </Link>
-              <Link to="/stake" as="button" className="inline-flex space-x-2" variant="outline">
+              <Link to="/stake" as="button" className="inline-flex space-x-2 rounded-none" variant="outline">
                 <BsShieldFillCheck />
                 <span>Stake $KRL</span>
               </Link>
             </div>
           </div>
-          <div className="flex-shrink-0 mx-auto max-w-sm w-full px-10 mt-5">
+          <div className="flex-shrink-0 mx-auto max-w-sm w-full px-10 mt-5 hidden md:block">
             <StaticImage
               src="../images/hero-image.png"
               alt="KRYPTOLITE Logo"
@@ -56,7 +57,7 @@ export default function IndexPage() {
             />
           </div>
         </div>
-        <div className="bg-white w-full p-0 md:p-5 shadow-xl shadow-gray-200 rounded-md mt-5">
+        <div className="bg-white w-full p-0 md:p-5 shadow-xl shadow-gray-200 rounded-md mt-16">
           <div className="w-full pt-[56.25%] relative bg-black">
             <ReactPlayer
               url="https://youtu.be/Firr6Q8qccY"
@@ -71,7 +72,7 @@ export default function IndexPage() {
         </div>
       </Section>
       <Section className="flex flex-col items-center !max-w-screen-lg" padding={true}>
-        <p className="text-xl md:text-3xl text-primary-900 font-medium">
+        <p className="text-xl md:text-3xl md:text-center text-primary-900 font-medium">
           The Kryptolite Universe is designed to allow our community tap into and utilize the full potential of
           Decentralized Finance without the demands of active portfolio management.
         </p>
@@ -83,7 +84,7 @@ export default function IndexPage() {
           </div>
         </div>
         <div className="w-full space-y-5">
-          <h2>What is {highlighText("More")}</h2>
+          <h2 className="md:text-center">What is {highlighText("More")}</h2>
           <p>
             The KRL token is a unique utility token for the Kryptolite Universe (a.k.a KRYPTOVERSE) that is used for:
           </p>
@@ -108,7 +109,7 @@ export default function IndexPage() {
       <Section padding={true}>
         <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-center">
           <div className="space-y-5">
-            <h2>{highlighText("Benefits")} of investing in KRL</h2>
+            <h2 className="md:text-center">{highlighText("Benefits")} of investing in KRL</h2>
             <p>
               KRYPTOLITE allows for high yield trading — yield farming — that enables investors to borrow and stake
               their cryptocurrencies at considerably higher rates compared to traditional banking and investments.
@@ -140,7 +141,7 @@ export default function IndexPage() {
             </div>
           </div>
           <div className="w-full space-y-4">
-            <h2>{highlighText("Hold and Stake")} $KRL</h2>
+            <h2 className="md:text-center">{highlighText("Hold and Stake")} $KRL</h2>
             <p>
               KRYPTOLITE is designed to reward the community, through unique mechanisms. Users are encouraged to
               accumulate and stake $KRL in order to get the most returns from our PoS algorithm.

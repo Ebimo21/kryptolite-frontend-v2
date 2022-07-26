@@ -19,7 +19,7 @@ export default function StakePage() {
           md:flex-row md:justify-between md:item-center gap-3"
         >
           <div className="w-full pt-10 space-y-6">
-            <h1 className="uppercase font-light text-primary-700">{highlighText("KRYPTOLITE")} LP Rewards</h1>
+            <h1 className="uppercase font-normal text-primary-700">{highlighText("KRYPTOLITE")} LP Rewards</h1>
             <p>
               Stake your KRL-BUSD LP tokens from providing liquidity in the KRL/BUSD pair on PancakeSwap and be eligible
               for additional rewards from the bonus staking pool! Participants in the Rewards Program gain rewards based

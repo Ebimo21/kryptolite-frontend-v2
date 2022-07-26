@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply font-montserrat text-lg;
+    @apply font-sans text-lg;
   }
 
   h1 {
@@ -27,7 +27,7 @@
   h4,
   h5,
   h6 {
-    @apply font-montserrat font-medium leading-tight;
+    @apply font-sans font-medium leading-tight;
   }
 }
 
