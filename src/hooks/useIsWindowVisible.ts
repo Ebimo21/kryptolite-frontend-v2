@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const VISIBILITY_STATE_SUPPORTED = "visibilityState" in document;
+const VISIBILITY_STATE_SUPPORTED = typeof window !== "undefined" && "visibilityState" in document;
 
 function isWindowVisible() {
   if (!VISIBILITY_STATE_SUPPORTED) {

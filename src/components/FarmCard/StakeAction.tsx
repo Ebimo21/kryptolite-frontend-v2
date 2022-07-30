@@ -8,7 +8,7 @@ import { useLpTokenPrice } from "../../state/farms/hooks";
 import { getBalanceAmount, getBalanceNumber } from "../../utils/formatBalance";
 import useUnstakeFarms from "../../hooks/useUnStakeFarms";
 import useStakeFarms from "../../hooks/useStakeFarms";
-import useModal from "../widgets/Modal/useModal";
+import useModal from "../Modal/useModal";
 import Button from "../Buttons/Button";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { DepositModal } from "./DepositModal";
@@ -56,13 +56,11 @@ const StakeAction = ({
 
   const handleUnstake = async (amount: string) => {
     await onUnstake(amount);
-    if (account && pid)
-      dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }));
+    if (account && pid) dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }));
   };
 
   const displayBalance = useCallback(() => {
-    const stakedBalanceBigNumber =
-      stakedBalance && getBalanceAmount(stakedBalance);
+    const stakedBalanceBigNumber = stakedBalance && getBalanceAmount(stakedBalance);
     if (stakedBalanceBigNumber?.gt(0) && stakedBalanceBigNumber.lt(0.0000001)) {
       return "<0.0000001";
     }
@@ -85,14 +83,10 @@ const StakeAction = ({
       displayApr={displayApr}
       addLiquidityUrl={addLiquidityUrl}
       cakePrice={cakePrice || new BigNumber(0)}
-    />
+    />,
   );
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal
-      max={stakedBalance || new BigNumber(0)}
-      onConfirm={handleUnstake}
-      tokenName={tokenName}
-    />
+    <WithdrawModal max={stakedBalance || new BigNumber(0)} onConfirm={handleUnstake} tokenName={tokenName} />,
   );
   const disabledClass = stakedBalance?.eq(0) ? "text-gray-500 opacity-50" : "";
 
@@ -100,42 +94,25 @@ const StakeAction = ({
     return stakedBalance?.eq(0) ? (
       <React.Fragment>
         <div>
-          <div className="text-xs mb-2 font-bold text-gray-600">
-            {ended ? "LEAVE STAKING" : "ENTER STAKING"}
-          </div>
+          <div className="text-xs mb-2 font-bold text-gray-600">{ended ? "LEAVE STAKING" : "ENTER STAKING"}</div>
         </div>
-        <Button
-          className="w-full"
-          variant="outline"
-          onClick={ended ? onPresentWithdraw : onPresentDeposit}
-        >
+        <Button className="w-full" variant="outline" onClick={ended ? onPresentWithdraw : onPresentDeposit}>
           {ended ? "Unstake" : "Stake LP"}
         </Button>
       </React.Fragment>
     ) : (
       <div>
-        <div className="text-xs my-2 font-bold text-gray-600">
-          {lpLabel} Staked
-        </div>
+        <div className="text-xs my-2 font-bold text-gray-600">{lpLabel} Staked</div>
         <div className={`font-medium text-xl ${disabledClass}`}>
           {displayBalance()}
           <div className="inline-block mx-2">
             {stakedBalance?.gt(0) && lpPrice.gt(0) && (
-              <Balance
-                decimals={3}
-                value={getBalanceNumber(lpPrice.times(stakedBalance))}
-                unit=" USD"
-                prefix="~"
-              />
+              <Balance decimals={3} value={getBalanceNumber(lpPrice.times(stakedBalance))} unit=" USD" prefix="~" />
             )}
           </div>
         </div>
         {ended && (
-          <Button
-            className="w-full"
-            variant="outline"
-            onClick={onPresentWithdraw}
-          >
+          <Button className="w-full" variant="outline" onClick={onPresentWithdraw}>
             Unstake
           </Button>
         )}

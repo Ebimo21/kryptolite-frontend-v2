@@ -4,52 +4,32 @@ import { navigationItems } from "../../globals";
 import Link from "../Link";
 import Section from "./Section";
 import cls from "classnames";
+import ConnectWalletButton from "../Buttons/ConnectWalletButton";
+import Button from "../Buttons/Button";
+import { BiCaretDown } from "react-icons/bi";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const toggleMenu: React.MouseEventHandler<HTMLButtonElement> = useCallback(
-    (e) => {
-      e.stopPropagation();
-      setOpen((p) => !p);
-    },
-    []
-  );
+  const toggleMenu: React.MouseEventHandler<HTMLButtonElement> = useCallback((e) => {
+    e.stopPropagation();
+    setOpen((p) => !p);
+  }, []);
 
   const closeMenu = useCallback(() => setOpen(false), []);
 
   return (
     <Section
       containerClass="bg-transparent fixed top-0 w-full z-50"
-      className={cls(
-        "!max-w-screen-2xl bg-white shadow-md shadow-gray-400/20",
-        {
-          "shadow-lg": !open,
-        }
-      )}
+      className={cls("!max-w-screen-2xl bg-white shadow-md shadow-gray-400/20", {
+        "shadow-lg": !open,
+      })}
     >
-      <div className="bg-[#975C10] text-white w-full p-1 text-sm text-center rounded">
-        <p>
-          Bitcoin Pizza Day NFTs now available for all those who attended the{" "}
-          <span className="text-[#00FFFF]">#BitcoinPizzaDayHangout2022</span>{" "}
-          and filled{" "}
-          <Link
-            className="text-[#00FFFF]"
-            to="https://docs.google.com/forms/d/e/1FAIpQLScbfzlpCIzgNalPILo-uljBiXDGvW0nT1N-g8-hMz_vmb17MA/viewform"
-          >
-            this Google form
-          </Link>
-          .{" "}
-          <Link className="text-[#00FFFF]" to="/bitcoin-pizza-day-2022">
-            Claim Yours Today!
-          </Link>
-        </p>
-      </div>
-      <div className="flex flex-col py-3 px-4 lg:items-center lg:justify-between lg:flex-row md:px-6">
+      <div className="flex flex-col py-3 px-4 md:items-center md:justify-between md:flex-row md:px-6">
         <div className="flex flex-row items-center justify-between">
           <SiteLogo />
           <button
-            className="rounded-lg lg:hidden p-1 hover:bg-primary-200 focus:outline-none
+            className="rounded-lg md:hidden p-1 hover:bg-primary-200 focus:outline-none
               focus:bg-primary-200 hover:text-primary focus:text-primary"
             onClick={toggleMenu}
           >
@@ -71,22 +51,57 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-        <nav className={`${open ? "block" : "hidden"} lg:block`}>
-          <ul className="flex flex-col gap-1 flex-grow pb-4 lg:pb-0 lg:flex-row lg:justify-end lg:items-center">
-            {navigationItems.map((nav) => (
-              <li key={nav.id} className="inline-block mt-2 lg:mt-0 text-lg">
-                <Link
-                  to={nav.href}
-                  className="!px-5 !block !py-3 !ont-normal !bg-transparent !rounded-lg
+        <nav className={`${open ? "block" : "hidden"} md:block`}>
+          <ul className="flex flex-col gap-1 flex-grow pb-4 md:pb-0 md:flex-row md:justify-end md:items-center">
+            {navigationItems.map((nav) => {
+              if (nav.children) {
+                return (
+                  <li key={nav.id} className="inline-block mt-2 md:mt-0 text-lg">
+                    <Button
+                      className="!px-4 !py-2 !font-normal !bg-transparent !rounded-lg
                   !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
-                  hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none
-                    focus:!shadow-outline"
-                  onClick={closeMenu}
-                >
-                  {nav.title}
-                </Link>
-              </li>
-            ))}
+                  hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none !text-base
+                  flex items-center gap-2 group relative mx-1"
+                      onClick={closeMenu}
+                    >
+                      {nav.title}
+                      <BiCaretDown />
+                      <div
+                        className="invisible group-hover:visible top-full shadow-md absolute bg-white
+                        py-3 flex flex-col w-52 text-left border rounded-sm"
+                      >
+                        {nav.children.map((n) => (
+                          <Link
+                            to={n.href}
+                            className="!px-4 !block !py-2 !font-normal !bg-transparent
+                          !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
+                          hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none !text-base"
+                          >
+                            {n.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </Button>
+                  </li>
+                );
+              }
+              return (
+                <li key={nav.id} className="inline-block mt-2 md:mt-0 text-lg">
+                  <Link
+                    to={nav.href}
+                    className="!px-4 !block !py-2 !font-normal !bg-transparent !rounded-lg
+                  !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
+                  hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none !text-base"
+                    onClick={closeMenu}
+                  >
+                    {nav.title}
+                  </Link>
+                </li>
+              );
+            })}
+            <li className="inline-block mt-2 md:mt-0 text-lg">
+              <ConnectWalletButton />
+            </li>
           </ul>
         </nav>
       </div>

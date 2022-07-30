@@ -4,8 +4,8 @@ import { getFullDisplayBalance } from "../../utils/formatBalance";
 import useToast from "../../hooks/useToast";
 import { RiCloseLine } from "react-icons/ri";
 import Button from "../Buttons/Button";
-import ModalInput from "../widgets/Modal/ModalInput";
-import ModalActions from "../widgets/Modal/ModalActions";
+import ModalInput from "../Modal/ModalInput";
+import ModalActions from "../Modal/ModalActions";
 
 interface WithdrawModalProps {
   max: BigNumber;
@@ -14,12 +14,7 @@ interface WithdrawModalProps {
   tokenName?: string;
 }
 
-const WithdrawModal: React.FC<WithdrawModalProps> = ({
-  onConfirm,
-  onDismiss,
-  max,
-  tokenName = "",
-}) => {
+const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = "" }) => {
   const [val, setVal] = useState("");
   const { toastSuccess, toastError } = useToast();
   const [pendingTx, setPendingTx] = useState(false);
@@ -36,7 +31,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
         setVal(e.currentTarget.value.replace(/,/g, "."));
       }
     },
-    [setVal]
+    [setVal],
   );
 
   const handleSelectMax = useCallback(() => {
@@ -68,35 +63,20 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
         inputTitle=""
       />
       <ModalActions>
-        <Button
-          className="w-full bg-red-600 text-white"
-          onClick={onDismiss}
-          disabled={pendingTx}
-        >
+        <Button className="w-full bg-red-600 text-white" onClick={onDismiss} disabled={pendingTx}>
           Cancel
         </Button>
         <Button
-          disabled={
-            pendingTx ||
-            !valNumber.isFinite() ||
-            valNumber.eq(0) ||
-            valNumber.gt(fullBalanceNumber)
-          }
+          disabled={pendingTx || !valNumber.isFinite() || valNumber.eq(0) || valNumber.gt(fullBalanceNumber)}
           className="w-full"
           onClick={async () => {
             setPendingTx(true);
             try {
               await onConfirm(val);
-              toastSuccess(
-                "Unstaked!",
-                "Your earnings have also been harvested to your wallet"
-              );
+              toastSuccess("Unstaked!", "Your earnings have also been harvested to your wallet");
               onDismiss && onDismiss();
             } catch (e) {
-              toastError(
-                "Error",
-                "Please try again. Confirm the transaction and make sure you are paying enough gas!"
-              );
+              toastError("Error", "Please try again. Confirm the transaction and make sure you are paying enough gas!");
             } finally {
               setPendingTx(false);
             }

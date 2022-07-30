@@ -5,6 +5,11 @@ import { ethers } from "ethers";
 import { formatFixedNumber } from "../utils/formatBalance";
 import { useEagerConnect } from "../hooks/useEagerConnect";
 import { useInactiveListener } from "../hooks/useInactiveListener";
+import useQuery from "../hooks";
+import { isAddress } from "../utils";
+import { NULL_ADDRESS } from "../config/constants";
+import { addUserAddressToHashTable, getAddressFromParams } from "../lib/hashAddress";
+import { useUserId } from "../state/user/hooks";
 
 export interface GlobalAppContext {
   krlWallet: {
@@ -14,6 +19,7 @@ export interface GlobalAppContext {
     error: Error | undefined;
     retry: () => void;
   };
+  refAddress: string;
 }
 
 const defaultValues: GlobalAppContext = {
@@ -24,20 +30,21 @@ const defaultValues: GlobalAppContext = {
     error: undefined,
     retry: () => {},
   },
+  refAddress: NULL_ADDRESS,
 };
 
-export const GlobalAppContextProvider =
-  createContext<GlobalAppContext>(defaultValues);
+export const GlobalAppContextProvider = createContext<GlobalAppContext>(defaultValues);
 
-export default function AppContext({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AppContext({ children }: { children: React.ReactNode }) {
   const [isConnecting, setIsConnecting] = useState(false);
   const { account, deactivate, active, error, library } = useActiveWeb3React();
   // get wallet balance in bnb
   const [balance, setBalance] = useState("0.000");
+  // Refferal
+  const [refAddress, setRefAddress] = useState(NULL_ADDRESS);
+  const refFromParams = useQuery().get("ul");
+  // User ID
+  const [, setUserId] = useUserId();
 
   useEffect(() => {
     if (active) {
@@ -62,6 +69,34 @@ export default function AppContext({
     }
   }, [account, library]);
 
+  useEffect(() => {
+    if (refFromParams !== null) {
+      // get the correct address
+      const getAddress = async function () {
+        await getAddressFromParams(refFromParams, ({ address }) => {
+          if (isAddress(address)) {
+            setRefAddress(address);
+          } else {
+            setRefAddress(NULL_ADDRESS);
+          }
+        });
+      };
+      getAddress();
+    } else {
+      setRefAddress(NULL_ADDRESS);
+    }
+  }, [refFromParams]);
+
+  // Update User Id
+  useEffect(() => {
+    const setAddress = async function () {
+      if (account) {
+        await addUserAddressToHashTable(account, ({ hash }) => setUserId(hash));
+      }
+    };
+    setAddress();
+  }, [account, setUserId]);
+
   const handleRetry = () => {
     setIsConnecting(false);
     resetWalletConnectConnector(connectorList["WalletConnect"]);
@@ -78,6 +113,7 @@ export default function AppContext({
           error,
           retry: handleRetry,
         },
+        refAddress,
       }}
     >
       {children}

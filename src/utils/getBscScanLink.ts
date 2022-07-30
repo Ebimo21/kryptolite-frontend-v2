@@ -3,7 +3,7 @@ import { BASE_BSC_SCAN_URLS, ChainId } from "../config/constants";
 export function getBscScanLink(
   data: string | number,
   type: "transaction" | "token" | "address" | "block" | "countdown",
-  chainId: ChainId = ChainId.MAINNET
+  chainId: ChainId = ChainId.MAINNET,
 ): string {
   switch (type) {
     case "transaction": {
