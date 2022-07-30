@@ -155,10 +155,7 @@ const LeftLeaf = ({ label, content }: TimelineLeafProps) => {
     >
       <div className="p-2 bg-white border border-primary-300 text-primary-700 rounded">{label}</div>
       <div className="w-1/12 bg-primary-500 h-1 mb-2 lg:mb-0"></div>
-      <div
-        className="bg-white rounded-lg shadow-lg w-full lg:w-5/12 pl-6 p-4
-        border-primary-200 border"
-      >
+      <div className="bg-white rounded-lg shadow-lg w-full lg:w-5/12 pl-6 p-4">
         <Lists items={content} />
       </div>
     </div>
@@ -173,10 +170,7 @@ const RightLeaf = ({ label, content }: TimelineLeafProps) => {
     >
       <div className="order-1 w-1/12 bg-primary-500 h-1 mb-2 lg:mb-0"></div>
       <div className="p-2 bg-white border border-primary-300 text-primary-700 rounded">{label}</div>
-      <div
-        className="order-1 bg-white rounded-lg shadow-lg w-full lg:w-5/12 pl-6 p-4
-      border-primary-200 border"
-      >
+      <div className="order-1 bg-white rounded-lg shadow-lg w-full lg:w-5/12 pl-6 p-4">
         <Lists items={content} />
       </div>
     </div>
