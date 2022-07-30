@@ -61,14 +61,13 @@ export default function Navbar() {
                       className="!px-4 !py-2 !font-normal !bg-transparent !rounded-lg
                   !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
                   hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none !text-base
-                  flex items-center gap-2 group relative mx-1"
-                      onClick={closeMenu}
+                  flex justify-between items-center gap-2 group relative mx-1 w-full md:w-auto"
                     >
                       {nav.title}
                       <BiCaretDown />
                       <div
-                        className="invisible group-hover:visible top-full shadow-md absolute bg-white
-                        py-3 flex flex-col w-52 text-left border rounded-sm"
+                        className="invisible group-hover:visible top-full shadow-lg absolute bg-white
+                        py-3 flex flex-col w-full left-0 md:w-52 text-left border rounded-sm"
                       >
                         {nav.children.map((n) => (
                           <Link
@@ -76,6 +75,7 @@ export default function Navbar() {
                             className="!px-4 !block !py-2 !font-normal !bg-transparent
                           !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
                           hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none !text-base"
+                            onClick={closeMenu}
                           >
                             {n.title}
                           </Link>

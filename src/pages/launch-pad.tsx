@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../components/Buttons/Button";
 import Section from "../components/Layouts/Section";
+import Link from "../components/Link";
 import SEO from "../components/SEO";
 
 export default function LaunchPad() {
@@ -25,7 +25,9 @@ export default function LaunchPad() {
       </Section>
       <Section padding className="bg-gray-100 rounded-lg m-10 space-y-5 flex flex-col items-center justify-center">
         <p>No projects currently open</p>
-        <Button variant="outline">APPLY FOR IDO</Button>
+        <Link to="https://forms.gle/98io1yJHkYim2Cbr8" as="button" variant="outline">
+          APPLY FOR IDO
+        </Link>
       </Section>
     </main>
   );
