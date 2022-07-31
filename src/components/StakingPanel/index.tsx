@@ -1,9 +1,5 @@
 import React, { useCallback, useMemo, useRef } from "react";
-import {
-  useFarms,
-  usePollFarmsWithUserData,
-  usePriceCakeBusd,
-} from "../../state/farms/hooks";
+import { useFarms, usePollFarmsWithUserData, usePriceCakeBusd } from "../../state/farms/hooks";
 import BigNumber from "bignumber.js";
 import { DeserializedFarm } from "../../state/types";
 import { getFarmAprV3, getKrlPool2Apr } from "../../utils/apr";
@@ -29,49 +25,38 @@ export default function StakingPanel() {
 
   usePollFarmsWithUserData();
 
-  const activeFarms = farmsLP.filter(
-    (farm) => farm.pid !== 0 && farm.multiplier !== "0X"
-  );
+  const activeFarms = farmsLP.filter((farm) => farm.pid !== 0 && farm.multiplier !== "0X");
 
   const farmsList = useCallback(
     (farmsToDisplay: DeserializedFarm[]): FarmWithStakedValue[] => {
-      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map(
-        (farm) => {
-          if (!farm.lpTotalInQuoteToken || !farm.quoteTokenPriceBusd) {
-            return farm;
-          }
-          const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(
-            farm.quoteTokenPriceBusd
-          );
-          const rfd = farm.extras.rewardForDuration;
-          const rd = farm.extras.rewardsDuration;
-
-          // Apr calc for pool2
-          const totalTokenStaked = farm.extras.totalTokenStaked;
-          const rewardPerBlock = farm.extras.rewardPerBlock;
-          const lpPriceBusd = totalLiquidity.div(totalTokenStaked);
-
-          const { cakeRewardsApr } = (() =>
-            farm.pid === 1
-              ? getKrlPool2Apr(
-                  totalTokenStaked,
-                  rewardPerBlock,
-                  lpPriceBusd,
-                  cakePrice
-                )
-              : getFarmAprV3(cakePrice, totalLiquidity, rfd, rd))();
-
-          return {
-            ...farm,
-            apr: farm.ended ? 0 : cakeRewardsApr,
-            liquidity: totalLiquidity,
-          };
+      let farmsToDisplayWithAPR: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
+        if (!farm.lpTotalInQuoteToken || !farm.quoteTokenPriceBusd) {
+          return farm;
         }
-      );
+        const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd);
+        const rfd = farm.extras.rewardForDuration;
+        const rd = farm.extras.rewardsDuration;
+
+        // Apr calc for pool2
+        const totalTokenStaked = farm.extras.totalTokenStaked;
+        const rewardPerBlock = farm.extras.rewardPerBlock;
+        const lpPriceBusd = totalLiquidity.div(totalTokenStaked);
+
+        const { cakeRewardsApr } = (() =>
+          farm.pid === 1
+            ? getKrlPool2Apr(totalTokenStaked, rewardPerBlock, lpPriceBusd, cakePrice)
+            : getFarmAprV3(cakePrice, totalLiquidity, rfd, rd))();
+
+        return {
+          ...farm,
+          apr: farm.ended ? 0 : cakeRewardsApr,
+          liquidity: totalLiquidity,
+        };
+      });
 
       return farmsToDisplayWithAPR;
     },
-    [cakePrice]
+    [cakePrice],
   );
 
   const chosenFarmsMemoized = useMemo(() => {
@@ -83,13 +68,11 @@ export default function StakingPanel() {
   const krlBalance = useMemo(
     () =>
       getFullDisplayBalance(
-        account
-          ? farmsLP[0].userData?.tokenBalance || new BigNumber(0)
-          : new BigNumber(0),
+        account ? farmsLP[0].userData?.tokenBalance || new BigNumber(0) : new BigNumber(0),
         undefined,
-        3
+        3,
       ),
-    [account, farmsLP]
+    [account, farmsLP],
   );
 
   return (
@@ -107,7 +90,7 @@ export default function StakingPanel() {
             displayApr={getDisplayApr(farm.apr)}
             cakePrice={cakePrice}
             account={account as any}
-            removed={false}
+            removed={farm.ended}
           />
         ))}
       </div>

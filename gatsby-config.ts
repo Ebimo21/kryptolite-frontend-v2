@@ -8,7 +8,7 @@ require("dotenv").config({
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `KRYPTOLITE - the next 100X DeFi gem you don't want to miss`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://kryptolite.rocks`,
     description: "KRYPTOLITE - the next 100X DeFi gem you don't want to miss",
   },
   trailingSlash: "never",

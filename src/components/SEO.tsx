@@ -12,6 +12,7 @@ interface SEOProps {
   slug?: string;
   title?: string;
   lang?: string;
+  image?: string;
 }
 
 const query = graphql`
@@ -26,24 +27,17 @@ const query = graphql`
   }
 `;
 
-function SEO({
-  meta = [],
-  title = "",
-  description,
-  slug = "",
-  lang = "en",
-}: SEOProps) {
+function SEO({ meta = [], title = "", description, slug = "", lang = "en", image }: SEOProps) {
   return (
     <StaticQuery
       query={query}
       render={(data) => {
         const { siteMetadata } = data.site;
         const metaDescription = description || siteMetadata.description;
-        const metaImages = { og: ogImage, twitter: twitterImage };
-        const getMetaImageUrl = (image: string) =>
-          `${siteMetadata.siteUrl}${image}`;
+        const metaImages = image ? { og: image, twitter: image } : { og: ogImage, twitter: twitterImage };
+        const getMetaImageUrl = (image: string) => `${siteMetadata.siteUrl}${image}`;
         const url = `${siteMetadata.siteUrl}${slug}`;
-        const twitterUrl = "@CookedR1ce";
+        const twitterUrl = "@KryptoliteSwap";
         return (
           <Helmet
             htmlAttributes={{ lang }}
