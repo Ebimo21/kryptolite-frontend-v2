@@ -12,7 +12,7 @@ interface SEOProps {
   slug?: string;
   title?: string;
   lang?: string;
-  image?: string;
+  image?: { og: string; twitter: string };
 }
 
 const query = graphql`
@@ -34,7 +34,7 @@ function SEO({ meta = [], title = "", description, slug = "", lang = "en", image
       render={(data) => {
         const { siteMetadata } = data.site;
         const metaDescription = description || siteMetadata.description;
-        const metaImages = image ? { og: image, twitter: image } : { og: ogImage, twitter: twitterImage };
+        const metaImages = image ? image : { og: ogImage, twitter: twitterImage };
         const getMetaImageUrl = (image: string) => `${siteMetadata.siteUrl}${image}`;
         const url = `${siteMetadata.siteUrl}${slug}`;
         const twitterUrl = "@KryptoliteSwap";

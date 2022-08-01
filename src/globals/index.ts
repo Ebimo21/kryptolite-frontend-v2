@@ -37,7 +37,7 @@ export const navigationItems: NavigationType[] = [
       {
         id: 4,
         title: "Github",
-        href: "https://github.com/KRYPTOLITE/kryptolite-frontend-v2",
+        href: "https://github.com/KRYPTOLITE",
       },
     ],
   },
