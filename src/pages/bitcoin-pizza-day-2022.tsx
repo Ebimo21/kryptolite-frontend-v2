@@ -12,6 +12,7 @@ import { getPizzaDayContract } from "../utils/contractHelpers";
 import BigNumber from "bignumber.js";
 import useToast from "../hooks/useToast";
 import { FaDiscord } from "react-icons/fa";
+import Layout from "../components/Layouts";
 
 export default function IndexPage() {
   const [eligible, setEligible] = useState(false);
@@ -84,7 +85,7 @@ export default function IndexPage() {
   }, [account, library]);
 
   return (
-    <main>
+    <Layout>
       <SEO
         title="Bitcoin Pizza Day Hangout 2022 NFT"
         description="We celebrated the Bitcoin Pizza Day event on Sunday, May 22nd 2022. As The 
@@ -282,6 +283,6 @@ export default function IndexPage() {
           <FAQ expandedUuids={["what_is_bitcoin_pizza_day"]} />
         </div>
       </Section>
-    </main>
+    </Layout>
   );
 }

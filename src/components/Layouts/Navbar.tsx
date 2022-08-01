@@ -72,6 +72,7 @@ export default function Navbar() {
                         {nav.children.map((n) => (
                           <Link
                             to={n.href}
+                            key={n.id}
                             className="!px-4 !block !py-2 !font-normal !bg-transparent
                           !text-primary-600 hover:!text-primary-800 focus:!text-primary-800
                           hover:!bg-primary-100 focus:!bg-primary-100 focus:!outline-none !text-base"
@@ -99,7 +100,7 @@ export default function Navbar() {
                 </li>
               );
             })}
-            <li className="inline-block mt-2 md:mt-0 text-lg">
+            <li key={"connect_wallet_list_item"} className="inline-block mt-2 md:mt-0 text-lg">
               <ConnectWalletButton />
             </li>
           </ul>

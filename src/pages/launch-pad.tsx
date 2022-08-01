@@ -1,11 +1,12 @@
 import React from "react";
+import Layout from "../components/Layouts";
 import Section from "../components/Layouts/Section";
 import Link from "../components/Link";
 import SEO from "../components/SEO";
 
 export default function LaunchPad() {
   return (
-    <main>
+    <Layout>
       <SEO
         title="The KRYPTOLITE Universe LaunchPad"
         description="KRYPTOLITE will empower cryptocurrency projects with the ability to distribute tokens and raise liquidity. Staking KRL-LP is required to guarantee an allocation based on the pool weight."
@@ -29,6 +30,6 @@ export default function LaunchPad() {
           APPLY FOR IDO
         </Link>
       </Section>
-    </main>
+    </Layout>
   );
 }

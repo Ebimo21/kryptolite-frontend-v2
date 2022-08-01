@@ -8,7 +8,8 @@ require("dotenv").config({
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `KRYPTOLITE - the next 100X DeFi gem you don't want to miss`,
-    siteUrl: `https://kryptolite.rocks`,
+    // siteUrl: `https://kryptolite.rocks`,
+    siteUrl: `https://kryptolite-rocks.netlify.app`,
     description: "KRYPTOLITE - the next 100X DeFi gem you don't want to miss",
   },
   trailingSlash: "never",
@@ -36,7 +37,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-layout",
       options: {
-        component: path.resolve("./src/components/Layouts/index.tsx"),
+        component: path.resolve("./src/components/GlobalAppWrapper.tsx"),
       },
     },
     {

@@ -17,10 +17,11 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import SimpleTimeline from "../components/widgets/SimpleTimeline";
 import OurPartnersSection from "../components/SharedSections/OurPartnersSection";
 import { MdSwapHorizontalCircle } from "react-icons/md";
+import Layout from "../components/Layouts";
 
 export default function IndexPage() {
   return (
-    <main>
+    <Layout>
       <SEO
         title="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
         description="KRYPTOLITE - the next 100X DeFi gem you don't want to miss"
@@ -218,7 +219,7 @@ export default function IndexPage() {
       <JoinCommunitySection />
       <ReachUsSection />
       <OurPartnersSection />
-    </main>
+    </Layout>
   );
 }
 

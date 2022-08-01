@@ -1,5 +1,6 @@
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
+import Layout from "../components/Layouts";
 import Section from "../components/Layouts/Section";
 import SEO from "../components/SEO";
 import ReachUsSection from "../components/SharedSections/ReachUsSection";
@@ -8,7 +9,7 @@ import highlighText from "../components/Tools/highlightText";
 
 export default function StakePage() {
   return (
-    <main>
+    <Layout>
       <SEO
         title="Stake your KRL-BUSD LP tokens"
         description="Stake your KRL-BUSD LP tokens and be eligible for rewards"
@@ -41,6 +42,6 @@ export default function StakePage() {
         <StakingPanel />
       </Section>
       <ReachUsSection />
-    </main>
+    </Layout>
   );
 }
