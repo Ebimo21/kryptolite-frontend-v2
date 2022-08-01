@@ -1,11 +1,4 @@
-import path from "path";
-import type { GatsbyConfig } from "gatsby";
-
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
-
-const config: GatsbyConfig = {
+module.exports = {
   siteMetadata: {
     title: `KRYPTOLITE - the next 100X DeFi gem you don't want to miss`,
     // siteUrl: `https://kryptolite.rocks`,
@@ -37,7 +30,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-layout",
       options: {
-        component: path.resolve("./src/components/GlobalAppWrapper.tsx"),
+        component: require.resolve("./src/components/GlobalAppWrapper.tsx"),
       },
     },
     {

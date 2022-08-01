@@ -1,14 +1,10 @@
-import type { GatsbyNode } from "gatsby";
-import path from "path";
-
-export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = async ({ plugins, actions }) => {
+exports.onCreateWebpackConfig = ({ plugins, actions }) => {
   actions.setWebpackConfig({
     // Work around for Buffer is undefined:
     // https://github.com/webpack/changelog-v5/issues/10
     plugins: [
       plugins.provide({
         Buffer: ["buffer", "Buffer"],
-        process: "process/browser",
       }),
     ],
     resolve: {
@@ -19,7 +15,7 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = async 
         // https: require.resolve('https-browserify'),
         // os: require.resolve('os-browserify/browser'),
         // stream: require.resolve("stream-browserify"),
-        buffer: path.resolve("buffer"),
+        buffer: require.resolve("buffer"),
       },
     },
   });
