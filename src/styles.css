@@ -124,3 +124,15 @@
     -webkit-appearance: none;
   }
 }
+
+@layer utilities{
+  .clip-image{
+    clip-path: circle(40% at 50% 50%);
+  }
+
+  .img-width{
+    max-width: 200px !important;
+    max-height: 200px !important;
+
+  }
+}

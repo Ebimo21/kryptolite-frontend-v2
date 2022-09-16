@@ -3,6 +3,18 @@ interface BaseNavigationType {
   title: string;
   href: string;
 }
+
+interface cardTypes {
+  id: number;
+  title: string;
+  content: string;
+  src: string;
+}
+
+export interface cardType extends cardTypes{
+  children?: cardType[];
+}
+
 export interface NavigationType extends BaseNavigationType {
   children?: NavigationType[];
 }
@@ -44,3 +56,26 @@ export const navigationItems: NavigationType[] = [
   // { id: 7, title: "Launch Pad", href: "/launch-pad" },
   // { id: 6, title: "Contact Us", href: "#contact-us" },
 ];
+
+export const cardItems: cardTypes[]= [
+  {
+    id: 1,
+    title: "Stake Crypto",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit diam, eget ac in varius pulvinar. Massa quis libero, volutpat sit lacus. Vel vitae.",
+    src: "bg-[url('./images/stake.jpg')]"
+  },
+
+  {
+    id: 2,
+    title: "Fastest Exchange",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit diam, eget ac in varius pulvinar. Massa quis libero, volutpat sit lacus. Vel vitae.",
+    src: "bg-[url('./images/swap.jpg')]"
+  },
+
+  {
+    id: 3,
+    title: "BNBNFT Others",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit diam, eget ac in varius pulvinar. Massa quis libero, volutpat sit lacus. Vel vitae.",
+    src: "bg-[url('./images/nft.jpg')]"
+  }
+]
